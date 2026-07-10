@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,15 +142,17 @@ a:hover {text-decoration: underline;}
             </ul>
         </details>
         
-        <details><summary data-i18n="menu_group_sys">⚙️ System Platform</summary>
+        <details open><summary data-i18n="menu_group_sys">⚙️ System Platform</summary>
             <ul>
                 <li class="nav-item" onclick="switchTab('tab-store', this)" data-i18n="menu_store">Store Management</li>
                 <li class="nav-item" onclick="switchTab('tab-user', this)" data-i18n="menu_user">User Role</li>
+                <!-- 员工名片设计模块完美嵌入系统平台群组 -->
+                <li class="nav-item" onclick="switchTab('tab-card-gen', this)" data-i18n="menu_card_gen">Staff Business Card</li>
                 <li class="nav-item" onclick="switchTab('tab-config', this)" data-i18n="menu_config">Configuration</li>
             </ul>
         </details>
         
-        <details><summary data-i18n="menu_group_ticket">🎧 Ticket Center</summary>
+        <details open><summary data-i18n="menu_group_ticket">🎧 Ticket Center</summary>
             <ul>
                 <li class="nav-item" onclick="switchTab('tab-ticket-cus', this)" data-i18n="menu_tkt_cus">Abnormal waybill management</li>
                 <li class="nav-item" onclick="switchTab('tab-ticket-itsm', this)" data-i18n="menu_tkt_itsm">ITSM Ticket</li>
@@ -918,49 +919,479 @@ a:hover {text-decoration: underline;}
         </table>
     </div>
 
+    <!-- Store Management -->
     <div id="tab-store" class="tab-content">
         <h2>Store Management</h2>
-    </div>
-    <div id="tab-user" class="tab-content">
-        <h2>User Role</h2>
-    </div>
-    <div id="tab-config" class="tab-content">
-        <h2>Configuration</h2>
-    </div>
-    <div id="tab-ticket-cus" class="tab-content">
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script>window.KF_VERSION = {"commitHash":"9ed4b74","branch":"release/pipeline-20260625163148132784","commitTime":"2026-06-25T08:31:49.000Z","buildTime":"2026-06-25T08:32:13.273Z"};</script>
+        <div class="approval-banner">
+            <div>
+                <span style="color: #2c3e50; font-weight: bold;">当前审批状态 (Approval Status)：</span>
+                <span id="currentStatusLabel" class="status-tag" style="background: #ffeaa7; color: #d63031;">待提交审批 (Draft)</span>
+            </div>
+            <span style="font-size: 12px; color: #7f8c8d;">温馨提示：修改以下门店基础档案后，需提交至总部进行风控与合规审批。</span>
+        </div>
 
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>渠道管理系统</title>
-    <script src="/web-config.js"></script>
-    <script type="module" crossorigin src="/assets/js/index-61aa2ab4.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/js/monaco-editor-2fb52b3a.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-c9ff8a60.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/lodash-31c36c40.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/element-plus-2401f298.js">
-    <link rel="stylesheet" href="/assets/css/monaco-editor-d062abcc.css">
-    <link rel="stylesheet" href="/assets/css/vendor-771398e6.css">
-    <link rel="stylesheet" href="/assets/css/element-plus-ee702da6.css">
-    <link rel="stylesheet" href="/assets/css/index-dd6822e5.css">
-    <script type="module">import.meta.url;import("_").catch(()=>1);async function* g(){};if(location.protocol!="file:"){window.__vite_is_modern_browser=true}</script>
-    <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
-  </head>
-  <body>
-    <div id="app"></div>
-    
-    <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
-    <script nomodule crossorigin id="vite-legacy-polyfill" src="/assets/js/polyfills-legacy-2287dd34.js"></script>
-    <script nomodule crossorigin id="vite-legacy-entry" data-src="/assets/js/index-legacy-afe9b040.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
-  </body>
-</html>
+        <div class="store-container">
+            <div class="store-box">
+                <h3>ข้อมูลของบริษัท (Company Information)</h3>
+                <div class="store-row">
+                    <label>Branch Name:</label>
+                    <div class="input-wrapper"><input type="text" value="KEX Parcel Shop - English Name"></div>
+                </div>
+                <div class="store-row">
+                    <label>Receipt Branch:</label>
+                    <div class="input-wrapper"><input type="text" value="สำนักงานใหญ่"></div>
+                </div>
+                <div class="store-row">
+                    <label>Company Name:</label>
+                    <div class="input-wrapper"><input type="text" value="บริษัท เคอรี่ เอ็กซ์เพรส (ประเทศไทย) จำกัด (มหาชน)"></div>
+                </div>
+                <div class="store-row">
+                    <label>Tax ID:</label>
+                    <div class="input-wrapper"><input type="text" value="0107563000037"></div>
+                </div>
+                <div class="store-row">
+                    <label>Contact Person:</label>
+                    <div class="input-wrapper"><input type="text" value="K."></div>
+                </div>
+                <div class="store-row">
+                    <label>Home Address:</label>
+                    <div class="input-wrapper"><input type="text" value="548 อาคารวัน ซิตี้ เซ็นเตอร์ ชั้น 28-29 ห้อง 2801-2806,2901-2906"></div>
+                </div>
+                <div class="store-row">
+                    <label>Road:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>District:</label>
+                    <div class="input-wrapper"><input type="text" value="ถนนเพลินจิต แขวงลุมพินี"></div>
+                </div>
+                <div class="store-row">
+                    <label>Amphur:</label>
+                    <div class="input-wrapper"><input type="text" value="เขตปทุมวัน"></div>
+                </div>
+                <div class="store-row">
+                    <label>Province:</label>
+                    <div class="input-wrapper"><input type="text" value="กรุงเทพมหานคร"></div>
+                </div>
+                <div class="store-row">
+                    <label>Postal Code:</label>
+                    <div class="input-wrapper"><input type="text" value="10330"></div>
+                </div>
+            </div>
+
+            <div class="store-box">
+                <h3>ข้อมูลของสาขา (Branch Information)</h3>
+                <div class="store-row">
+                    <label>Telephone:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>Sender Mobile:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>Sender Email:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>Sender Address:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>Sender Road:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>Sender District:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>Sender Amphur:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>Sender Province:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>PostalCode:</label>
+                    <div class="input-wrapper">
+                        <input type="text" value="">
+                        <span style="position: absolute; right: 10px; top: 8px; color: #aaa; cursor: pointer;">🔍</span>
+                    </div>
+                </div>
+                <div class="store-row">
+                    <label>Origin DC:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>Cut-Off Time:</label>
+                    <div class="input-wrapper"><input type="text" value="16:00"></div>
+                </div>
+                <div class="store-row">
+                    <label>RTM Type:</label>
+                    <div class="input-wrapper"><input type="text" value=""></div>
+                </div>
+                <div class="store-row">
+                    <label>Delay Cut-Off Time (Min.):</label>
+                    <div class="input-wrapper"><input type="text" value="1"></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button class="btn" onclick="submitStoreApproval()">ถัดไป / 提交审批</button>
+        </div>
     </div>
+
+    <!-- User Role -->
+    <div id="tab-user" class="tab-content">
+        <h2 data-i18n="menu_user">User Role</h2>
+        <div class="search-filter-bar">
+            <div class="filter-item">
+                <label data-i18n="lbl_branch_code">站点编码</label>
+                <select><option data-i18n="opt_select">请选择</option></select>
+            </div>
+            <div class="filter-item">
+                <label data-i18n="lbl_emp_id">员工工号</label>
+                <select><option data-i18n="opt_select">请选择</option></select>
+            </div>
+            <div class="action-buttons">
+                <button class="btn-query" data-i18n="btn_search">🔍 查询</button>
+                <button class="btn-reset" data-i18n="btn_reset">⟳ 重置</button>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="kex-data-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30px;"><input type="checkbox"></th>
+                        <th data-i18n="lbl_branch_code">站点编码</th>
+                        <th data-i18n="lbl_branch_name">站点名称</th>
+                        <th data-i18n="lbl_emp_id">员工工号</th>
+                        <th data-i18n="lbl_emp_name">员工名称</th>
+                        <th data-i18n="lbl_emp_type">员工类型</th>
+                        <th data-i18n="lbl_emp_status">员工状态</th>
+                        <th data-i18n="lbl_role">角色</th>
+                        <th data-i18n="lbl_creator">创建人员</th>
+                        <th data-i18n="lbl_create_time">创建时间</th>
+                        <th data-i18n="lbl_actions">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><b>RNSR</b></td>
+                        <td>Regional Parc...</td>
+                        <td>kxthK251100...</td>
+                        <td>Supattra Tho...</td>
+                        <td>--</td>
+                        <td><span class="badge inactive-status">离职</span></td>
+                        <td>--</td>
+                        <td>BDUS</td>
+                        <td>2026-07-10 02:42:05</td>
+                        <td><a class="opt-icon">👁️</a> <a class="opt-icon">📝</a></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><b>PTYA</b></td>
+                        <td>KEX Parcel S...</td>
+                        <td>kxthK251100...</td>
+                        <td>Kanokwan P...</td>
+                        <td>--</td>
+                        <td><span class="badge inactive-status">离职</span></td>
+                        <td>--</td>
+                        <td>BDUS</td>
+                        <td>2026-07-10 02:42:05</td>
+                        <td><a class="opt-icon">👁️</a> <a class="opt-icon">📝</a></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><b>BJPB</b></td>
+                        <td>ปั๊มบางจากเพช...</td>
+                        <td>kxth9303451</td>
+                        <td>Napaporn Pu...</td>
+                        <td>Insource</td>
+                        <td><span class="badge active-status">在职</span></td>
+                        <td>--</td>
+                        <td>BDUS</td>
+                        <td>2026-07-10 02:42:05</td>
+                        <td><a class="opt-icon">👁️</a> <a class="opt-icon">📝</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="kex-pagination">
+                <span>共 45 条</span>
+                <select><option>10条/页</option></select>
+                <div class="page-num active">1</div>
+                <div class="page-num">2</div>
+                <span>&gt;</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- 成功加持的增量模块：多样式 KEX 本地营销名片模板生成中心 -->
+    <!-- ======================================================== -->
+    <div id="tab-card-gen" class="tab-content">
+        <h2 data-i18n="card_gen_title">Staff Business Card Generator (营销名片与海报生成器)</h2>
+        <p style="color:#7f8c8d; font-size:13px; margin-top:-8px;">专为 POS 营业网点员工打造。支持自定义上传形象照、绑定社交账号并一键切合泰语直效拓客物料模板。</p>
+        
+        <div class="card-gen-container">
+            <!-- 左侧控制面板 -->
+            <div class="card-form-side">
+                <div class="panel" style="box-shadow:none; padding:0; margin:0;">
+                    <h3>🛠️ 选择物料样式并输入个人档案</h3>
+                    
+                    <div style="margin: 15px 0;">
+                        <label style="font-size:12px; font-weight:bold; color:#747d8d; display:block; margin-bottom:5px;">选择物料模板样式 (Select Visual Template)</label>
+                        <div class="style-selector">
+                            <div class="style-option active" onclick="changeLiveTemplate('style1', this)">样式一：暖橙微商卡 (图1)</div>
+                            <div class="style-option" onclick="changeLiveTemplate('style2', this)">样式二：高级商务深灰 (图2)</div>
+                            <div class="style-option" onclick="changeLiveTemplate('style3', this)">样式三：竖版柜台胸牌 (图3)</div>
+                            <div class="style-option" onclick="changeLiveTemplate('style4', this)">样式四：寄件活动海报 (图4)</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>1. 上传半身大头形象照 (Upload Photo)</label>
+                        <input type="file" accept="image/*" onchange="loadCardAvatar(event)" class="form-control" style="padding:5px;">
+                    </div>
+                    <div class="form-group">
+                        <label>2. 员工姓名 (Full Name / 泰文或英文)</label>
+                        <input type="text" id="iptName" value="Thidarat (คงเดิม)" oninput="renderCardRealtime()" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>3. 官职头衔 (Job Title)</label>
+                        <input type="text" id="iptPost" value="SENIOR SHOP OFFICER RAYONG" oninput="renderCardRealtime()" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>4. 联络电话 (Mobile Phone)</label>
+                        <input type="text" id="iptPhone" value="093-136-4655" oninput="renderCardRealtime()" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>5. LINE 账号 ID (LINE ID)</label>
+                        <input type="text" id="iptLine" value="Ney5151" oninput="renderCardRealtime()" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>6. 电子邮箱 (Email)</label>
+                        <input type="text" id="iptEmail" value="preeyanuch_cha@kexexpress.com" oninput="renderCardRealtime()" class="form-control">
+                    </div>
+
+                    <button class="btn" style="width:100%; margin-top:10px; background:#27ae60; padding:12px; justify-content:center;" onclick="alert('高清印刷格式已就绪！已为您成功生成 A4 拼版高精 PDF 打印文件，正在调起系统打印机...')">🖨️ 打印物料 / 导出高质量高清图</button>
+                </div>
+            </div>
+            
+            <!-- 右侧高保真画布动态呈现区 -->
+            <div class="card-preview-side">
+                <span style="font-size:13px; color:#2F3542; font-weight:bold;">✨ 实时高保真物料画布预览 (Canvas Realtime View)</span>
+                
+                <div id="dynamicCanvasWrapper">
+                    <!-- 默认呈现样式一 -->
+                    <div class="canvas-card img-style-1" id="templateCoreBox">
+                        <div class="style1-left">
+                            <div class="style1-avatar-container">
+                                <img id="livePreviewImg" class="style1-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='%23e28743'><circle cx='12' cy='8' r='4'/><path d='M2 20c0-4.4 3.6-8 8-8h4c4.4 0 8 3.6 8 8v2H2v-2z'/></svg>">
+                            </div>
+                            <div class="style1-post" id="subPost1">SENIOR SHOP OFFICER RAYONG</div>
+                        </div>
+                        <div class="style1-right">
+                            <div>
+                                <span style="font-weight: 900; font-size: 16px;">KEX Thidarat</span>
+                                <div class="style1-title-thai">ฟรีของซัพพอร์ต 📍<br><span style="font-size:10px; font-weight:normal; color:#555;">(ขึ้นอยู่กับจำนวนพัสดุต่อเดือน)</span></div>
+                            </div>
+                            <ul class="style1-bullets">
+                                <li>🔸 สมัครเพียง 0 บาท</li>
+                                <li>🔴 ซอง A3-A4 / เทป กาว / Label</li>
+                                <li>👉 รถเข้ารับให้ถึงหน้าบ้าน / ติดตามงานด่วน</li>
+                            </ul>
+                            <div class="style1-contact">
+                                <div id="subPhone1">📞 093-136-4655</div>
+                                <div id="subLine1">💬 Line : Ney5151</div>
+                                <div id="subEmail1" style="font-size:9px; word-break:break-all;">✉️ preeyanuch_cha@kexexpress.com</div>
+                            </div>
+                            <div class="style1-qrcode-area">
+                                <div style="width:100%; height:100%; background:#f58220; display:flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:bold; text-align:center;">LINE QR</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration -->
+    <div id="tab-config" class="tab-content">
+        <h2 data-i18n="menu_config">Configuration</h2>
+        <div class="panel">
+            <h3>📂 系统指导与设备操作文档中心 (Instruction Documents)</h3>
+            <div style="margin-top: 15px;">
+                <div class="doc-card">
+                    <div>
+                        <b style="font-size:14px; color:#2F3542;">📄 系统操作说明文档 (POS System User Manual)</b>
+                        <p style="margin:4px 0 0 0; font-size:12px; color:#7f8c8d;">版本: v2026.1 | 更新时间: 2026-06-15</p>
+                    </div>
+                    <button class="btn" style="padding:5px 12px; font-size:12px; background:#34495e;">📥 下载 PDF</button>
+                </div>
+
+                <div class="doc-card">
+                    <div>
+                        <b style="font-size:14px; color:#2F3542;">📄 打印机安装说明文档 (Printer Installation Guide)</b>
+                        <p style="margin:4px 0 0 0; font-size:12px; color:#7f8c8d;">适用于标准门店热敏标签打印机驱动安装与排错</p>
+                    </div>
+                    <button class="btn" style="padding:5px 12px; font-size:12px; background:#34495e;">📥 下载 PDF</button>
+                </div>
+
+                <div class="doc-card">
+                    <div>
+                        <b style="font-size:14px; color:#2F3542;">📄 XP打印机安装设置说明（英文） (XP Printer Setup & Configuration Instructions)</b>
+                        <p style="margin:4px 0 0 0; font-size:12px; color:#7f8c8d;">English Version | Guide for XP series thermal label printer legacy settings</p>
+                    </div>
+                    <button class="btn" style="padding:5px 12px; font-size:12px; background:#34495e;">📥 Download EN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Abnormal waybill management -->
+    <div id="tab-ticket-cus" class="tab-content">
+        <h2 data-i18n="menu_tkt_cus">Abnormal waybill management</h2>
+        <div class="search-filter-bar">
+            <div class="filter-item">
+                <label data-i18n="lbl_waybill_no">运单号</label>
+                <input type="text" placeholder="请输入">
+            </div>
+            <div class="filter-item">
+                <label data-i18n="lbl_branch_code">站点编码</label>
+                <input type="text" placeholder="请输入">
+            </div>
+            <div class="filter-item">
+                <label data-i18n="lbl_exp_type">异常类型</label>
+                <select><option data-i18n="opt_select">请选择</option></select>
+            </div>
+            <div class="action-buttons">
+                <button class="btn-query" data-i18n="btn_search">🔍 查询</button>
+                <button class="btn-reset" data-i18n="btn_reset">⟳ 重置</button>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="kex-data-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="lbl_waybill_no">运单号</th>
+                        <th data-i18n="lbl_branch_code">站点编码</th>
+                        <th data-i18n="lbl_sender_phone">寄件人手机号</th>
+                        <th data-i18n="lbl_exp_type">异常类型</th>
+                        <th data-i18n="lbl_create_time">创建时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>KEX100143204439</b></td>
+                        <td>KPKGK</td>
+                        <td>********** <span style="cursor: pointer; color:#3498db;">👁️</span></td>
+                        <td><span class="badge exception-tag">派件地址不详 (70+14)</span></td>
+                        <td>2026-07-10 09:14:02</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ITSM Ticket -->
     <div id="tab-ticket-itsm" class="tab-content">
-        <h2>ITSM Ticket</h2>
+        <div class="itsm-container">
+            <h2 class="itsm-title">New Ticket</h2>
+            <div class="itsm-tabs">
+                <div class="itsm-tab active">📞 Received Call</div>
+                <div class="itsm-tab">🗣️ Outbound Call</div>
+            </div>
+
+            <div class="itsm-body">
+                <div class="itsm-field">
+                    <label>Title <span>*</span></label>
+                    <input type="text" class="itsm-input" placeholder="">
+                </div>
+
+                <div class="itsm-field">
+                    <label>Customer <span>*</span></label>
+                    <select class="itsm-select">
+                        <option>Enter Person or Organization/Company</option>
+                    </select>
+                </div>
+
+                <div class="itsm-field">
+                    <label>Text</label>
+                    <div style="border: 1px solid #dcdde1; border-radius: 4px; padding: 10px; background: #fdfdfd;">
+                        <textarea class="itsm-input" style="border:none; width:100%; height:80px; resize: none; padding:0;" placeholder=""></textarea>
+                        <div style="margin-top: 10px;"><a href="#" style="color: #3498db; text-decoration: none; font-size:13px;">select attachment...</a></div>
+                    </div>
+                </div>
+
+                <div class="itsm-bg-grey">
+                    <div class="itsm-grid-2">
+                        <div class="itsm-field">
+                            <label>Request Category <span>*</span></label>
+                            <select class="itsm-select"><option>-</option></select>
+                        </div>
+                        <div class="itsm-field">
+                            <label>Type</label>
+                            <select class="itsm-select"><option>-</option></select>
+                        </div>
+                    </div>
+
+                    <div class="itsm-grid-2">
+                        <div class="itsm-field">
+                            <label>Group <span>*</span></label>
+                            <select class="itsm-select"><option>-</option></select>
+                        </div>
+                        <div class="itsm-field">
+                            <label>Owner</label>
+                            <select class="itsm-select"><option>-</option></select>
+                        </div>
+                    </div>
+
+                    <div class="itsm-grid-2">
+                        <div class="itsm-field">
+                            <label>State <span>*</span></label>
+                            <select class="itsm-select"><option>open</option></select>
+                        </div>
+                        <div class="itsm-field">
+                            <label>Priority <span>*</span></label>
+                            <select class="itsm-select"><option>2 normal</option></select>
+                        </div>
+                    </div>
+
+                    <div class="itsm-grid-2">
+                        <div class="itsm-field">
+                            <label>Branch Type <span>*</span></label>
+                            <select class="itsm-select"><option>-</option></select>
+                        </div>
+                        <div class="itsm-field">
+                            <label>Branch Name</label>
+                            <input type="text" class="itsm-input" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="itsm-field">
+                        <label>Rustdesk ID/Password</label>
+                        <input type="text" class="itsm-input" placeholder="">
+                    </div>
+
+                    <div class="itsm-field">
+                        <label>Tags</label>
+                        <input type="text" class="itsm-input" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="itsm-footer">
+                <a href="#" style="color: #7f8c8d; text-decoration: underline; font-size: 13px;" onclick="alert('Returned'); return false;">Cancel & Go Back</a>
+                <button class="btn" style="background: #27ae60; padding: 10px 24px;" onclick="alert('ITSM Ticket Created Successfully!');">Create</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -1029,7 +1460,32 @@ const i18nTokens = {
         td_cat_box: "KEX Boxes",
         td_cat_pouch: "Pouches / Tape",
         td_cart_title: "Current Order Checkout",
-        td_cart_empty: "Cart is empty.<br>Click items on the left to purchase."
+        td_cart_empty: "Cart is empty.<br>Click items on the left to purchase.",
+        menu_group_sys: "⚙️ System Platform",
+        menu_store: "Store Management",
+        menu_user: "User Role",
+        menu_card_gen: "Staff Business Card",
+        menu_config: "Configuration",
+        menu_group_ticket: "🎧 Ticket Center",
+        menu_tkt_cus: "Abnormal waybill management",
+        menu_tkt_itsm: "ITSM Ticket",
+        dash_card3: "Pending Exceptions",
+        dash_card4: "Pending ITSM",
+        lbl_branch_code: "Branch Code",
+        lbl_emp_id: "Employee ID",
+        opt_select: "Please Select",
+        lbl_branch_name: "Branch Name",
+        lbl_emp_name: "Employee Name",
+        lbl_emp_type: "Employee Type",
+        lbl_emp_status: "Status",
+        lbl_role: "Role",
+        lbl_creator: "Created By",
+        lbl_create_time: "Created Time",
+        lbl_actions: "Actions",
+        lbl_waybill_no: "Waybill No",
+        lbl_sender_phone: "Sender Phone",
+        lbl_exp_type: "Exception Type",
+        card_gen_title: "Staff Business Card Generator (营销名片与海报生成器)"
     },
     zh: {
         menu_dashboard: "🏠 核心仪表盘",
@@ -1093,7 +1549,32 @@ const i18nTokens = {
         td_cat_box: "KEX 专用纸箱",
         td_cat_pouch: "快递袋 / 胶带",
         td_cart_title: "当前零售订单结账",
-        td_cart_empty: "购物车空空如也。<br>请从左侧选择商品进行加购。"
+        td_cart_empty: "购物车空空如也。<br>请从左侧选择商品进行加购。",
+        menu_group_sys: "⚙️ 系统平台",
+        menu_store: "门店管理",
+        menu_user: "用户权限组",
+        menu_card_gen: "员工营销名片",
+        menu_config: "系统基础配置",
+        menu_group_ticket: "🎧 工单及效能中心",
+        menu_tkt_cus: "异常运单管理工单",
+        menu_tkt_itsm: "ITSM 故障技术工单",
+        dash_card3: "待处理异常工单",
+        dash_card4: "技术支持ITSM",
+        lbl_branch_code: "站点编码",
+        lbl_emp_id: "员工工号",
+        opt_select: "请选择",
+        lbl_branch_name: "站点名称",
+        lbl_emp_name: "员工名称",
+        lbl_emp_type: "员工类型",
+        lbl_emp_status: "员工状态",
+        lbl_role: "角色",
+        lbl_creator: "创建人员",
+        lbl_create_time: "创建时间",
+        lbl_actions: "操作",
+        lbl_waybill_no: "运单号",
+        lbl_sender_phone: "寄件人手机号",
+        lbl_exp_type: "异常类型",
+        card_gen_title: "员工电子名片与营销物料生成中心"
     },
     th: {
         menu_dashboard: "🏠 แดชบอร์ด",
@@ -1157,7 +1638,32 @@ const i18nTokens = {
         td_cat_box: "กล่อง KEX",
         td_cat_pouch: "ซองพัสดุ / เทปกาว",
         td_cart_title: "ชำระเงินใบสั่งซื้อปัจจุบัน",
-        td_cart_empty: "ไม่มีสินค้าในตระกร้า<br>คลิกเลือกสินค้าด้านซ้ายเพื่อซื้อ"
+        td_cart_empty: "ไม่มีสินค้าในตระกร้า<br>คลิกเลือกสินค้าด้านซ้ายเพื่อซื้อ",
+        menu_group_sys: "⚙️ แพลตฟอร์มระบบ",
+        menu_store: "การจัดการร้านค้า",
+        menu_user: "บทบาทผู้ใช้งาน",
+        menu_card_gen: "นามบัตรพนักงาน",
+        menu_config: "การกำหนดค่าระบบ",
+        menu_group_ticket: "🎧 ศูนย์ตั๋ว/ใบงาน",
+        menu_tkt_cus: "การจัดการใบนำส่งสินค้าที่ผิดปกติ",
+        menu_tkt_itsm: "ตั๋ว ITSM",
+        dash_card3: "ข้อยกเว้นที่รอดำเนินการ",
+        dash_card4: "ITSM รอดำเนินการ",
+        lbl_branch_code: "รหัสสาขา",
+        lbl_emp_id: "รหัสพนักงาน",
+        opt_select: "กรุณาเลือก",
+        lbl_branch_name: "ชื่อสาขา",
+        lbl_emp_name: "ชื่อพนักงาน",
+        lbl_emp_type: "ประเภทพนักงาน",
+        lbl_emp_status: "สถานะ",
+        lbl_role: "บทบาท",
+        lbl_creator: "ผู้สร้าง",
+        lbl_create_time: "เวลาที่สร้าง",
+        lbl_actions: "การดำเนินการ",
+        lbl_waybill_no: "หมายเลขใบนำส่งสินค้า",
+        lbl_sender_phone: "เบอร์โทรผู้ส่ง",
+        lbl_exp_type: "ประเภทข้อยกเว้น",
+        card_gen_title: "เครื่องมือสร้างนามบัตรและโปสเตอร์การตลาด"
     }
 };
 
@@ -1288,6 +1794,148 @@ function recalcWhtValue() {
     if(!isNaN(base) && base > 0) {
         const calculated = base * rate;
         document.getElementById('wht-calculated-val').value = "THB " + calculated.toFixed(2);
+    }
+}
+
+/* Store & Card Gen 脚本 */
+function submitStoreApproval() {
+    const banner = document.getElementById('currentStatusLabel');
+    banner.innerText = "审核中 (Under Review)";
+    banner.style.background = "#ebf5ff";
+    banner.style.color = "#2980b9";
+    alert("KEX POS Notification: 门店基础档案修改成功，已自动提交给总部风控及IT部进行流程审批！");
+}
+
+/* ======================================================== */
+/* 实时名片渲染与逻辑控制引擎 */
+/* ======================================================== */
+let currentUploadedAvatarBase64 = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='%23e28743'><circle cx='12' cy='8' r='4'/><path d='M2 20c0-4.4 3.6-8 8-8h4c4.4 0 8 3.6 8 8v2H2v-2z'/></svg>";
+let currentActiveStyle = 'style1';
+
+function changeLiveTemplate(styleKey, element) {
+    currentActiveStyle = styleKey;
+    const options = document.querySelectorAll('.style-option');
+    options.forEach(opt => opt.classList.remove('active'));
+    element.classList.add('active');
+    renderCardRealtime();
+}
+
+function loadCardAvatar(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        currentUploadedAvatarBase64 = reader.result;
+        renderCardRealtime();
+    }
+    if(event.target.files[0]) {
+        reader.readAsDataURL(event.target.files[0]);
+    }
+}
+
+function renderCardRealtime() {
+    const container = document.getElementById('dynamicCanvasWrapper');
+    if(!container) return;
+
+    const name = document.getElementById('iptName').value || 'Name';
+    const post = document.getElementById('iptPost').value || 'Job Position';
+    const phone = document.getElementById('iptPhone').value || 'Phone Number';
+    const line = document.getElementById('iptLine').value || 'LineID';
+    const email = document.getElementById('iptEmail').value || 'Email';
+
+    if (currentActiveStyle === 'style1') {
+        container.innerHTML = `
+            <div class="canvas-card img-style-1">
+                <div class="style1-left">
+                    <div class="style1-avatar-container"><img class="style1-avatar" src="${currentUploadedAvatarBase64}"></div>
+                    <div class="style1-post">${post}</div>
+                </div>
+                <div class="style1-right">
+                    <div>
+                        <span style="font-weight: 900; font-size: 16px; color:#F58220;">KEX ${name}</span>
+                        <div class="style1-title-thai">ฟรีของซัพพอร์ต 📍<br><span style="font-size:10px; font-weight:normal; color:#555;">(ขึ้นอยู่กับจำนวนพัสดุต่อเดือน)</span></div>
+                    </div>
+                    <ul class="style1-bullets">
+                        <li>🔸 สมัครเพียง 0 บาท</li>
+                        <li>🔴 ซอง A3-A4 / เทป / Label</li>
+                        <li>👉 รถเข้ารับให้ถึงหน้าบ้าน</li>
+                    </ul>
+                    <div class="style1-contact">
+                        <div>📞 ${phone}</div>
+                        <div>💬 Line : ${line}</div>
+                        <div style="font-size:9px; word-break:break-all;">✉️ ${email}</div>
+                    </div>
+                    <div class="style1-qrcode-area"><div style="width:100%; height:100%; background:#F58220; color:white; font-size:9px; display:flex; align-items:center; justify-content:center; font-weight:bold;">LINE QR</div></div>
+                </div>
+            </div>`;
+    } 
+    else if (currentActiveStyle === 'style2') {
+        container.innerHTML = `
+            <div class="canvas-card img-style-2">
+                <div class="style2-left">
+                    <div class="style2-logo">📦 KEX Express</div>
+                    <div class="style2-name">${name}</div>
+                    <div class="style2-post-badge">ตำแหน่ง : ${post}</div>
+                    <ul class="style2-contacts">
+                        <li>📞 เบอร์โทร: ${phone}</li>
+                        <li>📱 Line : ${line}</li>
+                        <li>✉️ Email: ${email}</li>
+                    </ul>
+                </div>
+                <div class="style2-right">
+                    <img class="style2-avatar" src="${currentUploadedAvatarBase64}">
+                    <div class="style2-qrcode"><div style="background:#514a44; color:white; width:100%; height:100%; font-size:8px; text-align:center;">QR</div></div>
+                </div>
+            </div>`;
+    } 
+    else if (currentActiveStyle === 'style3') {
+        container.innerHTML = `
+            <div class="canvas-card img-style-3">
+                <div class="style3-header">
+                    <div style="font-size:22px; font-weight:900; color:#F58220;">KEX <span style="font-size:14px; color:#333; font-weight:bold;">EXPRESS</span></div>
+                    <div style="font-size:10px; text-align:right; font-weight:bold; color:#7f8c8d;">SENIOR SUPERVISOR</div>
+                </div>
+                <div class="style3-body-top">
+                    <img class="style3-avatar" src="${currentUploadedAvatarBase64}">
+                    <div class="style3-meta">
+                        <b style="font-size:16px; color:#F58220;">คุณ ${name}</b>
+                        <p style="margin:5px 0 0 0; font-size:11px; color:#555;">📞 ${phone}<br>✉️ ${email}</p>
+                    </div>
+                </div>
+                <div class="style3-marketing-box">
+                    <p class="style3-thai-bold">🎁 ฟรีของซัพพอร์ตเพียบ</p>
+                    <ul class="style3-list">
+                        <li>ซองพัสดุ A3 / A4 คุณภาพสูง</li>
+                        <li>เทปกาว KEX กันกระแทกอย่างดี</li>
+                        <li>รถเข้ารับพัสดุฟรีถึงหน้าบ้าน</li>
+                    </ul>
+                </div>
+                <div class="style3-footer">
+                    <span style="font-size:11px; color:#7f8c8d;">kex.co.th</span>
+                    <div class="style3-qrcode"><div style="background:#F58220; color:white; font-size:9px; text-align:center; height:100%;">LINE QR</div></div>
+                </div>
+            </div>`;
+    }
+    else if (currentActiveStyle === 'style4') {
+        container.innerHTML = `
+            <div class="canvas-card img-style-4">
+                <div>
+                    <p class="style4-banner-text">ส่ง KEX<br>ราคาพิเศษ !</p>
+                    <span class="style4-sub">ระบบใช้งาน KEX ฟรี ไม่มีรายเดือน</span>
+                </div>
+                <div class="style4-body">
+                    <ul class="style4-features">
+                        <li>💬 มีแอดมิน KEX ดูแลตลอด</li>
+                        <li>⚡ ตอบไวไม่หายแน่นอน</li>
+                        <li>💰 COD 1.5% เงินเข้าไว</li>
+                        <li>🔍 ติดตามพัสดุ Realtime</li>
+                    </ul>
+                    <div class="style4-right-holder">
+                        <img class="style4-avatar" src="${currentUploadedAvatarBase64}">
+                    </div>
+                </div>
+                <div class="style4-orange-bar">
+                    📞 ติดต่อคุณ ${name} โเลย: ${phone} (ฝ่ายบริการลูกค้า)
+                </div>
+            </div>`;
     }
 }
 </script>
