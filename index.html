@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,26 +34,28 @@ body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; b
 .tab-content.active {display: block;}
 @keyframes fadeIn {from {opacity: 0; transform: translateY(5px);} to {opacity: 1; transform: translateY(0);}}
 
-/* 仪表盘卡片与 EOD 样式 */
-.cards {display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;}
-.card {background: white; padding: 20px; border-radius: 10px; flex: 1; min-width: 180px; border-top: 4px solid #F58220; box-shadow: 0 2px 8px rgba(0,0,0,0.04);}
-.card h4 {margin: 0 0 10px 0; color: #747d8c; font-weight: normal; font-size: 14px;}
-.card h2 {margin: 0; color: #2F3542; font-size: 24px;}
-.eod {background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 20px; border-top: 4px solid #e74c3c;}
-.eod-step {padding: 12px 15px; margin: 8px 0; border: 1px solid #dfe4ea; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; background: #f1f2f6;}
-.eod-step.done {border-left: 6px solid #2ed573;}
-.eod-step.progress {border-left: 6px solid #ffa502; background: #fffaf0;}
-.eod-step.todo {border-left: 6px solid #a4b0be;}
+/* 仪表盘卡片 */
+.cards {display:flex;gap:15px;flex-wrap:wrap;margin-bottom:20px;}
+.card {background: white; padding:20px; border-radius:10px; flex:1; min-width:180px; border-top:4px solid #F58220; box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.card h4{margin:0 0 10px 0;color:#747d8c;font-weight:normal;font-size:14px;}
+.card h2{margin:0;color:#2F3542;font-size:24px;}
 
 /* 表单与交互元素 */
 .panel {background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 20px;}
 .panel h3 {margin-top: 0; color: #2F3542; border-bottom: 1px solid #eee; padding-bottom: 10px; font-size: 16px;}
 .form-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;}
+.form-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;}
 .form-group {display: flex; flex-direction: column;}
 .form-group label {font-size: 12px; color: #7f8c8d; margin-bottom: 5px; font-weight: bold;}
-.form-control {padding: 8px 12px; border: 1px solid #dcdde1; border-radius: 4px; font-size: 14px; transition: 0.3s;}
-.form-control:focus {border-color: #F58220; outline: none; box-shadow: 0 0 0 2px rgba(245,130,32,0.2);}
-.form-control:disabled {background-color: #f1f2f6; color: #a4b0be; cursor: not-allowed;}
+.panel .form-control {padding: 8px 12px; border: 1px solid #dcdde1; border-radius: 4px; font-size: 14px; transition: 0.3s;}
+.panel .form-control:focus {border-color: #F58220; outline: none; box-shadow: 0 0 0 2px rgba(245,130,32,0.2);}
+.panel .form-control:disabled {background-color: #f1f2f6; color: #a4b0be; cursor: not-allowed;}
+
+/* UI原型风格专属：内嵌子选项卡标签组件 (KFamily Style) */
+.sub-tabs {display: flex; border-bottom: 2px solid #dcdde1; margin-bottom: 15px; gap: 5px;}
+.sub-tab {padding: 10px 20px; cursor: pointer; font-size: 14px; font-weight: 500; color: #747d8c; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s;}
+.sub-tab:hover {color: #F58220;}
+.sub-tab.active {color: #F58220; border-bottom: 2px solid #F58220; font-weight: bold;}
 
 /* 表格样式 */
 .data-table {width: 100%; border-collapse: collapse; margin-top: 10px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.02);}
@@ -83,6 +84,24 @@ body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; b
 
 a {color: #3498db; cursor: pointer; text-decoration: none;}
 a:hover {text-decoration: underline;}
+
+/* 快件追踪特有样式：时间线组件 */
+.tracking-timeline {margin-top: 20px; padding: 10px 5px; list-style: none; position: relative;}
+.tracking-timeline::before {content: ''; position: absolute; top: 0; bottom: 0; width: 2px; background: #dcdde1; left: 160px; margin-left: -1px;}
+.timeline-item {margin-bottom: 20px; position: relative; display: flex;}
+.timeline-time {width: 140px; text-align: right; padding-right: 20px; color: #747d8c; font-size: 13px; font-variant-numeric: tabular-nums;}
+.timeline-icon {width: 12px; height: 12px; background: #ced6e0; border-radius: 50%; position: absolute; left: 160px; margin-left: -6px; top: 4px; border: 2px solid #fff; z-index: 2;}
+.timeline-item.active .timeline-icon {background: #F58220; box-shadow: 0 0 0 3px rgba(245,130,32,0.2);}
+.timeline-content {padding-left: 25px; flex: 1; font-size: 14px; color: #57606f;}
+.timeline-item.active .timeline-content {color: #2F3542; font-weight: bold;}
+
+/* 售卖中心特有样式 */
+.trading-grid {display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;}
+.trading-item-card {background: white; border: 1px solid #e1e4e6; border-radius: 8px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
+.trading-item-card:hover {box-shadow: 0 4px 12px rgba(0,0,0,0.06); transform: translateY(-2px);}
+.trading-item-title {font-weight: bold; font-size: 15px; color: #2F3542; margin: 0 0 5px 0;}
+.trading-item-sku {font-size: 12px; color: #747d8c; margin-bottom: 10px;}
+.trading-item-price {color: #F58220; font-size: 18px; font-weight: bold; margin-bottom: 12px;}
 </style>
 </head>
 <body>
@@ -107,28 +126,20 @@ a:hover {text-decoration: underline;}
         
         <details open><summary data-i18n="menu_group_biz">📦 Business Ops</summary>
             <ul>
-                <li class="nav-item" onclick="switchTab('tab-waybill', this)" data-i18n="menu_waybill">Waybill Management</li>
-                <li class="nav-item" onclick="switchTab('tab-dropoff', this)" data-i18n="menu_dropoff">Dropoff Management</li>
-                <li class="nav-item" onclick="switchTab('tab-receipt', this)" data-i18n="menu_receipt">Receipt Management</li>
-                <li class="nav-item" onclick="switchTab('tab-tax-invoice', this)" data-i18n="menu_tax_invoice">Tax Invoice</li>
-                <li class="nav-item" onclick="switchTab('tab-line-pay', this)" data-i18n="menu_line_pay">Line Pay</li>
-                <li class="nav-item" onclick="switchTab('tab-transaction', this)" data-i18n="menu_transaction">Transaction Confirmation</li>
-                <li class="nav-item" onclick="switchTab('tab-wht', this)" data-i18n="menu_wht">WHT</li>
-                <li class="nav-item" onclick="switchTab('tab-wallet', this)" data-i18n="menu_wallet">Wallet</li>
-                <li class="nav-item" onclick="switchTab('tab-pbr', this)" data-i18n="menu_pbr">PBR/MSP</li>
+                <li class="nav-item active" onclick="switchTab('tab-waybill', this)" data-i18n="menu_waybill">Waybill Management</li>
+                <li class="nav-item" onclick="switchTab('tab-dropoff', this)" data-i18n="menu_dropoff">Parcel Tracking</li>
+                <li class="nav-item" onclick="switchTab('tab-trading-desk', this)" data-i18n="menu_trading_desk">Trading Desk</li>
             </ul>
         </details>
-        
-        <details open><summary>🌙 EOD Daily Data</summary>
+
+        <details open><summary data-i18n="menu_group_financial">💵 Financial Management</summary>
             <ul>
-                <!-- 重构的 EOD 核心 7 大步骤导航 -->
-                <li class="nav-item" onclick="switchTab('tab-cashier', this)">1. Cashier (收银核算)</li>
-                <li class="nav-item" onclick="switchTab('tab-cutoff', this)">2. Cut Off (每日截单)</li>
-                <li class="nav-item" onclick="switchTab('tab-scan-bag', this)">3. SOP-BAG (集包装袋)</li>
-                <li class="nav-item" onclick="switchTab('tab-scan-out', this)">4. SOP-P / Scan Out (出库交接)</li>
-                <li class="nav-item" onclick="switchTab('tab-export-mde', this)">5. Export Data (数据导出)</li>
-                <li class="nav-item" onclick="switchTab('tab-close-shop', this)">6. Close Shop (关店结账)</li>
-                <li class="nav-item" onclick="switchTab('tab-pay-in', this)">7. Pay In (解款上缴)</li>
+                <li class="nav-item" onclick="switchTab('tab-receipt', this)" data-i18n="menu_receipt">Receipt Management</li>
+                <li class="nav-item" onclick="switchTab('tab-tax-invoice', this)" data-i18n="menu_tax_invoice">Tax Invoice</li>
+                <li class="nav-item" onclick="switchTab('tab-pbr', this)" data-i18n="menu_pbr">PBR/MSP</li>
+                <li class="nav-item" onclick="switchTab('tab-daily-reconcile', this)" data-i18n="menu_daily_reconcile">Payment Statistics</li>
+                <li class="nav-item" onclick="switchTab('tab-expense-summary', this)" data-i18n="menu_expense_summary">SHOP Expense Summary</li>
+                <li class="nav-item" onclick="switchTab('tab-wht-manage', this)" data-i18n="menu_wht_manage">WHT Management</li>
             </ul>
         </details>
         
@@ -142,7 +153,7 @@ a:hover {text-decoration: underline;}
         
         <details><summary data-i18n="menu_group_ticket">🎧 Ticket Center</summary>
             <ul>
-                <li class="nav-item" onclick="switchTab('tab-ticket-cus', this)" data-i18n="menu_tkt_cus">Customer Ticket</li>
+                <li class="nav-item" onclick="switchTab('tab-ticket-cus', this)" data-i18n="menu_tkt_cus">Abnormal waybill management</li>
                 <li class="nav-item" onclick="switchTab('tab-ticket-itsm', this)" data-i18n="menu_tkt_itsm">ITSM Ticket</li>
             </ul>
         </details>
@@ -151,7 +162,7 @@ a:hover {text-decoration: underline;}
 
 <div class='content'>
     
-    <div id="tab-dashboard" class="tab-content active">
+    <div id="tab-dashboard" class="tab-content">
         <h2 data-i18n="dash_title">Dashboard Overview</h2>
         
         <div style="display: flex; gap: 15px; margin-bottom: 20px;">
@@ -179,64 +190,261 @@ a:hover {text-decoration: underline;}
             <div class='card'><h4 data-i18n="dash_card2">Today's Revenue</h4><h2>THB 352,800</h2></div>
             <div class='card'><h4 data-i18n="dash_card3">Pending Exceptions</h4><h2 style="color:#e74c3c;">18</h2></div>
             <div class='card'><h4 data-i18n="dash_card4">Pending ITSM</h4><h2>7</h2></div>
+            <div class='card'><h4 data-i18n="dash_card4_1">Trading Sales</h4><h2>THB 4,250</h2></div>
             <div class='card'><h4 data-i18n="dash_card5">EOD Completed</h4><h2 style="color:#2ed573;">83%</h2></div>
-        </div>
-
-        <div class='eod'>
-            <h3 data-i18n="dash_eod_title">EOD SOP Progress (Today)</h3>
-            <div class='eod-step done'><span data-i18n="eod_step1">1. Cut Off</span> <span data-i18n="eod_status_done1">✔ 18:00 Done</span></div>
-            <div class='eod-step done'><span data-i18n="eod_step2">2. Scan Out</span> <span data-i18n="eod_status_done2">✔ 18:30 Done</span></div>
-            <div class='eod-step done'><span data-i18n="eod_step3">3. Export MDE</span> <span data-i18n="eod_status_done3">✔ 18:45 Done</span></div>
-            <div class='eod-step progress'><span data-i18n="eod_step4">4. Close Shop</span> <span data-i18n="eod_status_prog">In Progress...</span></div>
-            <div class='eod-step gray'><span data-i18n="eod_step5">5. Pay In Slip</span> <span data-i18n="eod_status_todo">To Do</span></div>
-            <div class='eod-step gray'><span data-i18n="eod_step6">6. Cashier</span> <span data-i18n="eod_status_todo">To Do</span></div>
         </div>
     </div>
 
-    <div id="tab-waybill" class="tab-content">
+    <div id="tab-waybill" class="tab-content active">
         <h2 data-i18n="wb_title">Waybill Management</h2>
-        <div style="margin-bottom: 20px;">
-            <input type="text" class="form-control" placeholder="Enter Tracking No / Phone..." style="width: 300px;" id="wb-search-input">
+        
+        <div class="panel">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label data-i18n="lbl_wb_tracking">Tracking No.</label>
+                    <input type="text" class="form-control" placeholder="Enter Tracking No." id="wb-search-tracking">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="lbl_wb_customer">Customer Contact</label>
+                    <input type="text" class="form-control" placeholder="Name or Phone Number" id="wb-search-customer">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="lbl_wb_destination">Destination City</label>
+                    <input type="text" class="form-control" placeholder="e.g. Bangkok / Phuket" id="wb-search-dest">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="lbl_wb_date_range">Pickup Date Range</label>
+                    <input type="date" class="form-control" id="wb-search-date">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="lbl_wb_platform">Platform Channel</label>
+                    <select class="form-control" id="wb-search-platform">
+                        <option value="ALL" data-i18n="opt_all">All Channels</option>
+                        <option value="KEX">KEX Standard POS</option>
+                        <option value="SHOPEE">Shopee Drop-off</option>
+                        <option value="LAZADA">Lazada Drop-off</option>
+                        <option value="TIKTOK">TikTok Shop</option>
+                    </select>
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: flex-start; margin-top: 5px;">
+                <button class="btn" onclick="alert('Querying multi-conditional waybill registry...')">🔍 <span data-i18n="btn_search">Search</span></button>
+                <button class="btn btn-outline" onclick="resetWaybillFilters()"><span data-i18n="btn_reset">Reset</span></button>
+            </div>
         </div>
-        <table class="data-table">
+
+        <div class="sub-tabs">
+            <div class="sub-tab active" onclick="switchSubTab(this, 'ALL')" data-i18n="stab_all">All Waybills (1,286)</div>
+            <div class="sub-tab" onclick="switchSubTab(this, 'PENDING')" data-i18n="stab_pending">Pending Outbound (45)</div>
+            <div class="sub-tab" onclick="switchSubTab(this, 'DISPATCHED')" data-i18n="stab_dispatched">Dispatched (1,223)</div>
+            <div class="sub-tab" onclick="switchSubTab(this, 'EXCEPTION')" data-i18n="stab_exception">Exceptions (18)</div>
+            <div class="sub-tab" onclick="switchSubTab(this, 'CANCELLED')" data-i18n="stab_cancelled">Cancelled (0)</div>
+        </div>
+
+        <div class="action-bar">
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-outline" onclick="alert('Invoking Bluetooth printer for manifest label queue...')">🖨️ <span data-i18n="btn_batch_print">Batch Print Labels</span></button>
+                <button class="btn" style="background-color: #20c997;" onclick="alert('Processing selective bag seal handover to MDE network...')">📦 <span data-i18n="btn_batch_dispatch">Batch Outbound Dispatch</span></button>
+            </div>
+            <div>
+                <button class="btn btn-outline" style="border-color: #3498db; color: #3498db;" onclick="alert('Exporting filtered lifecycle CSV reports...')">📊 <span data-i18n="btn_export">Export Data</span></button>
+            </div>
+        </div>
+
+        <table class="data-table" id="wb-main-table">
             <thead>
                 <tr>
+                    <th style="width: 30px;"><input type="checkbox" id="wb-select-all" onclick="toggleSelectAllWaybills(this)"></th>
                     <th data-i18n="th_tracking">Tracking No.</th>
+                    <th data-i18n="th_wb_platform">Channel Source</th>
                     <th data-i18n="th_pickup_time">Pickup Time</th>
-                    <th data-i18n="th_receiver">Receiver</th>
+                    <th data-i18n="th_receiver">Receiver Info</th>
                     <th data-i18n="th_destination">Destination</th>
-                    <th data-i18n="th_weight">Weight(kg)</th>
+                    <th data-i18n="th_wb_spec">Metrics (Weight/Size)</th>
                     <th data-i18n="th_status">Status</th>
                     <th data-i18n="th_action">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>KEX100293848</td><td>2026-06-15 09:12</td><td>Zhang San</td><td>Bangkok</td><td>1.2</td><td><span class="status-tag success" data-i18n="status_collected">Collected</span></td><td><a data-i18n="act_view">View</a> | <a data-i18n="act_print">Print</a></td></tr>
-                <tr><td>KEX100293849</td><td>2026-06-15 09:45</td><td>John Doe</td><td>Phuket</td><td>3.5</td><td><span class="status-tag warning" data-i18n="status_exception">Exception</span></td><td><a data-i18n="act_view">View</a> | <a data-i18n="act_handle">Handle</a></td></tr>
-                <tr><td>KEX100293850</td><td>2026-06-15 10:08</td><td>Li Si</td><td>Chiang Mai</td><td>0.8</td><td><span class="status-tag success" data-i18n="status_collected">Collected</span></td><td><a data-i18n="act_view">View</a> | <a data-i18n="act_print">Print</a></td></tr>
+                <tr>
+                    <td><input type="checkbox" class="wb-chk"></td>
+                    <td><strong>KEX100293848</strong></td>
+                    <td><span class="status-tag gray">KEX POS</span></td>
+                    <td>2026-07-09 09:12</td>
+                    <td>Zhang San (+66 81-234-5678)</td>
+                    <td>Bangkok (10110)</td>
+                    <td>1.25 kg <small style="color:#7f8c8d;">(30x20x10 cm)</small></td>
+                    <td><span class="status-tag success" data-i18n="status_collected">Collected</span></td>
+                    <td><a data-i18n="act_view">View</a> | <a data-i18n="act_print">Print</a></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="wb-chk"></td>
+                    <td><strong>SHP992837465</strong></td>
+                    <td><span class="status-tag success" style="background:#ffefe5; color:#ff5722;">Shopee Dropoff</span></td>
+                    <td>2026-07-09 09:45</td>
+                    <td>John Doe (+66 89-765-4321)</td>
+                    <td>Phuket (83000)</td>
+                    <td>3.50 kg <small style="color:#7f8c8d;">(50x40x30 cm)</small></td>
+                    <td><span class="status-tag warning" data-i18n="status_exception">Exception</span></td>
+                    <td><a data-i18n="act_view">View</a> | <a style="color:#e74c3c;" data-i18n="act_handle">Handle</a></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="wb-chk"></td>
+                    <td><strong>LAZ883746592</strong></td>
+                    <td><span class="status-tag success" style="background:#eef3ff; color:#3b5998;">Lazada Dropoff</span></td>
+                    <td>2026-07-09 10:08</td>
+                    <td>Li Si (+66 82-111-2222)</td>
+                    <td>Chiang Mai (50000)</td>
+                    <td>0.80 kg <small style="color:#7f8c8d;">(15x15x10 cm)</small></td>
+                    <td><span class="status-tag success" data-i18n="status_collected">Collected</span></td>
+                    <td><a data-i18n="act_view">View</a> | <a data-i18n="act_print">Print</a></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="wb-chk"></td>
+                    <td><strong>KEX100293911</strong></td>
+                    <td><span class="status-tag gray">KEX POS</span></td>
+                    <td>2026-07-09 11:15</td>
+                    <td>Somchai Dev (+66 85-999-8888)</td>
+                    <td>Pattaya (20150)</td>
+                    <td>5.20 kg <small style="color:#7f8c8d;">(40x40x40 cm)</small></td>
+                    <td><span class="status-tag gray" data-i18n="status_pending_outbound">Pending Outbound</span></td>
+                    <td><a data-i18n="act_view">View</a> | <a data-i18n="act_dispatch">Dispatch</a></td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <div id="tab-dropoff" class="tab-content">
-        <div class="action-bar" style="align-items: flex-end;">
-            <h2 style="margin: 0;" data-i18n="do_title">Scanned Packages</h2>
-            <button class="btn btn-outline" data-i18n="btn_print_handover">🖨️ Print Handover List</button>
+        <h2 data-i18n="menu_dropoff">Parcel Tracking</h2>
+        <div class="panel">
+            <h3 data-i18n="track_panel_title">Quick Query</h3>
+            <div style="display: flex; gap: 15px; align-items: flex-end;">
+                <div class="form-group" style="flex: 1;">
+                    <label data-i18n="lbl_wb_tracking">Tracking No.</label>
+                    <input type="text" class="panel .form-control" style="width:100%; padding: 8px 12px; border: 1px solid #dcdde1; border-radius: 4px; font-size: 14px;" placeholder="Enter Tracking No. to trace lifecycle" id="parcel-track-input" value="SHP992837465">
+                </div>
+                <button class="btn" style="height: 37px;" onclick="alert('Fetching realtime parcel trajectory trace logs...')">🔍 <span data-i18n="btn_search">Search</span></button>
+            </div>
         </div>
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th data-i18n="th_tracking">Tracking No.</th>
-                    <th data-i18n="th_platform">Platform</th>
-                    <th data-i18n="th_scan_time">Scan Time</th>
-                    <th data-i18n="th_status">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>SHP992837465</td><td>Shopee</td><td>10:45:12</td><td><span class="status-tag success" data-i18n="status_inbound_success">Inbound Success</span></td></tr>
-                <tr><td>LAZ883746592</td><td>Lazada</td><td>10:46:05</td><td><span class="status-tag success" data-i18n="status_inbound_success">Inbound Success</span></td></tr>
-            </tbody>
-        </table>
+
+        <div class="panel" style="margin-top: 20px;">
+            <h3 data-i18n="track_result_title">Lifecycle Trajectory</h3>
+            <ul class="tracking-timeline">
+                <li class="timeline-item active">
+                    <div class="timeline-time">2026-07-09 10:45:12</div>
+                    <div class="timeline-icon"></div>
+                    <div class="timeline-content">
+                        <span data-i18n="track_st_ex">Exception Node Blocked: Route intercepted due to size non-conformity.</span>
+                        <div style="font-size: 12px; color: #e74c3c; margin-top: 4px;">[OCC-IT001 - Bangkok Branch]</div>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-time">2026-07-09 09:45:00</div>
+                    <div class="timeline-icon"></div>
+                    <div class="timeline-content">
+                        <span data-i18n="track_st_inbound">Inbound Scan Success - Sorted to Temporary Storage Area Box B3</span>
+                        <div style="font-size: 12px; color: #7f8c8d; margin-top: 4px;">Operator: Krit (EMP-1045)</div>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-time">2026-07-09 09:10:33</div>
+                    <div class="timeline-icon"></div>
+                    <div class="timeline-content">
+                        <span data-i18n="track_st_manifest">Manifest Pre-registered via API integration gateway</span>
+                        <div style="font-size: 12px; color: #7f8c8d; margin-top: 4px;">Channel: Shopee Dropoff Platform</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="tab-trading-desk" class="tab-content">
+        <h2 data-i18n="menu_trading_desk">Trading Desk</h2>
+        <div style="display: flex; gap: 20px;">
+            <div style="flex: 1.3;">
+                <div class="panel">
+                    <h3 data-i18n="td_panel_title">Material & Retail Center</h3>
+                    <div class="sub-tabs">
+                        <div class="sub-tab active" onclick="filterTradingCategory(this, 'ALL')" data-i18n="td_cat_all">All Packing Materials</div>
+                        <div class="sub-tab" onclick="filterTradingCategory(this, 'BOX')" data-i18n="td_cat_box">KEX Boxes</div>
+                        <div class="sub-tab" onclick="filterTradingCategory(this, 'POUCH')" data-i18n="td_cat_pouch">Pouches / Tape</div>
+                    </div>
+                    <div class="trading-grid">
+                        <div class="trading-item-card" data-category="BOX">
+                            <div>
+                                <div class="trading-item-title">KEX Mini Box (Size Mini)</div>
+                                <div class="trading-item-sku">SKU: MAT-BOX-MINI</div>
+                            </div>
+                            <div>
+                                <div class="trading-item-price">THB 15.00</div>
+                                <button class="btn" style="width: 100%; justify-content: center;" onclick="addToCart('KEX Mini Box', 15.00)">🛒 Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="trading-item-card" data-category="BOX">
+                            <div>
+                                <div class="trading-item-title">KEX Standard Box (Size S)</div>
+                                <div class="trading-item-sku">SKU: MAT-BOX-S</div>
+                            </div>
+                            <div>
+                                <div class="trading-item-price">THB 25.00</div>
+                                <button class="btn" style="width: 100%; justify-content: center;" onclick="addToCart('KEX Standard Box (S)', 25.00)">🛒 Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="trading-item-card" data-category="BOX">
+                            <div>
+                                <div class="trading-item-title">KEX Premium Box (Size M)</div>
+                                <div class="trading-item-sku">SKU: MAT-BOX-M</div>
+                            </div>
+                            <div>
+                                <div class="trading-item-price">THB 40.00</div>
+                                <button class="btn" style="width: 100%; justify-content: center;" onclick="addToCart('KEX Premium Box (M)', 40.00)">🛒 Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="trading-item-card" data-category="POUCH">
+                            <div>
+                                <div class="trading-item-title">Bubble Wrap Roll (Meter)</div>
+                                <div class="trading-item-sku">SKU: MAT-BBL-01</div>
+                            </div>
+                            <div>
+                                <div class="trading-item-price">THB 10.00</div>
+                                <button class="btn" style="width: 100%; justify-content: center;" onclick="addToCart('Bubble Wrap Roll', 10.00)">🛒 Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="flex: 0.7;">
+                <div class="panel" style="border-top: 4px solid #F58220;">
+                    <h3 data-i18n="td_cart_title">Current Order Checkout</h3>
+                    <div id="td-cart-empty" style="text-align: center; padding: 30px 0; color: #a4b0be;">
+                        <p style="font-size: 35px; margin: 0;">🛒</p>
+                        <p style="font-size: 13px;" data-i18n="td_cart_empty">Cart is empty.<br>Click items on the left to purchase.</p>
+                    </div>
+                    <div id="td-cart-main" style="display: none;">
+                        <table class="data-table" style="font-size: 13px; background: white;" id="td-cart-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="tbl_item_desc">Description</th>
+                                    <th style="width: 50px;">Qty</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div style="margin-top: 15px; background: white; padding: 12px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
+                            <div style="display:flex; justify-content:space-between; font-size:16px; font-weight: bold; color:#2F3542;">
+                                <span data-i18n="lbl_total_amt">Total Amount:</span><span style="color:#F58220;" id="td-cart-total-price">THB 0.00</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; display: flex; gap: 10px;">
+                            <button class="btn btn-outline" style="flex: 1; justify-content: center;" onclick="clearCart()" data-i18n="btn_reset">Clear</button>
+                            <button class="btn" style="flex: 2; justify-content: center; background-color: #20c997;" onclick="alert('Checkout integration triggered successfully.')" data-i18n="btn_receipt">Pay & Print Receipt</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="tab-pbr" class="tab-content">
@@ -505,1836 +713,583 @@ a:hover {text-decoration: underline;}
         </div>
     </div>
 
-    <div id="tab-line-pay" class="tab-content">
-        <h2 data-i18n="lp_title">LINE Pay Collection & Settlement Center</h2>
-        <div class="panel" style="border-left: 4px solid #00c300;">
-            <h3 data-i18n="lp_panel_title">LINE Pay QR Payment / Top-up</h3>
+    <!-- 替换后的Payment Statistics模块 -->
+    <div id="tab-daily-reconcile" class="tab-content">
+        <h2 data-i18n="menu_daily_reconcile">Payment Statistics - Daily Payment Reconciliation</h2>
+        <div class="panel">
             <div class="form-grid">
                 <div class="form-group">
-                    <label data-i18n="lbl_lp_biz_type">Business Type</label>
-                    <select id="lp-biz-type" class="form-control" onchange="handleLinePayTypeChange()">
-                        <option value="SHIP" data-i18n="opt_lp_ship">Shipping Fee - Bind Tracking</option>
-                        <option value="TOPUP" data-i18n="opt_lp_topup">Top-up Account - Any Amount</option>
+                    <label>对账日期 (Reconciliation Date)</label>
+                    <input type="date" class="form-control" value="2026-07-09">
+                </div>
+                <div class="form-group">
+                    <label>对账批次号 (Batch Reference)</label>
+                    <input type="text" class="form-control" placeholder="请输入批次号/流水号">
+                </div>
+                <div class="form-group">
+                    <label>支付渠道 (Payment Method)</label>
+                    <select class="form-control">
+                        <option value="ALL">全部支付渠道 (All Methods)</option>
+                        <option value="CASH">现金 (Cash)</option>
+                        <option value="QR">PromptPay QR</option>
+                        <option value="LINE">Rabbit LINE Pay</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label data-i18n="lbl_consignment_no">Order/Consignment No.</label>
-                    <input type="text" id="lp-waybill-no" class="form-control" placeholder="Enter or scan tracking no..." onkeyup="autoFetchWaybillAmount(this.value)">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="lbl_tx_amt">Amount (THB)</label>
-                    <input type="number" id="lp-amount" class="form-control" placeholder="0.00">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="lbl_lp_barcode">User Payment Code</label>
-                    <input type="text" id="lp-barcode" class="form-control" placeholder="Scan barcode here...">
+                    <label>对账状态 (Status)</label>
+                    <select class="form-control">
+                        <option value="ALL">全部状态 (All)</option>
+                        <option value="MATCHED">对账成功 (Matched)</option>
+                        <option value="UNMATCHED">存在差异 (Discrepancy)</option>
+                    </select>
                 </div>
             </div>
-            <button class="btn" style="background:#00c300;" onclick="alert('Initiating API payment request to Rabbit LINE Pay gateway, awaiting user confirmation...')" data-i18n="btn_lp_request">🟢 Request Payment</button>
+            <div style="display: flex; gap: 10px; justify-content: flex-start; margin-top: 5px;">
+                <button class="btn" onclick="alert('正在查询每日财务对账数据节点...')">🔍 <span>查询数据 (Search)</span></button>
+                <button class="btn btn-outline" onclick="alert('过滤器已重置')"><span>重置 (Reset)</span></button>
+            </div>
         </div>
-        
-        <h3 data-i18n="lp_list_title">LINE Pay Transaction List</h3>
+
+        <div class="action-bar">
+            <div style="display: flex; gap: 10px;">
+                <button class="btn" style="background-color: #20c997;" onclick="alert('触发一键全量对账平账审核序列...')">✅ 一键对账确认 (Batch Approve)</button>
+            </div>
+            <button class="btn btn-outline" style="border-color: #3498db; color: #3498db;" onclick="alert('正在导出对账差异报告明细...')">📊 导出差异报表 (Export Reports)</button>
+        </div>
+
         <table class="data-table">
             <thead>
                 <tr>
-                    <th data-i18n="tbl_tx_id">Transaction ID</th>
-                    <th data-i18n="tbl_lp_date">Transaction Date</th>
-                    <th data-i18n="tbl_lp_order_no">Order/Consignment No.</th>
-                    <th data-i18n="tbl_flow_type">Flow Type</th>
-                    <th data-i18n="tbl_received_amt">Amount Received</th>
-                    <th data-i18n="tbl_operator">Operator</th>
-                    <th data-i18n="tbl_status">Status</th>
-                    <th data-i18n="tbl_instant_action">Instant Action</th>
+                    <th>对账批次号 (Batch ID)</th>
+                    <th>业务时间 (Biz Date)</th>
+                    <th>系统应收金额 (Expected Total)</th>
+                    <th>渠道实收金额 (Actual Deposited)</th>
+                    <th>账面差异值 (Variance)</th>
+                    <th>对账状态 (Status)</th>
+                    <th>操作 (Action)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>LP-20260615-88291</strong></td>
-                    <td>2026-06-15 11:20:15</td>
-                    <td>KEX100293849</td>
-                    <td data-i18n="val_lp_ship_type">Shipping Fee</td>
-                    <td style="color: #20c997; font-weight: bold;">THB 150.00</td>
-                    <td>EMP-1045 (Krit)</td>
-                    <td><span class="status-tag success" data-i18n="status_pay_success">Success</span></td>
-                    <td>
-                        <button class="btn btn-danger" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Initiating original route refund...')" data-i18n="act_refund">↩️ Refund</button>
-                        <button class="btn btn-outline" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Reprinting Line Pay merchant receipt')" data-i18n="act_print_btn">🖨️ Print</button>
-                    </td>
+                    <td><strong>REC20260709-01</strong></td>
+                    <td>2026-07-09 00:00 - 12:00</td>
+                    <td>THB 154,200.00</td>
+                    <td>THB 154,200.00</td>
+                    <td><span style="color:#20c997; font-weight:bold;">0.00</span></td>
+                    <td><span class="status-tag success">对账正常 (Matched)</span></td>
+                    <td><a>查看流水</a></td>
                 </tr>
                 <tr>
-                    <td><strong>LP-20260615-88295</strong></td>
-                    <td>2026-06-15 11:28:44</td>
-                    <td>KEX100293999</td>
-                    <td data-i18n="val_lp_ship_type">Shipping Fee</td>
-                    <td style="color: #20c997; font-weight: bold;">THB 350.00</td>
-                    <td>EMP-1022 (Nicha)</td>
-                    <td><span class="status-tag success" data-i18n="status_pay_success">Success</span></td>
-                    <td>
-                        <button class="btn btn-danger" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Initiating refund...')" data-i18n="act_refund">↩️ Refund</button>
-                        <button class="btn btn-outline" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Print Receipt')" data-i18n="act_print_btn">Print Receipt</button>
-                    </td>
+                    <td><strong>REC20260708-02</strong></td>
+                    <td>2026-07-08 12:00 - 24:00</td>
+                    <td>THB 198,600.00</td>
+                    <td>THB 198,585.00</td>
+                    <td><span style="color:#e74c3c; font-weight:bold;">-15.00</span></td>
+                    <td><span class="status-tag warning">有差异 (Discrepancy)</span></td>
+                    <td><a style="color:#e74c3c;">差错平账处理</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div id="tab-transaction" class="tab-content">
-        <h2 data-i18n="tc_title">Daily Transaction Confirmations</h2>
-        <div class="action-bar" style="justify-content: flex-end; gap: 10px;">
-            <button class="btn" style="background:#3498db;" onclick="alert('Generating and pulling daily summary report Excel for 142 transactions...')" data-i18n="btn_export_tc">📊 Export Daily Report</button>
-            <button class="btn" onclick="alert('Printing all verified daily confirmation receipts...')" data-i18n="btn_batch_print_tc">🖨️ Batch Print Confirmations</button>
+    <!-- 替换后的SHOP Expense Summary模块 -->
+    <div id="tab-expense-summary" class="tab-content">
+        <h2 data-i18n="menu_expense_summary">SHOP Expense Summary  </h2>
+        <div class="panel">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>网点编码/名称 (Branch Name)</label>
+                    <input type="text" class="form-control" disabled value="OCC-IT001 - Bangkok Main Branch">
+                </div>
+                <div class="form-group">
+                    <label>交款单号 (Deposit Manifest ID)</label>
+                    <input type="text" class="form-control" placeholder="请输入银行或ERP交款单流水">
+                </div>
+                <div class="form-group">
+                    <label>解缴审核状态 (Audit Status)</label>
+                    <select class="form-control">
+                        <option value="ALL">全部状态 (All Status)</option>
+                        <option value="SUBMITTED">已提交待审核</option>
+                        <option value="APPROVED">银行已核销确认</option>
+                        <option value="REJECTED">审核驳回修改</option>
+                    </select>
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: flex-start; margin-top: 5px;">
+                <button class="btn" onclick="alert('拉取门店往来银行解缴清册明细...')">🔍 <span>过滤汇总数据 (Filter)</span></button>
+            </div>
         </div>
-        
+
         <table class="data-table">
             <thead>
                 <tr>
-                    <th style="width: 40px;"><input type="checkbox"></th>
-                    <th data-i18n="tbl_tc_no">Confirmation No.</th>
-                    <th data-i18n="tbl_tc_date">Business Date</th>
-                    <th data-i18n="tbl_tc_count">Items</th>
-                    <th data-i18n="tbl_tc_net">Service Fee (Net)</th>
-                    <th data-i18n="tbl_tc_vat">VAT 7%</th>
-                    <th data-i18n="tbl_tc_total">Total (THB)</th>
-                    <th data-i18n="tbl_tc_auditor">Auditor</th>
-                    <th data-i18n="tbl_tc_status">Status</th>
-                    <th data-i18n="tbl_tc_action">Action Close-loop</th>
+                    <th>交款单流水号 (Deposit ID)</th>
+                    <th>交款日期 (Deposit Date)</th>
+                    <th>解缴经办人 (Submitted By)</th>
+                    <th>应缴总现钞 (Cash Sales)</th>
+                    <th>实际解缴解款 (Bank Deposited)</th>
+                    <th>审核状态 (Status)</th>
+                    <th>银行回执凭证 (Receipt Voucher)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="checkbox"></td>
-                    <td><strong>TC-20260614-001</strong></td>
-                    <td>2026-06-14</td>
-                    <td>142 Items</td>
-                    <td>THB 26,588.78</td>
-                    <td>THB 1,861.22</td>
-                    <td style="font-weight: bold; color: #2F3542;">THB 28,450.00</td>
-                    <td>Somchai</td>
-                    <td><span class="status-tag success" data-i18n="status_audited">Audited</span></td>
-                    <td>
-                        <a onclick="openTxDetailModal('TC-20260614-001', 142)" data-i18n="act_drill_down">🔍 Drill-down Detail</a> | 
-                        <a style="color: #e74c3c;" onclick="alert('Voiding the entire daily settlement will rollback the accounting period. Confirm?')" data-i18n="act_void">❌ Void</a>
-                    </td>
+                    <td><strong>DEP-20260709003</strong></td>
+                    <td>2026-07-09 14:00</td>
+                    <td>Krit (EMP-1045)</td>
+                    <td>THB 45,000.00</td>
+                    <td>THB 45,000.00</td>
+                    <td><span class="status-tag success">银行已确认 (Approved)</span></td>
+                    <td><a style="text-decoration: underline;">View_Voucher_01.pdf</a></td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"></td>
-                    <td><strong>TC-20260615-001</strong></td>
-                    <td>2026-06-15</td>
-                    <td>85 Items</td>
-                    <td>THB 11,635.51</td>
-                    <td>THB 814.49</td>
-                    <td style="font-weight: bold; color: #2F3542;">THB 12,450.00</td>
-                    <td>Somchai</td>
-                    <td><span class="status-tag warning" data-i18n="status_pending_audit">Pending Audit</span></td>
-                    <td>
-                        <a onclick="openTxDetailModal('TC-20260615-001', 85)" data-i18n="act_drill_down">🔍 Drill-down Detail</a> | 
-                        <a style="color: #e74c3c;" onclick="alert('Void operation')" data-i18n="act_void">❌ Void</a>
-                    </td>
+                    <td><strong>DEP-20260708012</strong></td>
+                    <td>2026-07-08 17:30</td>
+                    <td>Operator (EMP-0922)</td>
+                    <td>THB 38,500.00</td>
+                    <td>THB 38,500.00</td>
+                    <td><span class="status-tag gray">待总部财务审核 (Pending)</span></td>
+                    <td><a style="text-decoration: underline;">Awaiting_Scan.jpg</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div id="tab-wht" class="tab-content">
-        <h2 data-i18n="wht_title">WHT Certificate Management</h2>
+    <!-- 替换后的WHT Management模块 -->
+    <div id="tab-wht-manage" class="tab-content">
+        <h2 data-i18n="menu_wht_manage">WHT Management - Withholding Tax </h2>
         <div class="panel">
-            <h3 data-i18n="wht_panel_title">WHT Certificate Recording</h3>
-            <p style="color:#7f8c8d; font-size: 13px;" data-i18n="wht_law_note">According to Thai tax law, corporate clients can withhold tax. Recording must strictly input the physical WHT Cert No., and the base amount must exclude 7% VAT.</p>
-            
             <div class="form-grid">
                 <div class="form-group">
-                    <label data-i18n="lbl_wht_ref">KEX Waybill / Bill Statement No. *</label>
-                    <input type="text" id="wht-waybill-no" class="form-control" placeholder="Enter No. to fetch bill" onkeyup="autoCalculateWHT(this.value)">
+                    <label>凭证号 / 申请ID (Cert ID)</label>
+                    <input type="text" class="form-control" placeholder="输入预扣税单据号查询">
                 </div>
                 <div class="form-group">
-                    <label data-i18n="lbl_wht_cert">WHT Certificate No. *</label>
-                    <input type="text" id="wht-cert-no" class="form-control" placeholder="Must enter the legal number on physical certificate">
+                    <label>企业代扣客户税号 (Client Tax ID)</label>
+                    <input type="text" class="form-control" placeholder="输入13位企业机构识别码">
                 </div>
                 <div class="form-group">
-                    <label data-i18n="lbl_wht_tax_id">Tax ID *</label>
-                    <input type="text" id="wht-tax-id" class="form-control" placeholder="13-digit Tax ID">
-                </div>
-                <div class="form-group">
-                    <label data-i18n="lbl_wht_company">Company Name</label>
-                    <input type="text" id="wht-company-name" class="form-control" placeholder="Auto-fetch or manual input">
-                </div>
-            </div>
-            
-            <hr style="border: 0; border-top: 1px dashed #eee; margin: 15px 0;">
-            
-            <div class="form-grid" style="background: #f8f9fa; padding: 15px; border-radius: 6px;">
-                <div class="form-group">
-                    <label style="color:#2F3542;" data-i18n="lbl_wht_base">Amount before VAT</label>
-                    <input type="number" id="wht-base-amount" class="form-control" style="font-weight: bold; background:#fff;" readonly value="0.00">
-                    <span style="font-size: 11px; color:#7f8c8d; margin-top:3px;">Formula: Amount before VAT = Total ÷ 1.07</span>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="lbl_wht_rate">WHT Rate</label>
-                    <select id="wht-rate-select" class="form-control" onchange="recalcWhtValue()">
-                        <option value="0.01" data-i18n="opt_wht_1">1% - Transportation & Logistics</option>
-                        <option value="0.03" data-i18n="opt_wht_3">3% - Equipment Leasing/IT Service</option>
-                        <option value="0.02" data-i18n="opt_wht_2">2% - Advertising Service</option>
-                        <option value="0.00" data-i18n="opt_wht_0">0% - Packing Materials</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label style="color: #e74c3c;" data-i18n="lbl_wht_val">WHT Value</label>
-                    <input type="text" id="wht-calculated-val" class="form-control" readonly style="font-weight: bold; color:#e74c3c; background: #fffdfd;" value="THB 0.00">
-                </div>
-            </div>
-            
-            <div style="margin-top: 15px; text-align: right;">
-                <button class="btn" onclick="alert('WHT certificate submitted successfully and linked to end-of-month P.N.D.53 tax filing!')" data-i18n="btn_submit_wht">💾 Confirm & Submit</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="tab-wallet" class="tab-content">
-        <h2>Digital Wallet Service (Wallet / mPay / Rabbit)</h2>
-        <div class="cards">
-            <div class="card" style="border-top-color:#F58220;"><h4>KEX Wallet Balance</h4><h2>THB 45,000</h2></div>
-            <div class="card" style="border-top-color:#1abc9c;"><h4>Rabbit Card Top-up Total</h4><h2>THB 12,500</h2></div>
-            <div class="card" style="border-top-color:#9b59b6;"><h4>mPay Transactions</h4><h2>THB 8,200</h2></div>
-        </div>
-        <div class="panel">
-            <h3>Wallet Recharge & Settlement</h3>
-            <div class="form-grid">
-                <div class="form-group"><label>Provider</label>
-                    <select class="form-control"><option>KEX Wallet</option><option>Rabbit Card</option><option>mPay</option></select>
-                </div>
-                <div class="form-group"><label>Account/Card ID</label><input type="text" class="form-control"></div>
-                <div class="form-group"><label>Amount (THB)</label><input type="number" class="form-control"></div>
-            </div>
-            <button class="btn">Confirm Recharge</button>
-            <button class="btn btn-outline">Print Receipt</button>
-        </div>
-    </div>
-    
-    <div id="tab-eod-sop" class="tab-content">
-        <h2>Daily End of Day SOP</h2>
-        <div class="panel">
-            <div class='eod-step done'><span>1. Cut Off</span> <span>✔ System locked for new entries</span></div>
-            <div class='eod-step done'><span>2. Scan Out</span> <span>✔ Physical handover completed</span></div>
-            <div class='eod-step progress'><span>3. Export MDE</span> <span>In Progress - Generating reports</span></div>
-            <div class='eod-step todo'><span>4. Close Shop</span> <span>To Do - Financial & physical check</span></div>
-            <div class='eod-step todo'><span>5. Pay In Slip</span> <span>To Do - Cash deposit slip</span></div>
-        </div>
-    </div>
-
-    <div id="tab-cutoff" class="tab-content">
-        <h2>2. End of Day Cut-Off (每日系统截单)</h2>
-        <div class="panel" style="border-left: 6px solid #e74c3c;">
-            <h3 style="color:#e74c3c;">⚠️ 状态锁定强管制警告</h3>
-            <p style="font-size:14px; color:#333;"><strong>逻辑校验:</strong> 一旦点击“ตัดยอด (截单)”，前台 MDE 状态瞬间锁死。今天所有的单据将成为不可篡改的“历史快照”，系统无法再创建新运单、修改金额或取消任何账目。</p>
-            
-            <div style="margin:20px 0; padding:15px; background:#fff8e6; border:1px solid #f39c12; border-radius:4px;">
-                <h4 style="margin:0 0 10px 0; color:#d35400;">Current Business Snapshot (2026-06-16)</h4>
-                <ul style="margin:0; padding-left:20px; font-size:14px; color:#2F3542;">
-                    <li>Pending Collections: <strong>0</strong></li>
-                    <li>Unpaid Waybills: <strong>0</strong></li>
-                    <li>Total Parcels Registered: <strong>97 Items</strong></li>
-                    <li>Total Revenue: <strong>THB 504.00</strong></li>
-                </ul>
-            </div>
-            
-            <button class="btn" style="background:#e74c3c; width:100%; font-size:16px; padding:12px;">✂️ ตัดยอด / Confirm Today's Cut-Off</button>
-        </div>
-    </div>
-
-    <!-- 3. SOP-BAG (集包装袋) -->
-    <div id="tab-scan-bag" class="tab-content">
-        <h2 style="display:flex; justify-content:space-between; align-items:center;">
-            สแกนสินค้าเข้าถุง [SOP-BAG] (集包装袋)
-            <span class="status-tag danger" style="font-size:12px;">✖</span>
-        </h2>
-        
-        <div class="panel" style="padding: 10px; background:#f0f0f0;">
-            <!-- Top Controls -->
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div style="background:#7f8c8d; color:white; padding:5px 15px; font-size:14px;">Presort level : [ OPTION ]</div>
-                <div style="display:flex; align-items:center; gap:5px;">
-                    <div style="background:#00a854; color:white; padding:5px 20px; font-size:16px; font-weight:bold;">กรุณาสแกน</div>
-                    <input type="text" class="form-control" style="width:250px; border-radius:0;" placeholder="Barcode input...">
-                    <span style="font-size:24px;">🔫</span>
-                </div>
-            </div>
-            
-            <!-- Three Columns layout simulating the interface -->
-            <div style="display:flex; gap:10px; height:350px;">
-                
-                <!-- Left: To Scan -->
-                <div style="flex:1; background:white; display:flex; flex-direction:column; border:1px solid #ccc;">
-                    <div style="background:#7f8c8d; color:white; padding:5px; text-align:center; display:flex; justify-content:space-between; align-items:center;">
-                        <span style="flex:1; text-align:center;">พร้อมสแกน</span>
-                        <button style="font-size:10px; padding:2px 5px; color:#F58220; background:white; border:none; cursor:pointer;">รีเฟรช</button>
-                    </div>
-                    <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO.</div>
-                    <div style="flex:1; padding:10px; font-size:12px; color:#555;">
-                        <!-- Mocking the items waiting to be scanned out of the 97 -->
-                        KEX2026061601 | PKG-01<br>KEX2026061602 | PKG-02<br>...<br>
-                    </div>
-                    
-                    <div style="padding:5px; border-top:1px solid #eee; border-bottom:1px solid #eee;">
-                        <span style="color:#F58220; font-weight:bold; font-size:14px;">Missort Prote</span>
-                        <input type="radio" name="missort" value="yes"> ใช่ 
-                        <input type="radio" name="missort" value="no" checked> ไม่
-                    </div>
-                    <button class="btn" style="background:white; color:#F58220; border:2px solid #F58220; font-size:16px; font-weight:bold; margin:5px; padding:10px;">ปิดถุง [Finish All]</button>
-                    <div style="background:#eee; text-align:center; font-size:12px; padding:3px;">Total 97 Record(s)</div>
-                </div>
-                
-                <!-- Center: Scanned -->
-                <div style="flex:1; background:white; display:flex; flex-direction:column; border:1px solid #ccc;">
-                    <div style="background:#7f8c8d; color:white; padding:5px; text-align:center;">สแกนเรียบร้อยแล้ว</div>
-                    <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO. | REGION | SCANNED DATE/TIME</div>
-                    <div style="flex:1; padding:10px; font-size:12px; color:#555; text-align:center; align-items:center; justify-content:center; display:flex;">
-                        <!-- Empty as per default state -->
-                    </div>
-                    <div style="background:#eee; text-align:center; font-size:12px; padding:3px;">Total 0 Record(s)</div>
-                </div>
-                
-                <!-- Right: Exceptions -->
-                <div style="flex:1; display:flex; flex-direction:column; gap:10px;">
-                    <div style="flex:1; background:white; border:1px solid #ccc; display:flex; flex-direction:column;">
-                        <div style="background:#7f8c8d; color:white; padding:5px; text-align:center;">ข้อมูลไม่ถูกต้อง</div>
-                        <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO. | SCANNED DATE/TIME</div>
-                        <div style="flex:1;"></div>
-                    </div>
-                    <div style="flex:1; background:white; border:1px solid #ccc; display:flex; flex-direction:column;">
-                        <div style="background:#7f8c8d; color:white; padding:5px; text-align:center;">สแกนสินค้าซ้ำ</div>
-                        <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO. | SCANNED DATE/TIME</div>
-                        <div style="flex:1;"></div>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <!-- Bottom Table (Batch Detail) -->
-            <div style="background:#7f8c8d; color:white; padding:3px; text-align:center; font-size:12px; margin-top:5px;">BATCH DETAIL</div>
-            <table class="data-table" style="margin-top:0; border-radius:0; font-size:11px;">
-                <thead>
-                    <tr><th>No</th><th>Bag No</th><th>Bag Region</th><th>Bag Status</th><th>Bag Date</th><th>Total Consignment</th><th>Weigh</th><th>Amount</th><th>Print</th><th>QR Code</th><th>Edit</th><th>Delete</th><th>Export</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td colspan="13" style="text-align:center; color:#ccc;">No Data Available</td></tr>
-                </tbody>
-            </table>
-            
-            <!-- Core Warning Rule -->
-            <div style="color:red; font-weight:bold; font-size:16px; text-align:center; margin-top:10px; padding:5px;">
-                *คำเตือน : การนำพัสดุของลูกค้าออกจากร้านโดยไม่ได้ทำการสแกนออกตามขั้นตอนนั้นถือว่าเป็นการทำงานที่ผิดขั้น
-            </div>
-        </div>
-        <p style="font-size:13px; color:#7f8c8d;">逻辑校验：散件变集装。开启 Missort Protection 防错分路由校验。97件散件在此步骤扫入系统，将生成对应的母标签（Bag Tag）。系统内“账面包裹”在此与“实装包裹”实现闭环清点。</p>
-    </div>
-
-    <!-- 4. SOP-P / Scan Out (出库交接) -->
-    <div id="tab-scan-out" class="tab-content">
-        <h2>4. Scan Out / SOP-P (卡车出库交接)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">物理包裹离店绑定</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将 `SOP-BAG` 步骤生成的**大包 (Bag No)** 直接绑定对应车次 (Truck ID) 和司机，确保责任随条码物理转移。</p>
-            
-            <div class="form-grid" style="background:#f1f2f6; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Driver QR / Driver ID</label>
-                    <input type="text" class="form-control" value="EMP-TRK-9902 (Somchai)" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Truck License Plate</label>
-                    <input type="text" class="form-control" value="1กข-9999 BKK" readonly>
-                </div>
-            </div>
-            
-            <div style="display:flex; gap:20px; margin-top:20px;">
-                <div style="flex:1;">
-                    <h4 style="margin:0 0 10px 0; color:#e67312;">📦 Bags Ready to Handover (2 Bags / 97 Items)</h4>
-                    <table class="data-table">
-                        <thead><tr><th>Bag No</th><th>Dest</th><th>Items</th></tr></thead>
-                        <tbody>
-                            <tr><td>BAG-20260616-001</td><td>BKK-HUB</td><td>50</td></tr>
-                            <tr><td>BAG-20260616-002</td><td>CNX-HUB</td><td>47</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div style="flex:1; border-left:1px dashed #ccc; padding-left:20px;">
-                    <h4 style="margin:0 0 10px 0; color:#20c997;">✅ Scanned to Truck</h4>
-                    <input type="text" class="form-control" placeholder="Scan Bag Barcode here to load..." style="margin-bottom:10px;">
-                    <table class="data-table">
-                        <thead><tr><th>Bag No</th><th>Scan Time</th></tr></thead>
-                        <tbody>
-                            <tr><td colspan="2" style="text-align:center; color:#ccc;">Waiting for scan...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <button class="btn" style="margin-top:15px; width:100%;" disabled>Confirm Truck Dispatch</button>
-        </div>
-    </div>
-
-    <!-- 5. Export MDE (数据导出) -->
-    <div id="tab-export-mde" class="tab-content">
-        <h2>5. Export Data (离线数据审计)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">生成当日离线流水快照</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 在截单和出库后，网点需下载离线 Excel 报表用于本地备份、财务审计及客诉黑匣子反查。</p>
-            
-            <div class="action-bar" style="justify-content: flex-start; gap: 15px; margin-top:20px;">
-                <button class="btn" style="background:#3498db; padding:12px 20px;">📥 Export Financial Ledger (504.00 THB)</button>
-                <button class="btn" style="background:#9b59b6; padding:12px 20px;">📥 Export Operations List (97 Items)</button>
-                <button class="btn btn-outline" style="padding:12px 20px;">Backup to Local Drive</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. Close Shop (关店核对) -->
-    <div id="tab-close-shop" class="tab-content">
-        <h2>6. Close Shop Reconciliation (三位一体平账)</h2>
-        <div class="panel" style="position:relative; overflow:hidden;">
-            <!-- 尚未关店的红色印章 UI 逻辑 -->
-            <div style="position:absolute; top:25px; right:-20px; border:4px solid #e74c3c; color:#e74c3c; padding:5px 40px; font-weight:900; transform:rotate(35deg); font-size:22px; letter-spacing:2px; opacity:0.8;">
-                ยังไม่ปิดร้าน
-            </div>
-            
-            <h3 style="color:#2F3542;">终审：系统强制平账校验</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 业务总账 (1) == 渠道资金 (2) == 税务拆解 (3)。三者金额必须分毫不差（THB 504.00），红色印章才能解除，全店营业功能正式关闭。</p>
-            
-            <table class="data-table" style="margin:20px 0;">
-                <thead>
-                    <tr style="background:#2F3542; color:white;">
-                        <th>Metric</th>
-                        <th>(1) Business Logic</th>
-                        <th>(2) Cash/Channel</th>
-                        <th>(3) Tax Formulation</th>
-                        <th>Match Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight:bold;">Gross Total (THB)</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td>Net 471.03 + VAT 32.97</td>
-                        <td><span class="status-tag success">✔️ MATCHED</span></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;">Total Volume</td>
-                        <td>97 Items</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td><span class="status-tag success">✔️ VERIFIED</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div style="background:#fffaf0; border-left:4px solid #f39c12; padding:10px; margin-bottom:20px; font-size:13px;">
-                * System will strictly check if any items are left un-bagged or un-scanned out before allowing Shop Close.
-            </div>
-            
-            <button class="btn btn-danger" style="width:100%; font-size:16px; padding:12px;">🔒 ปิดร้าน / Confirm Close Shop</button>
-        </div>
-    </div>
-
-    <!-- 7. Pay In (解款) -->
-    <div id="tab-pay-in" class="tab-content">
-        <h2>7. Pay In Slip (资金解款与跨系统对账)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">在途资金上缴总部闭环</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将前端 POS 营业额与总部 BSD 系统进行跨系统强行对账。扣除合规的预扣税后，凭系统生成的条码单上缴银行。</p>
-            
-            <div class="form-grid" style="background:#f8f9fa; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Local POS Revenue</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>HQ BSD System Sync</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="border-color:#20c997;">
-                </div>
-                <div class="form-group">
-                    <label>Withholding Tax (WHT Deducted)</label>
-                    <input type="text" class="form-control" value="- THB 0.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Net Pay In Required</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="color:#e74c3c; font-weight:bold; font-size:18px;">
-                </div>
-            </div>
-            
-            <div class="form-grid" style="margin-top:20px;">
-                <div class="form-group">
-                    <label>Target Corporate Bank</label>
+                    <label>凭证归档状态 (Filing State)</label>
                     <select class="form-control">
-                        <option>Kasikorn Bank (KBANK) - KEX Corp Account</option>
-                        <option>Bangkok Bank (BBL)</option>
+                        <option value="ALL">全部归档状态</option>
+                        <option value="DONE">正本已收到并核销</option>
+                        <option value="MISSING">纸质正本缺失待追回</option>
+                        <option value="DIGITAL">仅有电子扫描副本</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>Bank Slip Ref / Machine ID</label>
-                    <input type="text" class="form-control" placeholder="Enter CDM deposit slip ref...">
-                </div>
             </div>
-            
-            <!-- Pay In Barcode Logic -->
-            <div style="text-align:center; margin: 30px 0; padding:20px; background:white; border:1px dashed #ccc;">
-                <h4 style="margin:0 0 10px 0; color:#2F3542;">KEX Digital Pay-In Slip</h4>
-                <div style="display:inline-block; padding:10px; background:#fff; letter-spacing: 2px; font-weight:900; font-size:24px;">
-                   ||| ||||| ||||||| |||||||||||||| ||||
-                </div>
-                <div style="font-size:14px; font-family:monospace; margin-top:5px; font-weight:bold;">|0112345678900 00 50400|</div>
-                <p style="font-size:12px; color:#e74c3c; margin-top:10px;">Please show this barcode to bank teller or scan at Deposit Machine</p>
-            </div>
-            
-            <button class="btn" style="width:100%; font-size:16px; padding:12px;">✅ Submit Final Pay-In Record</button>
-        </div>
-    </div>
-
-
-<div id="tab-scan-out" class="tab-content">
-        <h2>4. Scan Out / SOP-P (卡车出库交接)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">物理包裹离店绑定</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将 `SOP-BAG` 步骤生成的**大包 (Bag No)** 直接绑定对应车次 (Truck ID) 和司机，确保责任随条码物理转移。</p>
-            
-            <div class="form-grid" style="background:#f1f2f6; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Driver QR / Driver ID</label>
-                    <input type="text" class="form-control" value="EMP-TRK-9902 (Somchai)" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Truck License Plate</label>
-                    <input type="text" class="form-control" value="1กข-9999 BKK" readonly>
-                </div>
-            </div>
-            
-            <div style="display:flex; gap:20px; margin-top:20px;">
-                <div style="flex:1;">
-                    <h4 style="margin:0 0 10px 0; color:#e67312;">📦 Bags Ready to Handover (2 Bags / 97 Items)</h4>
-                    <table class="data-table">
-                        <thead><tr><th>Bag No</th><th>Dest</th><th>Items</th></tr></thead>
-                        <tbody>
-                            <tr><td>BAG-20260616-001</td><td>BKK-HUB</td><td>50</td></tr>
-                            <tr><td>BAG-20260616-002</td><td>CNX-HUB</td><td>47</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div style="flex:1; border-left:1px dashed #ccc; padding-left:20px;">
-                    <h4 style="margin:0 0 10px 0; color:#20c997;">✅ Scanned to Truck</h4>
-                    <input type="text" class="form-control" placeholder="Scan Bag Barcode here to load..." style="margin-bottom:10px;">
-                    <table class="data-table">
-                        <thead><tr><th>Bag No</th><th>Scan Time</th></tr></thead>
-                        <tbody>
-                            <tr><td colspan="2" style="text-align:center; color:#ccc;">Waiting for scan...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <button class="btn" style="margin-top:15px; width:100%;" disabled>Confirm Truck Dispatch</button>
-        </div>
-    </div>
-
-    <!-- 5. Export MDE (数据导出) -->
-    <div id="tab-export-mde" class="tab-content">
-        <h2>5. Export Data (离线数据审计)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">生成当日离线流水快照</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 在截单和出库后，网点需下载离线 Excel 报表用于本地备份、财务审计及客诉黑匣子反查。</p>
-            
-            <div class="action-bar" style="justify-content: flex-start; gap: 15px; margin-top:20px;">
-                <button class="btn" style="background:#3498db; padding:12px 20px;">📥 Export Financial Ledger (504.00 THB)</button>
-                <button class="btn" style="background:#9b59b6; padding:12px 20px;">📥 Export Operations List (97 Items)</button>
-                <button class="btn btn-outline" style="padding:12px 20px;">Backup to Local Drive</button>
+            <div style="display: flex; gap: 10px; justify-content: flex-start; margin-top: 5px;">
+                <button class="btn" onclick="alert('执行大区跨网点WHT财税台账全局检索...')">🔍 <span>检索台账 (Search WHT)</span></button>
             </div>
         </div>
-    </div>
 
-    <!-- 6. Close Shop (关店核对) -->
-    <div id="tab-close-shop" class="tab-content">
-        <h2>6. Close Shop Reconciliation (三位一体平账)</h2>
-        <div class="panel" style="position:relative; overflow:hidden;">
-            <!-- 尚未关店的红色印章 UI 逻辑 -->
-            <div style="position:absolute; top:25px; right:-20px; border:4px solid #e74c3c; color:#e74c3c; padding:5px 40px; font-weight:900; transform:rotate(35deg); font-size:22px; letter-spacing:2px; opacity:0.8;">
-                ยังไม่ปิดร้าน
-            </div>
-            
-            <h3 style="color:#2F3542;">终审：系统强制平账校验</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 业务总账 (1) == 渠道资金 (2) == 税务拆解 (3)。三者金额必须分毫不差（THB 504.00），红色印章才能解除，全店营业功能正式关闭。</p>
-            
-            <table class="data-table" style="margin:20px 0;">
-                <thead>
-                    <tr style="background:#2F3542; color:white;">
-                        <th>Metric</th>
-                        <th>(1) Business Logic</th>
-                        <th>(2) Cash/Channel</th>
-                        <th>(3) Tax Formulation</th>
-                        <th>Match Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight:bold;">Gross Total (THB)</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td>Net 471.03 + VAT 32.97</td>
-                        <td><span class="status-tag success">✔️ MATCHED</span></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;">Total Volume</td>
-                        <td>97 Items</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td><span class="status-tag success">✔️ VERIFIED</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div style="background:#fffaf0; border-left:4px solid #f39c12; padding:10px; margin-bottom:20px; font-size:13px;">
-                * System will strictly check if any items are left un-bagged or un-scanned out before allowing Shop Close.
-            </div>
-            
-            <button class="btn btn-danger" style="width:100%; font-size:16px; padding:12px;">🔒 ปิดร้าน / Confirm Close Shop</button>
-        </div>
-    </div>
-
-    <!-- 7. Pay In (解款) -->
-    <div id="tab-pay-in" class="tab-content">
-        <h2>7. Pay In Slip (资金解款与跨系统对账)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">在途资金上缴总部闭环</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将前端 POS 营业额与总部 BSD 系统进行跨系统强行对账。扣除合规的预扣税后，凭系统生成的条码单上缴银行。</p>
-            
-            <div class="form-grid" style="background:#f8f9fa; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Local POS Revenue</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>HQ BSD System Sync</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="border-color:#20c997;">
-                </div>
-                <div class="form-group">
-                    <label>Withholding Tax (WHT Deducted)</label>
-                    <input type="text" class="form-control" value="- THB 0.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Net Pay In Required</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="color:#e74c3c; font-weight:bold; font-size:18px;">
-                </div>
-            </div>
-            
-            <div class="form-grid" style="margin-top:20px;">
-                <div class="form-group">
-                    <label>Target Corporate Bank</label>
-                    <select class="form-control">
-                        <option>Kasikorn Bank (KBANK) - KEX Corp Account</option>
-                        <option>Bangkok Bank (BBL)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Bank Slip Ref / Machine ID</label>
-                    <input type="text" class="form-control" placeholder="Enter CDM deposit slip ref...">
-                </div>
-            </div>
-            
-            <!-- Pay In Barcode Logic -->
-            <div style="text-align:center; margin: 30px 0; padding:20px; background:white; border:1px dashed #ccc;">
-                <h4 style="margin:0 0 10px 0; color:#2F3542;">KEX Digital Pay-In Slip</h4>
-                <div style="display:inline-block; padding:10px; background:#fff; letter-spacing: 2px; font-weight:900; font-size:24px;">
-                   ||| ||||| ||||||| |||||||||||||| ||||
-                </div>
-                <div style="font-size:14px; font-family:monospace; margin-top:5px; font-weight:bold;">|0112345678900 00 50400|</div>
-                <p style="font-size:12px; color:#e74c3c; margin-top:10px;">Please show this barcode to bank teller or scan at Deposit Machine</p>
-            </div>
-            
-            <button class="btn" style="width:100%; font-size:16px; padding:12px;">✅ Submit Final Pay-In Record</button>
-        </div>
-    </div>
-
-
-<div id="tab-export-mde" class="tab-content">
-        <h2>5. Export Data (离线数据审计)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">生成当日离线流水快照</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 在截单和出库后，网点需下载离线 Excel 报表用于本地备份、财务审计及客诉黑匣子反查。</p>
-            
-            <div class="action-bar" style="justify-content: flex-start; gap: 15px; margin-top:20px;">
-                <button class="btn" style="background:#3498db; padding:12px 20px;">📥 Export Financial Ledger (504.00 THB)</button>
-                <button class="btn" style="background:#9b59b6; padding:12px 20px;">📥 Export Operations List (97 Items)</button>
-                <button class="btn btn-outline" style="padding:12px 20px;">Backup to Local Drive</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. Close Shop (关店核对) -->
-    <div id="tab-close-shop" class="tab-content">
-        <h2>6. Close Shop Reconciliation (三位一体平账)</h2>
-        <div class="panel" style="position:relative; overflow:hidden;">
-            <!-- 尚未关店的红色印章 UI 逻辑 -->
-            <div style="position:absolute; top:25px; right:-20px; border:4px solid #e74c3c; color:#e74c3c; padding:5px 40px; font-weight:900; transform:rotate(35deg); font-size:22px; letter-spacing:2px; opacity:0.8;">
-                ยังไม่ปิดร้าน
-            </div>
-            
-            <h3 style="color:#2F3542;">终审：系统强制平账校验</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 业务总账 (1) == 渠道资金 (2) == 税务拆解 (3)。三者金额必须分毫不差（THB 504.00），红色印章才能解除，全店营业功能正式关闭。</p>
-            
-            <table class="data-table" style="margin:20px 0;">
-                <thead>
-                    <tr style="background:#2F3542; color:white;">
-                        <th>Metric</th>
-                        <th>(1) Business Logic</th>
-                        <th>(2) Cash/Channel</th>
-                        <th>(3) Tax Formulation</th>
-                        <th>Match Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight:bold;">Gross Total (THB)</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td>Net 471.03 + VAT 32.97</td>
-                        <td><span class="status-tag success">✔️ MATCHED</span></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;">Total Volume</td>
-                        <td>97 Items</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td><span class="status-tag success">✔️ VERIFIED</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div style="background:#fffaf0; border-left:4px solid #f39c12; padding:10px; margin-bottom:20px; font-size:13px;">
-                * System will strictly check if any items are left un-bagged or un-scanned out before allowing Shop Close.
-            </div>
-            
-            <button class="btn btn-danger" style="width:100%; font-size:16px; padding:12px;">🔒 ปิดร้าน / Confirm Close Shop</button>
-        </div>
-    </div>
-
-    <!-- 7. Pay In (解款) -->
-    <div id="tab-pay-in" class="tab-content">
-        <h2>7. Pay In Slip (资金解款与跨系统对账)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">在途资金上缴总部闭环</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将前端 POS 营业额与总部 BSD 系统进行跨系统强行对账。扣除合规的预扣税后，凭系统生成的条码单上缴银行。</p>
-            
-            <div class="form-grid" style="background:#f8f9fa; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Local POS Revenue</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>HQ BSD System Sync</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="border-color:#20c997;">
-                </div>
-                <div class="form-group">
-                    <label>Withholding Tax (WHT Deducted)</label>
-                    <input type="text" class="form-control" value="- THB 0.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Net Pay In Required</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="color:#e74c3c; font-weight:bold; font-size:18px;">
-                </div>
-            </div>
-            
-            <div class="form-grid" style="margin-top:20px;">
-                <div class="form-group">
-                    <label>Target Corporate Bank</label>
-                    <select class="form-control">
-                        <option>Kasikorn Bank (KBANK) - KEX Corp Account</option>
-                        <option>Bangkok Bank (BBL)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Bank Slip Ref / Machine ID</label>
-                    <input type="text" class="form-control" placeholder="Enter CDM deposit slip ref...">
-                </div>
-            </div>
-            
-            <!-- Pay In Barcode Logic -->
-            <div style="text-align:center; margin: 30px 0; padding:20px; background:white; border:1px dashed #ccc;">
-                <h4 style="margin:0 0 10px 0; color:#2F3542;">KEX Digital Pay-In Slip</h4>
-                <div style="display:inline-block; padding:10px; background:#fff; letter-spacing: 2px; font-weight:900; font-size:24px;">
-                   ||| ||||| ||||||| |||||||||||||| ||||
-                </div>
-                <div style="font-size:14px; font-family:monospace; margin-top:5px; font-weight:bold;">|0112345678900 00 50400|</div>
-                <p style="font-size:12px; color:#e74c3c; margin-top:10px;">Please show this barcode to bank teller or scan at Deposit Machine</p>
-            </div>
-            
-            <button class="btn" style="width:100%; font-size:16px; padding:12px;">✅ Submit Final Pay-In Record</button>
-        </div>
-    </div>
-
-
-<div id="tab-close-shop" class="tab-content">
-        <h2>6. Close Shop Reconciliation (三位一体平账)</h2>
-        <div class="panel" style="position:relative; overflow:hidden;">
-            <!-- 尚未关店的红色印章 UI 逻辑 -->
-            <div style="position:absolute; top:25px; right:-20px; border:4px solid #e74c3c; color:#e74c3c; padding:5px 40px; font-weight:900; transform:rotate(35deg); font-size:22px; letter-spacing:2px; opacity:0.8;">
-                ยังไม่ปิดร้าน
-            </div>
-            
-            <h3 style="color:#2F3542;">终审：系统强制平账校验</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 业务总账 (1) == 渠道资金 (2) == 税务拆解 (3)。三者金额必须分毫不差（THB 504.00），红色印章才能解除，全店营业功能正式关闭。</p>
-            
-            <table class="data-table" style="margin:20px 0;">
-                <thead>
-                    <tr style="background:#2F3542; color:white;">
-                        <th>Metric</th>
-                        <th>(1) Business Logic</th>
-                        <th>(2) Cash/Channel</th>
-                        <th>(3) Tax Formulation</th>
-                        <th>Match Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight:bold;">Gross Total (THB)</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td>Net 471.03 + VAT 32.97</td>
-                        <td><span class="status-tag success">✔️ MATCHED</span></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;">Total Volume</td>
-                        <td>97 Items</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td><span class="status-tag success">✔️ VERIFIED</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div style="background:#fffaf0; border-left:4px solid #f39c12; padding:10px; margin-bottom:20px; font-size:13px;">
-                * System will strictly check if any items are left un-bagged or un-scanned out before allowing Shop Close.
-            </div>
-            
-            <button class="btn btn-danger" style="width:100%; font-size:16px; padding:12px;">🔒 ปิดร้าน / Confirm Close Shop</button>
-        </div>
-    </div>
-
-    <!-- 7. Pay In (解款) -->
-    <div id="tab-pay-in" class="tab-content">
-        <h2>7. Pay In Slip (资金解款与跨系统对账)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">在途资金上缴总部闭环</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将前端 POS 营业额与总部 BSD 系统进行跨系统强行对账。扣除合规的预扣税后，凭系统生成的条码单上缴银行。</p>
-            
-            <div class="form-grid" style="background:#f8f9fa; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Local POS Revenue</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>HQ BSD System Sync</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="border-color:#20c997;">
-                </div>
-                <div class="form-group">
-                    <label>Withholding Tax (WHT Deducted)</label>
-                    <input type="text" class="form-control" value="- THB 0.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Net Pay In Required</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="color:#e74c3c; font-weight:bold; font-size:18px;">
-                </div>
-            </div>
-            
-            <div class="form-grid" style="margin-top:20px;">
-                <div class="form-group">
-                    <label>Target Corporate Bank</label>
-                    <select class="form-control">
-                        <option>Kasikorn Bank (KBANK) - KEX Corp Account</option>
-                        <option>Bangkok Bank (BBL)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Bank Slip Ref / Machine ID</label>
-                    <input type="text" class="form-control" placeholder="Enter CDM deposit slip ref...">
-                </div>
-            </div>
-            
-            <!-- Pay In Barcode Logic -->
-            <div style="text-align:center; margin: 30px 0; padding:20px; background:white; border:1px dashed #ccc;">
-                <h4 style="margin:0 0 10px 0; color:#2F3542;">KEX Digital Pay-In Slip</h4>
-                <div style="display:inline-block; padding:10px; background:#fff; letter-spacing: 2px; font-weight:900; font-size:24px;">
-                   ||| ||||| ||||||| |||||||||||||| ||||
-                </div>
-                <div style="font-size:14px; font-family:monospace; margin-top:5px; font-weight:bold;">|0112345678900 00 50400|</div>
-                <p style="font-size:12px; color:#e74c3c; margin-top:10px;">Please show this barcode to bank teller or scan at Deposit Machine</p>
-            </div>
-            
-            <button class="btn" style="width:100%; font-size:16px; padding:12px;">✅ Submit Final Pay-In Record</button>
-        </div>
-    </div>
-
-
-<div id="tab-pay-in" class="tab-content">
-        <h2>7. Pay In Slip (资金解款与跨系统对账)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">在途资金上缴总部闭环</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将前端 POS 营业额与总部 BSD 系统进行跨系统强行对账。扣除合规的预扣税后，凭系统生成的条码单上缴银行。</p>
-            
-            <div class="form-grid" style="background:#f8f9fa; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Local POS Revenue</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>HQ BSD System Sync</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="border-color:#20c997;">
-                </div>
-                <div class="form-group">
-                    <label>Withholding Tax (WHT Deducted)</label>
-                    <input type="text" class="form-control" value="- THB 0.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Net Pay In Required</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="color:#e74c3c; font-weight:bold; font-size:18px;">
-                </div>
-            </div>
-            
-            <div class="form-grid" style="margin-top:20px;">
-                <div class="form-group">
-                    <label>Target Corporate Bank</label>
-                    <select class="form-control">
-                        <option>Kasikorn Bank (KBANK) - KEX Corp Account</option>
-                        <option>Bangkok Bank (BBL)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Bank Slip Ref / Machine ID</label>
-                    <input type="text" class="form-control" placeholder="Enter CDM deposit slip ref...">
-                </div>
-            </div>
-            
-            <!-- Pay In Barcode Logic -->
-            <div style="text-align:center; margin: 30px 0; padding:20px; background:white; border:1px dashed #ccc;">
-                <h4 style="margin:0 0 10px 0; color:#2F3542;">KEX Digital Pay-In Slip</h4>
-                <div style="display:inline-block; padding:10px; background:#fff; letter-spacing: 2px; font-weight:900; font-size:24px;">
-                   ||| ||||| ||||||| |||||||||||||| ||||
-                </div>
-                <div style="font-size:14px; font-family:monospace; margin-top:5px; font-weight:bold;">|0112345678900 00 50400|</div>
-                <p style="font-size:12px; color:#e74c3c; margin-top:10px;">Please show this barcode to bank teller or scan at Deposit Machine</p>
-            </div>
-            
-            <button class="btn" style="width:100%; font-size:16px; padding:12px;">✅ Submit Final Pay-In Record</button>
-        </div>
-    </div>
-
-
-<div id="tab-cashier" class="tab-content">
-        <h2>1. Cashier Drawer Check (CASH ON COUNTER)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">微观核算：责任到人的资金清盘</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 确保各窗口的服务类型金额 (Service Amount) 必须严格等于支付渠道收款金额 (Payment Amount)。</p>
-            
-            <div class="form-grid" style="background:#f8f9fa; padding:15px; border-radius:6px; margin-top:15px;">
-                <div class="form-group">
-                    <label>Total Service Amount (Freight, Surcharge...)</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="font-weight:bold; color:#2F3542;">
-                </div>
-                <div class="form-group">
-                    <label>Total Payment Received (Cash/QR)</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="font-weight:bold; color:#2F3542;">
-                </div>
-                <div class="form-group">
-                    <label>Variance (差异)</label>
-                    <input type="text" class="form-control" value="THB 0.00" readonly style="font-weight:bold; color:#20c997;">
-                </div>
-            </div>
-            
-            <table class="data-table" style="margin-top: 15px;">
-                <thead><tr><th>Counter / Operator</th><th>Service Generated</th><th>Collected (Cash)</th><th>Collected (QR)</th><th>Status</th></tr></thead>
-                <tbody>
-                    <tr><td>Window 1 (EMP-1045)</td><td>THB 504.00</td><td>THB 200.00</td><td>THB 304.00</td><td><span class="status-tag success">Balanced</span></td></tr>
-                </tbody>
-            </table>
-            
-            <div style="margin-top:20px; text-align:right;">
-                <button class="btn" style="background:#20c997;">✅ Confirm Cashier Balance</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. Cut Off (每日截单) -->
-    <div id="tab-cutoff" class="tab-content">
-        <h2>2. End of Day Cut-Off (每日系统截单)</h2>
-        <div class="panel" style="border-left: 6px solid #e74c3c;">
-            <h3 style="color:#e74c3c;">⚠️ 状态锁定强管制警告</h3>
-            <p style="font-size:14px; color:#333;"><strong>逻辑校验:</strong> 一旦点击“ตัดยอด (截单)”，前台 MDE 状态瞬间锁死。今天所有的单据将成为不可篡改的“历史快照”，系统无法再创建新运单、修改金额或取消任何账目。</p>
-            
-            <div style="margin:20px 0; padding:15px; background:#fff8e6; border:1px solid #f39c12; border-radius:4px;">
-                <h4 style="margin:0 0 10px 0; color:#d35400;">Current Business Snapshot (2026-06-16)</h4>
-                <ul style="margin:0; padding-left:20px; font-size:14px; color:#2F3542;">
-                    <li>Pending Collections: <strong>0</strong></li>
-                    <li>Unpaid Waybills: <strong>0</strong></li>
-                    <li>Total Parcels Registered: <strong>97 Items</strong></li>
-                    <li>Total Revenue: <strong>THB 504.00</strong></li>
-                </ul>
-            </div>
-            
-            <button class="btn" style="background:#e74c3c; width:100%; font-size:16px; padding:12px;">✂️ ตัดยอด / Confirm Today's Cut-Off</button>
-        </div>
-    </div>
-
-    <!-- 3. SOP-BAG (集包装袋) -->
-    <div id="tab-scan-bag" class="tab-content">
-        <h2 style="display:flex; justify-content:space-between; align-items:center;">
-            สแกนสินค้าเข้าถุง [SOP-BAG] (集包装袋)
-            <span class="status-tag danger" style="font-size:12px;">✖</span>
-        </h2>
-        
-        <div class="panel" style="padding: 10px; background:#f0f0f0;">
-            <!-- Top Controls -->
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div style="background:#7f8c8d; color:white; padding:5px 15px; font-size:14px;">Presort level : [ OPTION ]</div>
-                <div style="display:flex; align-items:center; gap:5px;">
-                    <div style="background:#00a854; color:white; padding:5px 20px; font-size:16px; font-weight:bold;">กรุณาสแกน</div>
-                    <input type="text" class="form-control" style="width:250px; border-radius:0;" placeholder="Barcode input...">
-                    <span style="font-size:24px;">🔫</span>
-                </div>
-            </div>
-            
-            <!-- Three Columns layout simulating the interface -->
-            <div style="display:flex; gap:10px; height:350px;">
-                
-                <!-- Left: To Scan -->
-                <div style="flex:1; background:white; display:flex; flex-direction:column; border:1px solid #ccc;">
-                    <div style="background:#7f8c8d; color:white; padding:5px; text-align:center; display:flex; justify-content:space-between; align-items:center;">
-                        <span style="flex:1; text-align:center;">พร้อมสแกน</span>
-                        <button style="font-size:10px; padding:2px 5px; color:#F58220; background:white; border:none; cursor:pointer;">รีเฟรช</button>
-                    </div>
-                    <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO.</div>
-                    <div style="flex:1; padding:10px; font-size:12px; color:#555;">
-                        <!-- Mocking the items waiting to be scanned out of the 97 -->
-                        KEX2026061601 | PKG-01<br>KEX2026061602 | PKG-02<br>...<br>
-                    </div>
-                    
-                    <div style="padding:5px; border-top:1px solid #eee; border-bottom:1px solid #eee;">
-                        <span style="color:#F58220; font-weight:bold; font-size:14px;">Missort Prote</span>
-                        <input type="radio" name="missort" value="yes"> ใช่ 
-                        <input type="radio" name="missort" value="no" checked> ไม่
-                    </div>
-                    <button class="btn" style="background:white; color:#F58220; border:2px solid #F58220; font-size:16px; font-weight:bold; margin:5px; padding:10px;">ปิดถุง [Finish All]</button>
-                    <div style="background:#eee; text-align:center; font-size:12px; padding:3px;">Total 97 Record(s)</div>
-                </div>
-                
-                <!-- Center: Scanned -->
-                <div style="flex:1; background:white; display:flex; flex-direction:column; border:1px solid #ccc;">
-                    <div style="background:#7f8c8d; color:white; padding:5px; text-align:center;">สแกนเรียบร้อยแล้ว</div>
-                    <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO. | REGION | SCANNED DATE/TIME</div>
-                    <div style="flex:1; padding:10px; font-size:12px; color:#555; text-align:center; align-items:center; justify-content:center; display:flex;">
-                        <!-- Empty as per default state -->
-                    </div>
-                    <div style="background:#eee; text-align:center; font-size:12px; padding:3px;">Total 0 Record(s)</div>
-                </div>
-                
-                <!-- Right: Exceptions -->
-                <div style="flex:1; display:flex; flex-direction:column; gap:10px;">
-                    <div style="flex:1; background:white; border:1px solid #ccc; display:flex; flex-direction:column;">
-                        <div style="background:#7f8c8d; color:white; padding:5px; text-align:center;">ข้อมูลไม่ถูกต้อง</div>
-                        <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO. | SCANNED DATE/TIME</div>
-                        <div style="flex:1;"></div>
-                    </div>
-                    <div style="flex:1; background:white; border:1px solid #ccc; display:flex; flex-direction:column;">
-                        <div style="background:#7f8c8d; color:white; padding:5px; text-align:center;">สแกนสินค้าซ้ำ</div>
-                        <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO. | SCANNED DATE/TIME</div>
-                        <div style="flex:1;"></div>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <!-- Bottom Table (Batch Detail) -->
-            <div style="background:#7f8c8d; color:white; padding:3px; text-align:center; font-size:12px; margin-top:5px;">BATCH DETAIL</div>
-            <table class="data-table" style="margin-top:0; border-radius:0; font-size:11px;">
-                <thead>
-                    <tr><th>No</th><th>Bag No</th><th>Bag Region</th><th>Bag Status</th><th>Bag Date</th><th>Total Consignment</th><th>Weigh</th><th>Amount</th><th>Print</th><th>QR Code</th><th>Edit</th><th>Delete</th><th>Export</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td colspan="13" style="text-align:center; color:#ccc;">No Data Available</td></tr>
-                </tbody>
-            </table>
-            
-            <!-- Core Warning Rule -->
-            <div style="color:red; font-weight:bold; font-size:16px; text-align:center; margin-top:10px; padding:5px;">
-                *คำเตือน : การนำพัสดุของลูกค้าออกจากร้านโดยไม่ได้ทำการสแกนออกตามขั้นตอนนั้นถือว่าเป็นการทำงานที่ผิดขั้น
-            </div>
-        </div>
-        <p style="font-size:13px; color:#7f8c8d;">逻辑校验：散件变集装。开启 Missort Protection 防错分路由校验。97件散件在此步骤扫入系统，将生成对应的母标签（Bag Tag）。系统内“账面包裹”在此与“实装包裹”实现闭环清点。</p>
-    </div>
-
-    <!-- 4. SOP-P / Scan Out (出库交接) -->
-    <div id="tab-scan-out" class="tab-content">
-        <h2>4. Scan Out / SOP-P (卡车出库交接)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">物理包裹离店绑定</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将 `SOP-BAG` 步骤生成的**大包 (Bag No)** 直接绑定对应车次 (Truck ID) 和司机，确保责任随条码物理转移。</p>
-            
-            <div class="form-grid" style="background:#f1f2f6; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Driver QR / Driver ID</label>
-                    <input type="text" class="form-control" value="EMP-TRK-9902 (Somchai)" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Truck License Plate</label>
-                    <input type="text" class="form-control" value="1กข-9999 BKK" readonly>
-                </div>
-            </div>
-            
-            <div style="display:flex; gap:20px; margin-top:20px;">
-                <div style="flex:1;">
-                    <h4 style="margin:0 0 10px 0; color:#e67312;">📦 Bags Ready to Handover (2 Bags / 97 Items)</h4>
-                    <table class="data-table">
-                        <thead><tr><th>Bag No</th><th>Dest</th><th>Items</th></tr></thead>
-                        <tbody>
-                            <tr><td>BAG-20260616-001</td><td>BKK-HUB</td><td>50</td></tr>
-                            <tr><td>BAG-20260616-002</td><td>CNX-HUB</td><td>47</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div style="flex:1; border-left:1px dashed #ccc; padding-left:20px;">
-                    <h4 style="margin:0 0 10px 0; color:#20c997;">✅ Scanned to Truck</h4>
-                    <input type="text" class="form-control" placeholder="Scan Bag Barcode here to load..." style="margin-bottom:10px;">
-                    <table class="data-table">
-                        <thead><tr><th>Bag No</th><th>Scan Time</th></tr></thead>
-                        <tbody>
-                            <tr><td colspan="2" style="text-align:center; color:#ccc;">Waiting for scan...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <button class="btn" style="margin-top:15px; width:100%;" disabled>Confirm Truck Dispatch</button>
-        </div>
-    </div>
-
-    <!-- 5. Export MDE (数据导出) -->
-    <div id="tab-export-mde" class="tab-content">
-        <h2>5. Export Data (离线数据审计)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">生成当日离线流水快照</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 在截单和出库后，网点需下载离线 Excel 报表用于本地备份、财务审计及客诉黑匣子反查。</p>
-            
-            <div class="action-bar" style="justify-content: flex-start; gap: 15px; margin-top:20px;">
-                <button class="btn" style="background:#3498db; padding:12px 20px;">📥 Export Financial Ledger (504.00 THB)</button>
-                <button class="btn" style="background:#9b59b6; padding:12px 20px;">📥 Export Operations List (97 Items)</button>
-                <button class="btn btn-outline" style="padding:12px 20px;">Backup to Local Drive</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. Close Shop (关店核对) -->
-    <div id="tab-close-shop" class="tab-content">
-        <h2>6. Close Shop Reconciliation (三位一体平账)</h2>
-        <div class="panel" style="position:relative; overflow:hidden;">
-            <!-- 尚未关店的红色印章 UI 逻辑 -->
-            <div style="position:absolute; top:25px; right:-20px; border:4px solid #e74c3c; color:#e74c3c; padding:5px 40px; font-weight:900; transform:rotate(35deg); font-size:22px; letter-spacing:2px; opacity:0.8;">
-                ยังไม่ปิดร้าน
-            </div>
-            
-            <h3 style="color:#2F3542;">终审：系统强制平账校验</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 业务总账 (1) == 渠道资金 (2) == 税务拆解 (3)。三者金额必须分毫不差（THB 504.00），红色印章才能解除，全店营业功能正式关闭。</p>
-            
-            <table class="data-table" style="margin:20px 0;">
-                <thead>
-                    <tr style="background:#2F3542; color:white;">
-                        <th>Metric</th>
-                        <th>(1) Business Logic</th>
-                        <th>(2) Cash/Channel</th>
-                        <th>(3) Tax Formulation</th>
-                        <th>Match Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight:bold;">Gross Total (THB)</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td>Net 471.03 + VAT 32.97</td>
-                        <td><span class="status-tag success">✔️ MATCHED</span></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;">Total Volume</td>
-                        <td>97 Items</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td><span class="status-tag success">✔️ VERIFIED</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div style="background:#fffaf0; border-left:4px solid #f39c12; padding:10px; margin-bottom:20px; font-size:13px;">
-                * System will strictly check if any items are left un-bagged or un-scanned out before allowing Shop Close.
-            </div>
-            
-            <button class="btn btn-danger" style="width:100%; font-size:16px; padding:12px;">🔒 ปิดร้าน / Confirm Close Shop</button>
-        </div>
-    </div>
-
-    <!-- 7. Pay In (解款) -->
-    <div id="tab-pay-in" class="tab-content">
-        <h2>7. Pay In Slip (资金解款与跨系统对账)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">在途资金上缴总部闭环</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将前端 POS 营业额与总部 BSD 系统进行跨系统强行对账。扣除合规的预扣税后，凭系统生成的条码单上缴银行。</p>
-            
-            <div class="form-grid" style="background:#f8f9fa; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Local POS Revenue</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>HQ BSD System Sync</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="border-color:#20c997;">
-                </div>
-                <div class="form-group">
-                    <label>Withholding Tax (WHT Deducted)</label>
-                    <input type="text" class="form-control" value="- THB 0.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Net Pay In Required</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="color:#e74c3c; font-weight:bold; font-size:18px;">
-                </div>
-            </div>
-            
-            <div class="form-grid" style="margin-top:20px;">
-                <div class="form-group">
-                    <label>Target Corporate Bank</label>
-                    <select class="form-control">
-                        <option>Kasikorn Bank (KBANK) - KEX Corp Account</option>
-                        <option>Bangkok Bank (BBL)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Bank Slip Ref / Machine ID</label>
-                    <input type="text" class="form-control" placeholder="Enter CDM deposit slip ref...">
-                </div>
-            </div>
-            
-            <!-- Pay In Barcode Logic -->
-            <div style="text-align:center; margin: 30px 0; padding:20px; background:white; border:1px dashed #ccc;">
-                <h4 style="margin:0 0 10px 0; color:#2F3542;">KEX Digital Pay-In Slip</h4>
-                <div style="display:inline-block; padding:10px; background:#fff; letter-spacing: 2px; font-weight:900; font-size:24px;">
-                   ||| ||||| ||||||| |||||||||||||| ||||
-                </div>
-                <div style="font-size:14px; font-family:monospace; margin-top:5px; font-weight:bold;">|0112345678900 00 50400|</div>
-                <p style="font-size:12px; color:#e74c3c; margin-top:10px;">Please show this barcode to bank teller or scan at Deposit Machine</p>
-            </div>
-            
-            <button class="btn" style="width:100%; font-size:16px; padding:12px;">✅ Submit Final Pay-In Record</button>
-        </div>
-    </div>
-
-
-<div id="tab-booking" class="tab-content">
-        <h2>Booking</h2>
         <table class="data-table">
             <thead>
-                <tr><th>Booking No.</th><th>Customer Name</th><th>Pickup Address</th><th>Time Slot</th><th>Dispatch Status</th></tr>
+                <tr>
+                    <th>预扣税登记单号 (WHT Cert ID)</th>
+                    <th>企业主体名称 (Company Corporate Name)</th>
+                    <th>纳税人识别号 (Tax ID Reference)</th>
+                    <th>代扣税基数金额 (Taxable Base)</th>
+                    <th>税率比例 (Rate)</th>
+                    <th>代扣扣缴税额 (Withheld Amount)</th>
+                    <th>归档审核状态 (Filing Status)</th>
+                </tr>
             </thead>
             <tbody>
-                <tr><td>BK-991203</td><td>John Smith</td><td>Sukhumvit Soi 24</td><td>14:00 - 16:00</td><td><span class="status-tag warning">Driver on the way</span></td></tr>
+                <tr>
+                    <td><strong>WHT-2026-00392</strong></td>
+                    <td>Shopee Thailand Co., Ltd.</td>
+                    <td>0105558123456</td>
+                    <td>THB 11,682.24</td>
+                    <td>1%</td>
+                    <td>THB 116.82</td>
+                    <td><span class="status-tag success">正本已收单核销</span></td>
+                </tr>
+                <tr>
+                    <td><strong>WHT-2026-00411</strong></td>
+                    <td>Lazada Digital Service Co., Ltd.</td>
+                    <td>0105559876543</td>
+                    <td>THB 25,400.00</td>
+                    <td>1%</td>
+                    <td>THB 254.00</td>
+                    <td><span class="status-tag danger">缺失纸质正本(催收中)</span></td>
+                </tr>
             </tbody>
         </table>
-    </div>
-
-    <div id="tab-scan-bag" class="tab-content">
-        <h2 style="display:flex; justify-content:space-between; align-items:center;">
-            สแกนสินค้าเข้าถุง [SOP-BAG] (集包装袋)
-            <span class="status-tag danger" style="font-size:12px;">✖</span>
-        </h2>
-        
-        <div class="panel" style="padding: 10px; background:#f0f0f0;">
-            <!-- Top Controls -->
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div style="background:#7f8c8d; color:white; padding:5px 15px; font-size:14px;">Presort level : [ OPTION ]</div>
-                <div style="display:flex; align-items:center; gap:5px;">
-                    <div style="background:#00a854; color:white; padding:5px 20px; font-size:16px; font-weight:bold;">กรุณาสแกน</div>
-                    <input type="text" class="form-control" style="width:250px; border-radius:0;" placeholder="Barcode input...">
-                    <span style="font-size:24px;">🔫</span>
-                </div>
-            </div>
-            
-            <!-- Three Columns layout simulating the interface -->
-            <div style="display:flex; gap:10px; height:350px;">
-                
-                <!-- Left: To Scan -->
-                <div style="flex:1; background:white; display:flex; flex-direction:column; border:1px solid #ccc;">
-                    <div style="background:#7f8c8d; color:white; padding:5px; text-align:center; display:flex; justify-content:space-between; align-items:center;">
-                        <span style="flex:1; text-align:center;">พร้อมสแกน</span>
-                        <button style="font-size:10px; padding:2px 5px; color:#F58220; background:white; border:none; cursor:pointer;">รีเฟรช</button>
-                    </div>
-                    <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO.</div>
-                    <div style="flex:1; padding:10px; font-size:12px; color:#555;">
-                        <!-- Mocking the items waiting to be scanned out of the 97 -->
-                        KEX2026061601 | PKG-01<br>KEX2026061602 | PKG-02<br>...<br>
-                    </div>
-                    
-                    <div style="padding:5px; border-top:1px solid #eee; border-bottom:1px solid #eee;">
-                        <span style="color:#F58220; font-weight:bold; font-size:14px;">Missort Prote</span>
-                        <input type="radio" name="missort" value="yes"> ใช่ 
-                        <input type="radio" name="missort" value="no" checked> ไม่
-                    </div>
-                    <button class="btn" style="background:white; color:#F58220; border:2px solid #F58220; font-size:16px; font-weight:bold; margin:5px; padding:10px;">ปิดถุง [Finish All]</button>
-                    <div style="background:#eee; text-align:center; font-size:12px; padding:3px;">Total 97 Record(s)</div>
-                </div>
-                
-                <!-- Center: Scanned -->
-                <div style="flex:1; background:white; display:flex; flex-direction:column; border:1px solid #ccc;">
-                    <div style="background:#7f8c8d; color:white; padding:5px; text-align:center;">สแกนเรียบร้อยแล้ว</div>
-                    <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO. | REGION | SCANNED DATE/TIME</div>
-                    <div style="flex:1; padding:10px; font-size:12px; color:#555; text-align:center; align-items:center; justify-content:center; display:flex;">
-                        <!-- Empty as per default state -->
-                    </div>
-                    <div style="background:#eee; text-align:center; font-size:12px; padding:3px;">Total 0 Record(s)</div>
-                </div>
-                
-                <!-- Right: Exceptions -->
-                <div style="flex:1; display:flex; flex-direction:column; gap:10px;">
-                    <div style="flex:1; background:white; border:1px solid #ccc; display:flex; flex-direction:column;">
-                        <div style="background:#7f8c8d; color:white; padding:5px; text-align:center;">ข้อมูลไม่ถูกต้อง</div>
-                        <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO. | SCANNED DATE/TIME</div>
-                        <div style="flex:1;"></div>
-                    </div>
-                    <div style="flex:1; background:white; border:1px solid #ccc; display:flex; flex-direction:column;">
-                        <div style="background:#7f8c8d; color:white; padding:5px; text-align:center;">สแกนสินค้าซ้ำ</div>
-                        <div style="font-size:11px; text-align:center; border-bottom:1px solid #eee; padding:3px;">CONSIGNMENT NO. | PKG NO. | SCANNED DATE/TIME</div>
-                        <div style="flex:1;"></div>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <!-- Bottom Table (Batch Detail) -->
-            <div style="background:#7f8c8d; color:white; padding:3px; text-align:center; font-size:12px; margin-top:5px;">BATCH DETAIL</div>
-            <table class="data-table" style="margin-top:0; border-radius:0; font-size:11px;">
-                <thead>
-                    <tr><th>No</th><th>Bag No</th><th>Bag Region</th><th>Bag Status</th><th>Bag Date</th><th>Total Consignment</th><th>Weigh</th><th>Amount</th><th>Print</th><th>QR Code</th><th>Edit</th><th>Delete</th><th>Export</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td colspan="13" style="text-align:center; color:#ccc;">No Data Available</td></tr>
-                </tbody>
-            </table>
-            
-            <!-- Core Warning Rule -->
-            <div style="color:red; font-weight:bold; font-size:16px; text-align:center; margin-top:10px; padding:5px;">
-                *คำเตือน : การนำพัสดุของลูกค้าออกจากร้านโดยไม่ได้ทำการสแกนออกตามขั้นตอนนั้นถือว่าเป็นการทำงานที่ผิดขั้น
-            </div>
-        </div>
-        <p style="font-size:13px; color:#7f8c8d;">逻辑校验：散件变集装。开启 Missort Protection 防错分路由校验。97件散件在此步骤扫入系统，将生成对应的母标签（Bag Tag）。系统内“账面包裹”在此与“实装包裹”实现闭环清点。</p>
-    </div>
-
-    <!-- 4. SOP-P / Scan Out (出库交接) -->
-    <div id="tab-scan-out" class="tab-content">
-        <h2>4. Scan Out / SOP-P (卡车出库交接)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">物理包裹离店绑定</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将 `SOP-BAG` 步骤生成的**大包 (Bag No)** 直接绑定对应车次 (Truck ID) 和司机，确保责任随条码物理转移。</p>
-            
-            <div class="form-grid" style="background:#f1f2f6; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Driver QR / Driver ID</label>
-                    <input type="text" class="form-control" value="EMP-TRK-9902 (Somchai)" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Truck License Plate</label>
-                    <input type="text" class="form-control" value="1กข-9999 BKK" readonly>
-                </div>
-            </div>
-            
-            <div style="display:flex; gap:20px; margin-top:20px;">
-                <div style="flex:1;">
-                    <h4 style="margin:0 0 10px 0; color:#e67312;">📦 Bags Ready to Handover (2 Bags / 97 Items)</h4>
-                    <table class="data-table">
-                        <thead><tr><th>Bag No</th><th>Dest</th><th>Items</th></tr></thead>
-                        <tbody>
-                            <tr><td>BAG-20260616-001</td><td>BKK-HUB</td><td>50</td></tr>
-                            <tr><td>BAG-20260616-002</td><td>CNX-HUB</td><td>47</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div style="flex:1; border-left:1px dashed #ccc; padding-left:20px;">
-                    <h4 style="margin:0 0 10px 0; color:#20c997;">✅ Scanned to Truck</h4>
-                    <input type="text" class="form-control" placeholder="Scan Bag Barcode here to load..." style="margin-bottom:10px;">
-                    <table class="data-table">
-                        <thead><tr><th>Bag No</th><th>Scan Time</th></tr></thead>
-                        <tbody>
-                            <tr><td colspan="2" style="text-align:center; color:#ccc;">Waiting for scan...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <button class="btn" style="margin-top:15px; width:100%;" disabled>Confirm Truck Dispatch</button>
-        </div>
-    </div>
-
-    <!-- 5. Export MDE (数据导出) -->
-    <div id="tab-export-mde" class="tab-content">
-        <h2>5. Export Data (离线数据审计)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">生成当日离线流水快照</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 在截单和出库后，网点需下载离线 Excel 报表用于本地备份、财务审计及客诉黑匣子反查。</p>
-            
-            <div class="action-bar" style="justify-content: flex-start; gap: 15px; margin-top:20px;">
-                <button class="btn" style="background:#3498db; padding:12px 20px;">📥 Export Financial Ledger (504.00 THB)</button>
-                <button class="btn" style="background:#9b59b6; padding:12px 20px;">📥 Export Operations List (97 Items)</button>
-                <button class="btn btn-outline" style="padding:12px 20px;">Backup to Local Drive</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. Close Shop (关店核对) -->
-    <div id="tab-close-shop" class="tab-content">
-        <h2>6. Close Shop Reconciliation (三位一体平账)</h2>
-        <div class="panel" style="position:relative; overflow:hidden;">
-            <!-- 尚未关店的红色印章 UI 逻辑 -->
-            <div style="position:absolute; top:25px; right:-20px; border:4px solid #e74c3c; color:#e74c3c; padding:5px 40px; font-weight:900; transform:rotate(35deg); font-size:22px; letter-spacing:2px; opacity:0.8;">
-                ยังไม่ปิดร้าน
-            </div>
-            
-            <h3 style="color:#2F3542;">终审：系统强制平账校验</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 业务总账 (1) == 渠道资金 (2) == 税务拆解 (3)。三者金额必须分毫不差（THB 504.00），红色印章才能解除，全店营业功能正式关闭。</p>
-            
-            <table class="data-table" style="margin:20px 0;">
-                <thead>
-                    <tr style="background:#2F3542; color:white;">
-                        <th>Metric</th>
-                        <th>(1) Business Logic</th>
-                        <th>(2) Cash/Channel</th>
-                        <th>(3) Tax Formulation</th>
-                        <th>Match Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight:bold;">Gross Total (THB)</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td style="font-weight:bold; font-size:16px;">504.00</td>
-                        <td>Net 471.03 + VAT 32.97</td>
-                        <td><span class="status-tag success">✔️ MATCHED</span></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight:bold;">Total Volume</td>
-                        <td>97 Items</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td><span class="status-tag success">✔️ VERIFIED</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div style="background:#fffaf0; border-left:4px solid #f39c12; padding:10px; margin-bottom:20px; font-size:13px;">
-                * System will strictly check if any items are left un-bagged or un-scanned out before allowing Shop Close.
-            </div>
-            
-            <button class="btn btn-danger" style="width:100%; font-size:16px; padding:12px;">🔒 ปิดร้าน / Confirm Close Shop</button>
-        </div>
-    </div>
-
-    <!-- 7. Pay In (解款) -->
-    <div id="tab-pay-in" class="tab-content">
-        <h2>7. Pay In Slip (资金解款与跨系统对账)</h2>
-        <div class="panel">
-            <h3 style="color:#2F3542;">在途资金上缴总部闭环</h3>
-            <p style="font-size:13px; color:#7f8c8d;">逻辑校验: 将前端 POS 营业额与总部 BSD 系统进行跨系统强行对账。扣除合规的预扣税后，凭系统生成的条码单上缴银行。</p>
-            
-            <div class="form-grid" style="background:#f8f9fa; padding:15px; border-radius:6px;">
-                <div class="form-group">
-                    <label>Local POS Revenue</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>HQ BSD System Sync</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="border-color:#20c997;">
-                </div>
-                <div class="form-group">
-                    <label>Withholding Tax (WHT Deducted)</label>
-                    <input type="text" class="form-control" value="- THB 0.00" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Net Pay In Required</label>
-                    <input type="text" class="form-control" value="THB 504.00" readonly style="color:#e74c3c; font-weight:bold; font-size:18px;">
-                </div>
-            </div>
-            
-            <div class="form-grid" style="margin-top:20px;">
-                <div class="form-group">
-                    <label>Target Corporate Bank</label>
-                    <select class="form-control">
-                        <option>Kasikorn Bank (KBANK) - KEX Corp Account</option>
-                        <option>Bangkok Bank (BBL)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Bank Slip Ref / Machine ID</label>
-                    <input type="text" class="form-control" placeholder="Enter CDM deposit slip ref...">
-                </div>
-            </div>
-            
-            <!-- Pay In Barcode Logic -->
-            <div style="text-align:center; margin: 30px 0; padding:20px; background:white; border:1px dashed #ccc;">
-                <h4 style="margin:0 0 10px 0; color:#2F3542;">KEX Digital Pay-In Slip</h4>
-                <div style="display:inline-block; padding:10px; background:#fff; letter-spacing: 2px; font-weight:900; font-size:24px;">
-                   ||| ||||| ||||||| |||||||||||||| ||||
-                </div>
-                <div style="font-size:14px; font-family:monospace; margin-top:5px; font-weight:bold;">|0112345678900 00 50400|</div>
-                <p style="font-size:12px; color:#e74c3c; margin-top:10px;">Please show this barcode to bank teller or scan at Deposit Machine</p>
-            </div>
-            
-            <button class="btn" style="width:100%; font-size:16px; padding:12px;">✅ Submit Final Pay-In Record</button>
-        </div>
-    </div>
-
-
-<div id="tab-driver-qr" class="tab-content">
-        <h2>Driver QR</h2>
-        <div class="panel" style="text-align: center;">
-            <div style="width: 200px; height: 200px; background: #eee; margin: 0 auto 20px; display:flex; align-items:center; justify-content:center; border: 2px dashed #ccc;">
-                <span style="color:#7f8c8d;">[ Handover QR Code ]</span>
-            </div>
-            <h3>Batch No: BAT-20231025-04</h3>
-            <p>Please ask the driver to scan the QR code above with the internal App to confirm.</p>
-        </div>
     </div>
 
     <div id="tab-store" class="tab-content">
         <h2>Store Management</h2>
-        <table class="data-table">
-            <thead>
-                <tr><th>Store Code</th><th>Store Name</th><th>Manager</th><th>Status</th><th>Action</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>OCC-IT001</td><td>Bangkok Flagship</td><td>Somchai</td><td><span class="status-tag success">Open</span></td><td><a>Configure</a></td></tr>
-            </tbody>
-        </table>
     </div>
-
     <div id="tab-user" class="tab-content">
-        <h2>User Role Configuration</h2>
-        <table class="data-table">
-            <thead>
-                <tr><th>Emp ID</th><th>Name</th><th>Role</th><th>System Permission</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>EMP-1022</td><td>Nicha</td><td>Store Manager</td><td>Admin</td><td><span class="status-tag success">Active</span></td></tr>
-                <tr><td>EMP-1045</td><td>Krit</td><td>Cashier</td><td>Operator</td><td><span class="status-tag success">Active</span></td></tr>
-            </tbody>
-        </table>
+        <h2>User Role</h2>
     </div>
-
     <div id="tab-config" class="tab-content">
-        <h2>System Configuration</h2>
-        <div class="panel">
-            <div class="form-group" style="margin-bottom:10px;"><label>Current VAT %</label><input type="number" class="form-control" value="7" style="width:100px;"></div>
-            <div class="form-group" style="margin-bottom:10px;"><label>Default Printer IP</label><input type="text" class="form-control" value="192.168.1.100" style="width:200px;"></div>
-            <button class="btn">Save Configuration</button>
-        </div>
+        <h2>Configuration</h2>
     </div>
-
     <div id="tab-ticket-cus" class="tab-content">
-        <h2>Customer Ticket</h2>
-        <table class="data-table">
-            <thead>
-                <tr><th>Ticket No.</th><th>Consignment No.</th><th>Complaint Type</th><th>Priority</th><th>Action</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>TKT-9912</td><td>KEX100293849</td><td>Damaged Package</td><td><span class="status-tag danger">High</span></td><td><a>Reply/Handle</a></td></tr>
-            </tbody>
-        </table>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>window.KF_VERSION = {"commitHash":"9ed4b74","branch":"release/pipeline-20260625163148132784","commitTime":"2026-06-25T08:31:49.000Z","buildTime":"2026-06-25T08:32:13.273Z"};</script>
 
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>渠道管理系统</title>
+    <script src="/web-config.js"></script>
+    <script type="module" crossorigin src="/assets/js/index-61aa2ab4.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/js/monaco-editor-2fb52b3a.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-c9ff8a60.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/lodash-31c36c40.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/element-plus-2401f298.js">
+    <link rel="stylesheet" href="/assets/css/monaco-editor-d062abcc.css">
+    <link rel="stylesheet" href="/assets/css/vendor-771398e6.css">
+    <link rel="stylesheet" href="/assets/css/element-plus-ee702da6.css">
+    <link rel="stylesheet" href="/assets/css/index-dd6822e5.css">
+    <script type="module">import.meta.url;import("_").catch(()=>1);async function* g(){};if(location.protocol!="file:"){window.__vite_is_modern_browser=true}</script>
+    <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
+  </head>
+  <body>
+    <div id="app"></div>
+    
+    <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
+    <script nomodule crossorigin id="vite-legacy-polyfill" src="/assets/js/polyfills-legacy-2287dd34.js"></script>
+    <script nomodule crossorigin id="vite-legacy-entry" data-src="/assets/js/index-legacy-afe9b040.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+  </body>
+</html>
+    </div>
     <div id="tab-ticket-itsm" class="tab-content">
         <h2>ITSM Ticket</h2>
-        <div class="action-bar"><button class="btn">+ Report Hardware/Network Issue</button></div>
-        <table class="data-table">
-            <thead>
-                <tr><th>Request No.</th><th>Device</th><th>Description</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>IT-REQ-042</td><td>Scanner</td><td>USB Connection Issue</td><td><span class="status-tag warning">In IT Queue</span></td></tr>
-            </tbody>
-        </table>
-    </div>
-
-</div>
-
-<div id="tx-detail-modal" class="modal">
-    <div class="modal-content">
-        <h3 id="modal-tx-title" style="margin-top:0; border-bottom:1px solid #eee; padding-bottom:10px;">Drill-down Transaction Detail</h3>
-        <p style="font-size:13px; color:#7f8c8d;">Core package flow list associated with current document:</p>
-        <div style="max-height: 40vh; overflow-y:auto; margin-bottom:15px;">
-            <table class="data-table" style="font-size:12px;">
-                <thead>
-                    <tr><th>Package Tracking No.</th><th>Description</th><th>Paid Freight</th><th>Payment Gateway</th></tr>
-                </thead>
-                <tbody id="modal-tx-rows">
-                </tbody>
-            </table>
-        </div>
-        <div style="text-align: right;">
-            <button class="btn btn-outline" onclick="closeTxDetailModal()">Close Window</button>
-        </div>
     </div>
 </div>
 
 <script>
-    /* ==================== 多语言字典国际化定义 (i18n Translations) ==================== */
-    const i18nTokens = {
-        en: {
-            store_info: "BranchID: OCC-IT001 (Bangkok)", sys_online: "System Online", admin_role: "Admin", notifications: "Notifications(3)",
-            menu_dashboard: "🏠 Dashboard", menu_group_biz: "📦 Business Ops", menu_waybill: "Waybill Management", menu_dropoff: "Dropoff Management", menu_receipt: "Receipt Management", menu_tax_invoice: "Tax Invoice", menu_line_pay: "Line Pay", menu_transaction: "Transaction Confirmation", menu_wht: "WHT", menu_wallet: "Wallet", menu_pbr: "PBR/MSP",
-            menu_group_eod: "🌙 EOD Daily Data", menu_eod_sop: "EOD SOP", menu_cutoff: "Cut Off", menu_scan_out: "Scan Out", menu_export_mde: "Export MDE", menu_close_shop: "Close Shop", menu_pay_in: "Pay In Slip", menu_cashier: "Cashier Drawer", menu_booking: "Booking", menu_scan_bag: "Scan Bag", menu_driver_qr: "Driver QR",
-            menu_group_sys: "⚙️ System Platform", menu_store: "Store Management", menu_user: "User Role", menu_config: "Configuration", menu_group_ticket: "🎧 Ticket Center", menu_tkt_cus: "Customer Ticket", menu_tkt_itsm: "ITSM Ticket",
-            dash_title: "Dashboard Overview", dash_card1: "Today's Waybills", dash_card2: "Today's Revenue", dash_card3: "Pending Exceptions", dash_card4: "Pending ITSM", dash_card5: "EOD Completed", dash_eod_title: "EOD SOP Progress (Today)",
-            eod_step1: "1. Cut Off", eod_step2: "2. Scan Out", eod_step3: "3. Export MDE", eod_step4: "4. Close Shop", eod_step5: "5. Pay In Slip", eod_step6: "6. Cashier", eod_status_done1: "✔ 18:00 Done", eod_status_done2: "✔ 18:30 Done", eod_status_done3: "✔ 18:45 Done", eod_status_prog: "In Progress...", eod_status_todo: "To Do",
-            wb_title: "Waybill Management", wb_holder: "Enter Tracking No / Phone...",
-            th_tracking: "Tracking No.", th_pickup_time: "Pickup Time", th_receiver: "Receiver", th_destination: "Destination", th_weight: "Weight(kg)", th_status: "Status", th_action: "Action",
-            status_collected: "Collected", status_exception: "Exception", act_view: "View", act_print: "Print", act_handle: "Handle",
-            do_title: "Scanned Packages", btn_print_handover: "🖨️ Print Handover List", th_platform: "Platform", th_scan_time: "Scan Time", status_inbound_success: "Inbound Success",
-            pbr_title: "PBR/MSP Delivery Note Information", lbl_pbr_no: "Delivery Note No.", lbl_pbr_date: "Delivery Note Date", lbl_consignment_no: "Consignment No", btn_search: "🔍 Search",
-            pbr_list_title: "Delivery Note List", tbl_pbr_no: "Delivery Note No.", tbl_date: "Date/Time", tbl_customer: "Customer", tbl_amount: "Amount", tbl_pbr_type: "Delivery Type", tbl_void_status: "Void Status", type_msp: "MSP Consolidated", type_pbr: "PBR Cash", status_normal: "Normal", status_voided: "Voided",
-            pbr_detail_title: "Delivery Details", tbl_index: "No.", tbl_item_desc: "Description", tbl_qty: "Qty", tbl_price: "Price", tbl_ref_no: "Ref No.", tbl_scan_out: "Scan Out", desc_std_delivery: "Standard Delivery Fee", desc_overweight: "Overweight Surcharge", status_scanned_out: "Scanned Out", btn_cancel_void: "🚫 Cancel/Void", btn_print: "🖨️ Print",
-            rcpt_title: "Receipt Management", lbl_rcpt_no: "Receipt No.", lbl_customer_info: "Customer Info", lbl_tx_date: "Transaction Date", lbl_rcpt_type: "Package/Receipt Type", opt_all: "All", opt_full_rcpt: "Full Tax Invoice Receipt", opt_short_rcpt: "Abbreviated Receipt", btn_gen_consolidated: "📑 Generate Consolidated Receipt",
-            tbl_rcpt_no: "Receipt No.", tbl_rcpt_date: "Date / Time", tbl_payment_method: "Payment Method", tbl_total_amt: "Total Amount (THB)", tbl_print_status: "Print Status", tbl_fin_action: "Financial Action", val_short_rcpt: "Abbreviated", val_full_rcpt: "Full Form", val_cash: "Cash", val_bank_transfer: "Bank Transfer", status_printed: "Printed", status_not_printed: "Not Printed", act_reprint: "🔄 Re-print", act_print_btn: "🖨️ Print",
-            ti_title: "Tax Invoice Management", ti_panel_title: "Full Tax Invoice Issuance", ti_audit_note: "📌 Legal Audit Requirement: Full tax invoice must contain complete 13-digit Tax ID, Branch Code, Registered Address, and Postal Code.", lbl_rcpt_ref: "Receipt Ref *", lbl_ti_template: "Tax Invoice Template", opt_std_service: "Standard Service Template", opt_corp_cargo: "Enterprise Cargo Template", lbl_tax_id: "Tax ID *", lbl_branch_code: "Branch Code *", lbl_reg_name: "Registered Name *", lbl_reg_addr: "Full Registered Address *", lbl_postcode: "Postal Code *", ti_warn_msg: "⚠️ Please enter a receipt reference and fill out all fields marked with (*)", btn_issue_print_ti: "🖨️ Issue & Print Invoice",
-            ti_preview_title: "Invoice Details & VAT Verification Panel", ti_preview_empty: "No document information retrieved.\nPlease input a valid receipt reference.", tbl_item_service: "Item/Service", tbl_qty_label: "Qty", tbl_amount_thb: "Amount (THB)", val_freight: "Standard Delivery (Freight)", lbl_net_amt: "Net Amount (Net):", lbl_vat_amt: "VAT 7%:", lbl_total_tax_amt: "Total Amount (Total):",
-            lp_title: "LINE Pay Collection & Settlement Center", lp_panel_title: "LINE Pay QR Payment / Top-up", lbl_lp_biz_type: "Business Type", opt_lp_ship: "Shipping Fee - Bind Tracking", opt_lp_topup: "Top-up Account - Any Amount", lbl_tx_amt: "Amount (THB)", lbl_lp_barcode: "User Payment Code", btn_lp_request: "🟢 Request Payment", lp_list_title: "LINE Pay Transaction List", tbl_tx_id: "Transaction ID", tbl_lp_date: "Transaction Date", tbl_lp_order_no: "Order/Consignment No.", tbl_flow_type: "Flow Type", tbl_received_amt: "Amount Received", tbl_operator: "Operator", tbl_instant_action: "Instant Action", val_lp_ship_type: "Shipping Fee", status_pay_success: "Success", act_refund: "↩️ Refund",
-            tc_title: "Daily Transaction Confirmations", btn_export_tc: "📊 Export Daily Report", btn_batch_print_tc: "🖨️ Batch Print Confirmations", tbl_tc_no: "Confirmation No.", tbl_tc_date: "Business Date", tbl_tc_count: "Items", tbl_tc_net: "Service Fee (Net)", tbl_tc_vat: "VAT 7%", tbl_tc_total: "Total (THB)", tbl_tc_auditor: "Auditor", tbl_tc_status: "Status", tbl_tc_action: "Action Close-loop", status_audited: "Audited", status_pending_audit: "Pending Audit", act_drill_down: "🔍 Drill-down Detail", act_void: "❌ Void",
-            wht_title: "WHT Certificate Management", wht_panel_title: "WHT Certificate Recording", wht_law_note: "According to Thai tax law, corporate clients can withhold tax. Recording must strictly input the physical WHT Cert No., and the base amount must exclude 7% VAT.", lbl_wht_ref: "KEX Waybill / Bill Statement No. *", lbl_wht_cert: "WHT Certificate No. *", lbl_wht_tax_id: "Tax ID *", lbl_wht_company: "Company Name", lbl_wht_base: "Amount before VAT", lbl_wht_rate: "WHT Rate", opt_wht_1: "1% - Transportation & Logistics", opt_wht_3: "3% - Equipment Leasing/IT Service", opt_wht_2: "2% - Advertising Service", opt_wht_0: "0% - Packing Materials", lbl_wht_val: "WHT Value", btn_submit_wht: "💾 Confirm & Submit"
-        },
-        zh: {
-            store_info: "BranchID: OCC-IT001 (Bangkok)", sys_online: "系统在线", admin_role: "管理员", notifications: "系统通知(3)",
-            menu_dashboard: "🏠 Dashboard", menu_group_biz: "📦 业务运营", menu_waybill: "运单管理", menu_dropoff: "Dropoff管理", menu_receipt: "收据管理", menu_tax_invoice: "税务发票", menu_line_pay: "Line Pay", menu_transaction: "交易确认单", menu_wht: "WHT", menu_wallet: "Wallet", menu_pbr: "PBR/MSP",
-            menu_group_eod: "🌙 EOD 每日数据", menu_eod_sop: "EOD SOP", menu_cutoff: "Cut Off (截单)", menu_scan_out: "Scan Out (出库)", menu_export_mde: "Export MDE", menu_close_shop: "Close Shop (核对)", menu_pay_in: "Pay In Slip (解款)", menu_cashier: "Cashier (钱箱)", menu_booking: "Booking", menu_scan_bag: "Scan Bag", menu_driver_qr: "Driver QR",
-            menu_group_sys: "⚙️ 平台管理", menu_store: "门店管理", menu_user: "用户权限", menu_config: "配置中心", menu_group_ticket: "🎧 工单中心", menu_tkt_cus: "Customer Ticket", menu_tkt_itsm: "ITSM Ticket",
-            dash_title: "Dashboard 概览", dash_card1: "今日运单", dash_card2: "今日营业额", dash_card3: "待处理异常件", dash_card4: "待处理ITSM", dash_card5: "已完成EOD", dash_eod_title: "EOD SOP 进度 (今日)",
-            eod_step1: "1. Cut Off", eod_step2: "2. Scan Out", eod_step3: "3. Export MDE", eod_step4: "4. Close Shop", eod_step5: "5. Pay In Slip", eod_step6: "6. Cashier", eod_status_done1: "✔ 18:00 完成", eod_status_done2: "✔ 18:30 完成", eod_status_done3: "✔ 18:45 完成", eod_status_prog: "进行中...", eod_status_todo: "未开始",
-            wb_title: "运单管理 (Waybill Management)", wb_holder: "输入运单号 / 收件人手机号...",
-            th_tracking: "运单号 (Tracking No.)", th_pickup_time: "寄件时间", th_receiver: "收件人", th_destination: "目的地", th_weight: "重量(kg)", th_status: "状态", th_action: "操作",
-            status_collected: "已揽收", status_exception: "异常", act_view: "查看", act_print: "打印", act_handle: "处理",
-            do_title: "已扫包裹列表 (Scanned Packages)", btn_print_handover: "🖨️ 打印交接清单 (Print Handover List)", th_platform: "平台 (Platform)", th_scan_time: "扫描时间", status_inbound_success: "入库成功",
-            pbr_title: "包裹递送单信息 (PBR/MSP)", lbl_pbr_no: "递送单编号 (เลขที่ใบนำส่งพัสดุ)", lbl_pbr_date: "递送单日期 (วันที่ใบนำส่งพัสดุ)", lbl_consignment_no: "运单号 (Consignment No)", btn_search: "🔍 搜索 (Search)",
-            pbr_list_title: "递送单列表 (Delivery Note List)", tbl_pbr_no: "递送单编号", tbl_date: "日期/时间", tbl_customer: "客户", tbl_amount: "金额", tbl_pbr_type: "递送单类型", tbl_void_status: "作废状态", type_msp: "MSP 统结", type_pbr: "PBR 现结", status_normal: "正常", status_voided: "已作废",
-            pbr_detail_title: "递送单明细 (Delivery Details)", tbl_index: "序号", tbl_item_desc: "项目说明", tbl_qty: "数量", tbl_price: "价格", tbl_ref_no: "关联单号", tbl_scan_out: "扫描出库", desc_std_delivery: "标准快递服务费 (Standard Delivery)", desc_overweight: "超重附加费 (Overweight Surcharge)", status_scanned_out: "已出库", btn_cancel_void: "🚫 取消/作废 (Cancel)", btn_print: "🖨️ 打印 (Print)",
-            rcpt_title: "收据管理 / การจัดการใบเสร็จ", lbl_rcpt_no: "收据单号 (เลขที่ใบเสร็จ)", lbl_customer_info: "客户信息 (ลูกค้า)", lbl_tx_date: "日期区间 (วันที่交易)", lbl_rcpt_type: "包裹/收据类型 (ประเภท)", opt_all: "全部 (All)", opt_full_rcpt: "เต็มรูปแบบ (正式全额发票收据)", opt_short_rcpt: "อย่างย่อ (简版小票收据)", btn_gen_consolidated: "📑 生成合并总收据 (Generate Consolidated Receipt)",
-            tbl_rcpt_no: "收据单号", tbl_rcpt_date: "交易时间/生成日期", tbl_payment_method: "支付方式", tbl_total_amt: "总金额 (THB)", tbl_print_status: "打印状态", tbl_fin_action: "账目操作", val_short_rcpt: "อย่างย่อ (简版)", val_full_rcpt: "เต็มรูปแบบ (全额)", val_cash: "现金 (เงินสด)", val_bank_transfer: "银行转账", status_printed: "已打印", status_not_printed: "未打印", act_reprint: "🔄 补印凭证", act_print_btn: "🖨️ 打印",
-            ti_title: "税务发票系统 / ใบกำกับภาษี", ti_panel_title: "开具全额税务发票 (Full Tax Invoice Issuance)", ti_audit_note: "📌 根据泰国税务局法定审计要求，开具全额发票必须填写完整的13位税号、分支机构代码、法定注册地址及邮编。", lbl_rcpt_ref: "收据单号参考 (Receipt Ref) *", lbl_ti_template: "发票样式模板 (รูปแบบใบกำกับภาษี)", opt_std_service: "普通包裹运输服务模板 (Standard Service)", opt_corp_cargo: "企业大客户月结物流模板 (Enterprise Cargo)", lbl_tax_id: "客户纳税识别号 (Tax ID) *", lbl_branch_code: "分支机构代码 (Branch Code) *", lbl_reg_name: "公司/个人法定名称 (Registered Name) *", lbl_reg_addr: "客户法定地址 (Full Registered Address) *", lbl_postcode: "邮政编码 (Postal Code) *", ti_warn_msg: "⚠️ 请输入参考收据号并完整填写法定加星号(*)项", btn_issue_print_ti: "🖨️ 开具并打印发票 (Issue & Print Invoice)",
-            ti_preview_title: "发票明细与VAT核对看板", ti_preview_empty: "暂无拉取关联单据信息\n请输入有效的收据单号参考", tbl_item_service: "项目/服务", tbl_qty_label: "数量", tbl_amount_thb: "金额 (THB)", val_freight: "标准快递服务费 (Freight)", lbl_net_amt: "不含税服务费净额 (Net):", lbl_vat_amt: "7% 增值税额 (VAT 7%):", lbl_total_tax_amt: "价税合计总金额 (Total):",
-            lp_title: "Line Pay 收款与对账中心", lp_panel_title: "Line Pay 扫码收款 / 充值", lbl_lp_biz_type: "交易业务类型", opt_lp_ship: "运费支付 (Shipping Fee) - 强绑定单号", opt_lp_topup: "账户充值 (Top-up) - 任意金额", lbl_tx_amt: "交易金额 (THB)", lbl_lp_barcode: "用户付款动态码 (Payment Code)", btn_lp_request: "🟢 发起即时支付请求 (Request Payment)", lp_list_title: "Line Pay 当日流水明细 (Transactions)", tbl_tx_id: "网关流水号", tbl_lp_date: "完整交易时间", tbl_lp_order_no: "关联订单/运单号", tbl_flow_type: "流水类型", tbl_received_amt: "实收金额", tbl_operator: "经办人/操作员", tbl_instant_action: "即时账务操作", val_lp_ship_type: "运费支付", status_pay_success: "支付成功", act_refund: "↩️ Refund 退款",
-            tc_title: "门店交易确认单 / Daily Transaction Confirmations", btn_export_tc: "📊 导出交易日报表", btn_batch_print_tc: "🖨️ 批量打印确认签单", tbl_tc_no: "确认单号", tbl_tc_date: "业务账期日期", tbl_tc_count: "总笔数", tbl_tc_net: "不含税服务费净额", tbl_tc_vat: "销项增值税额", tbl_tc_total: "价税合计总金额", tbl_tc_auditor: "门店核对人", tbl_tc_status: "单据状态", tbl_tc_action: "操作闭环", status_audited: "已核对确认", status_pending_audit: "待盘点核对", act_drill_down: "🔍 钻取穿透细单", act_void: "❌ 作废",
-            wht_title: "预扣税管理 / Certificate Management (WHT)", wht_panel_title: "登记企业客户预扣税 (WHT Certificate Recording)", wht_law_note: "依据泰国税务法，企业客户结算物流服务费时可依法预扣所得税。登记时必须严格录入客户提供的纸质/电子 WHT凭证号，且其计算基数必须剔除7%VAT，禁止以价税合计金额计税。", lbl_wht_ref: "关联KEX运单号 / 账单结算单号 *", lbl_wht_cert: "客户WHT扣缴凭证编号 *", lbl_wht_tax_id: "扣缴单位企业税号 (TAX ID) *", lbl_wht_company: "扣缴企业法定名称 (Company Name)", lbl_wht_base: "不含增值税的纯服务费基数 (Amount before VAT)", lbl_wht_rate: "WHT 法定扣缴比例 (WHT Rate)", opt_wht_1: "1% - 运输与物流服务 (Core Transportation)", opt_wht_3: "3% - 设备租赁 / 综合技术服务 (Leasing/IT)", opt_wht_2: "2% - 综合货代网点广告服务 (Advertising)", opt_wht_0: "0% - 免税物料销售 (Packing Materials)", lbl_wht_val: "法定自动预扣税金额 (WHT Value)", btn_submit_wht: "💾 确认并提交抵扣记录"
-        },
-        th: {
-        store_info: "รหัสสาขา: OCC-IT001 (กรุงเทพฯ)", sys_online: "ระบบออนไลน์", admin_role: "ผู้ดูแลระบบ", notifications: "การแจ้งเตือน(3)",
-        menu_dashboard: "🏠 แผงควบคุม", menu_group_biz: "📦 การดำเนินธุรกิจ", menu_waybill: "จัดการใบนำส่งสินค้า", menu_dropoff: "จัดการการรับฝาก", menu_receipt: "จัดการใบเสร็จ", menu_tax_invoice: "ใบกำกับภาษี", menu_line_pay: "Line Pay", menu_transaction: "ยืนยันรายการ", menu_wht: "WHT (ภาษีหัก ณ ที่จ่าย)", menu_wallet: "กระเป๋าเงิน", menu_pbr: "PBR/MSP",
-        menu_group_eod: "🌙 ข้อมูลรายวัน (EOD)", menu_eod_sop: "EOD SOP", menu_cutoff: "ตัดรอบ (Cut Off)", menu_scan_out: "สแกนออก (Scan Out)", menu_export_mde: "ส่งออก MDE", menu_close_shop: "ปิดร้าน", menu_pay_in: "ใบนำฝากเงิน", menu_cashier: "ลิ้นชักเก็บเงิน", menu_booking: "การจอง", menu_scan_bag: "สแกนถุง", menu_driver_qr: "QR คนขับ",
-        menu_group_sys: "⚙️ ระบบจัดการ", menu_store: "จัดการสาขา", menu_user: "บทบาทผู้ใช้", menu_config: "การตั้งค่า", menu_group_ticket: "🎧 ศูนย์บริการ", menu_tkt_cus: "Customer Ticket", menu_tkt_itsm: "ITSM Ticket",
-        dash_title: "ภาพรวมแผงควบคุม", dash_card1: "ใบนำส่งวันนี้", dash_card2: "รายได้วันนี้", dash_card3: "รายการค้างตรวจสอบ", dash_card4: "ITSM รอดำเนินการ", dash_card5: "EOD เสร็จสิ้น", dash_eod_title: "ความคืบหน้า EOD (วันนี้)",
-        eod_step1: "1. ตัดรอบ", eod_step2: "2. สแกนออก", eod_step3: "3. ส่งออก MDE", eod_step4: "4. ปิดร้าน", eod_step5: "5. ใบนำฝากเงิน", eod_step6: "6. ลิ้นชักเก็บเงิน", eod_status_done1: "✔ 18:00 เสร็จสิ้น", eod_status_done2: "✔ 18:30 เสร็จสิ้น", eod_status_done3: "✔ 18:45 เสร็จสิ้น", eod_status_prog: "กำลังดำเนินการ...", eod_status_todo: "รอดำเนินการ",
-        wb_title: "จัดการใบนำส่งสินค้า", wb_holder: "กรอกเลขที่พัสดุ / เบอร์โทรศัพท์...",
-        th_tracking: "เลขที่พัสดุ", th_pickup_time: "เวลาที่รับ", th_receiver: "ผู้รับ", th_destination: "ปลายทาง", th_weight: "น้ำหนัก(kg)", th_status: "สถานะ", th_action: "การกระทำ",
-        status_collected: "รับฝากแล้ว", status_exception: "ข้อยกเว้น", act_view: "ดู", act_print: "พิมพ์", act_handle: "จัดการ",
-        do_title: "พัสดุที่สแกน", btn_print_handover: "🖨️ พิมพ์รายการส่งมอบ", th_platform: "แพลตฟอร์ม", th_scan_time: "เวลาที่สแกน", status_inbound_success: "สแกนเข้าสำเร็จ",
-        pbr_title: "ข้อมูลใบนำส่งพัสดุ (PBR/MSP)", lbl_pbr_no: "เลขที่ใบนำส่ง", lbl_pbr_date: "วันที่ใบนำส่ง", lbl_consignment_no: "เลขที่พัสดุ", btn_search: "🔍 ค้นหา",
-        pbr_list_title: "รายการใบนำส่ง", tbl_pbr_no: "เลขที่ใบนำส่ง", tbl_date: "วันที่/เวลา", tbl_customer: "ลูกค้า", tbl_amount: "ยอดรวม", tbl_pbr_type: "ประเภท", tbl_void_status: "สถานะยกเลิก", type_msp: "MSP รวมยอด", type_pbr: "PBR เงินสด", status_normal: "ปกติ", status_voided: "ยกเลิกแล้ว",
-        pbr_detail_title: "รายละเอียดใบนำส่ง", tbl_index: "ลำดับ", tbl_item_desc: "รายการ", tbl_qty: "จำนวน", tbl_price: "ราคา", tbl_ref_no: "อ้างอิง", tbl_scan_out: "สแกนออก", desc_std_delivery: "ค่าบริการขนส่งมาตรฐาน", desc_overweight: "ค่าธรรมเนียมพัสดุเกินขนาด", status_scanned_out: "สแกนออกแล้ว", btn_cancel_void: "🚫 ยกเลิก", btn_print: "🖨️ พิมพ์",
-        rcpt_title: "จัดการใบเสร็จ", lbl_rcpt_no: "เลขที่ใบเสร็จ", lbl_customer_info: "ข้อมูลลูกค้า", lbl_tx_date: "วันที่ทำรายการ", lbl_rcpt_type: "ประเภทใบเสร็จ", opt_all: "ทั้งหมด", opt_full_rcpt: "ใบกำกับภาษีเต็มรูปแบบ", opt_short_rcpt: "ใบเสร็จอย่างย่อ", btn_gen_consolidated: "📑 สร้างใบเสร็จรวม",
-        tbl_rcpt_no: "เลขที่ใบเสร็จ", tbl_rcpt_date: "วันที่/เวลา", tbl_payment_method: "วิธีชำระเงิน", tbl_total_amt: "ยอดรวม (THB)", tbl_print_status: "สถานะการพิมพ์", tbl_fin_action: "การจัดการการเงิน", val_short_rcpt: "อย่างย่อ", val_full_rcpt: "เต็มรูปแบบ", val_cash: "เงินสด", val_bank_transfer: "โอนเงินธนาคาร", status_printed: "พิมพ์แล้ว", status_not_printed: "ยังไม่ได้พิมพ์", act_reprint: "🔄 พิมพ์ใหม่", act_print_btn: "🖨️ พิมพ์",
-        ti_title: "จัดการใบกำกับภาษี", ti_panel_title: "ออกใบกำกับภาษีเต็มรูปแบบ", ti_audit_note: "📌 กฎการตรวจสอบทางภาษี: ใบกำกับภาษีต้องระบุเลขประจำตัวผู้เสียภาษี 13 หลัก, รหัสสาขา, ที่อยู่จดทะเบียน และรหัสไปรษณีย์ให้ครบถ้วน", lbl_rcpt_ref: "อ้างอิงใบเสร็จ *", lbl_ti_template: "รูปแบบใบกำกับภาษี", opt_std_service: "รูปแบบบริการมาตรฐาน", opt_corp_cargo: "รูปแบบลูกค้าองค์กร", lbl_tax_id: "เลขประจำตัวผู้เสียภาษี *", lbl_branch_code: "รหัสสาขา *", lbl_reg_name: "ชื่อบริษัท/บุคคล *", lbl_reg_addr: "ที่อยู่จดทะเบียน *", lbl_postcode: "รหัสไปรษณีย์ *", ti_warn_msg: "⚠️ กรุณากรอกข้อมูลให้ครบถ้วนตามช่องที่มีเครื่องหมาย (*)", btn_issue_print_ti: "🖨️ ออกและพิมพ์ใบกำกับภาษี",
-        ti_preview_title: "ตรวจสอบรายละเอียดใบกำกับภาษี", ti_preview_empty: "ไม่พบข้อมูล กรุณากรอกอ้างอิงใบเสร็จ", tbl_item_service: "รายการ/บริการ", tbl_qty_label: "จำนวน", tbl_amount_thb: "ยอดรวม (THB)", val_freight: "ค่าขนส่งมาตรฐาน", lbl_net_amt: "ยอดก่อนภาษี:", lbl_vat_amt: "ภาษีมูลค่าเพิ่ม 7%:", lbl_total_tax_amt: "ยอดสุทธิ:",
-        lp_title: "ศูนย์การชำระเงิน LINE Pay", lp_panel_title: "LINE Pay QR Payment / เติมเงิน", lbl_lp_biz_type: "ประเภทธุรกิจ", opt_lp_ship: "ค่าขนส่ง", opt_lp_topup: "เติมเงิน", lbl_tx_amt: "ยอดเงิน (THB)", lbl_lp_barcode: "รหัสชำระเงิน", btn_lp_request: "🟢 ขอชำระเงิน", lp_list_title: "รายการ LINE Pay", tbl_tx_id: "รหัสรายการ", tbl_lp_date: "วันที่ทำรายการ", tbl_lp_order_no: "เลขที่พัสดุ/ใบสั่งซื้อ", tbl_flow_type: "ประเภทรายการ", tbl_received_amt: "ยอดที่ได้รับ", tbl_operator: "ผู้ดำเนินการ", tbl_instant_action: "การจัดการ", val_lp_ship_type: "ค่าขนส่ง", status_pay_success: "สำเร็จ", act_refund: "↩️ คืนเงิน",
-        tc_title: "ยืนยันรายการประจำวัน", btn_export_tc: "📊 ส่งออกรายงาน", btn_batch_print_tc: "🖨️ พิมพ์รายการยืนยัน", tbl_tc_no: "เลขที่รายการ", tbl_tc_date: "วันที่", tbl_tc_count: "จำนวนรายการ", tbl_tc_net: "ยอดก่อนภาษี", tbl_tc_vat: "ภาษี 7%", tbl_tc_total: "ยอดรวม (THB)", tbl_tc_auditor: "ผู้ตรวจสอบ", tbl_tc_status: "สถานะ", tbl_tc_action: "จัดการ", status_audited: "ตรวจสอบแล้ว", status_pending_audit: "รอตรวจสอบ", act_drill_down: "🔍 ดูรายละเอียด", act_void: "❌ ยกเลิก",
-        wht_title: "การจัดการใบหัก ณ ที่จ่าย (WHT)", wht_panel_title: "บันทึกใบหัก ณ ที่จ่าย", wht_law_note: "ตามกฎหมายภาษีอากร ลูกค้าองค์กรสามารถหักภาษี ณ ที่จ่ายได้ โปรดระบุเลขที่ใบรับรองให้ถูกต้อง และคำนวณจากยอดก่อน VAT 7%", lbl_wht_ref: "เลขที่ใบนำส่ง / อ้างอิง *", lbl_wht_cert: "เลขที่ใบหัก ณ ที่จ่าย *", lbl_wht_tax_id: "เลขประจำตัวผู้เสียภาษี *", lbl_wht_company: "ชื่อบริษัท", lbl_wht_base: "ยอดก่อน VAT", lbl_wht_rate: "อัตราภาษีหัก ณ ที่จ่าย", opt_wht_1: "1% - ขนส่งและโลจิสติกส์", opt_wht_3: "3% - บริการอื่นๆ", opt_wht_2: "2% - บริการโฆษณา", opt_wht_0: "0% - อื่นๆ", lbl_wht_val: "ยอดภาษีหัก ณ ที่จ่าย", btn_submit_wht: "💾 ยืนยันและบันทึก"
+// I18N 词典扩展，完美绑定运单管理与快件追踪模块
+const i18nTokens = {
+    en: {
+        menu_dashboard: "🏠 Dashboard",
+        menu_group_biz: "📦 Business Ops",
+        menu_group_financial: "💵 Financial Management",
+        menu_waybill: "Waybill Management",
+        menu_dropoff: "Parcel Tracking",
+        menu_trading_desk: "Trading Desk",
+        menu_receipt: "Receipt Management",
+        menu_tax_invoice: "Tax Invoice",
+        menu_line_pay: "Line Pay",
+        menu_transaction: "Transaction Confirmation",
+        menu_wht: "WHT",
+        menu_wallet: "Wallet",
+        menu_pbr: "PBR/MSP",
+        menu_daily_reconcile: "Daily Reconciliation",
+        menu_expense_summary: "Branch Expense Summary",
+        menu_wht_manage: "WHT Management",
+        sys_online: "System Online",
+        admin_role: "Admin",
+        notifications: "Notifications(3)",
+        wb_title: "Waybill & Parcel Lifecycle Management",
+        btn_search: "Search",
+        btn_reset: "Reset",
+        opt_all: "All Channels",
+        stab_all: "All Waybills (1,286)",
+        stab_pending: "Pending Outbound (45)",
+        stab_dispatched: "Dispatched (1,223)",
+        stab_exception: "Exceptions (18)",
+        stab_cancelled: "Cancelled (0)",
+        btn_batch_print: "Batch Print Labels",
+        btn_batch_dispatch: "Batch Outbound Dispatch",
+        btn_export: "Export Data",
+        th_tracking: "Tracking No.",
+        th_wb_platform: "Channel Source",
+        th_pickup_time: "Pickup Time",
+        th_receiver: "Receiver Info",
+        th_destination: "Destination",
+        th_wb_spec: "Metrics (Weight/Size)",
+        th_status: "Status",
+        th_action: "Action",
+        status_collected: "Collected",
+        status_exception: "Exception",
+        status_pending_outbound: "Pending Outbound",
+        act_view: "View",
+        act_print: "Print",
+        act_handle: "Handle",
+        act_dispatch: "Dispatch",
+        lbl_wb_tracking: "Tracking No.",
+        lbl_wb_customer: "Customer Contact",
+        lbl_wb_destination: "Destination City",
+        lbl_wb_date_range: "Pickup Date Range",
+        lbl_wb_platform: "Platform Channel",
+        track_panel_title: "Quick Query",
+        track_result_title: "Lifecycle Trajectory",
+        track_st_ex: "Exception Node Blocked: Route intercepted due to size non-conformity.",
+        track_st_inbound: "Inbound Scan Success - Sorted to Temporary Storage Area Box B3",
+        track_st_manifest: "Manifest Pre-registered via API integration gateway",
+        td_panel_title: "Material & Retail Center",
+        td_cat_all: "All Packing Materials",
+        td_cat_box: "KEX Boxes",
+        td_cat_pouch: "Pouches / Tape",
+        td_cart_title: "Current Order Checkout",
+        td_cart_empty: "Cart is empty.<br>Click items on the left to purchase."
+    },
+    zh: {
+        menu_dashboard: "🏠 核心仪表盘",
+        menu_group_biz: "📦 门店综合业务",
+        menu_group_financial: "💵 财务财务管理",
+        menu_waybill: "运单生命周期管理",
+        menu_dropoff: "快件轨迹追踪",
+        menu_trading_desk: "Trading Desk 售卖中心",
+        menu_receipt: "收据业务管理",
+        menu_tax_invoice: "税务发票开具",
+        menu_line_pay: "Line Pay 收银中心",
+        menu_transaction: "交接款账单确认",
+        menu_wht: "WHT 预扣税登记",
+        menu_wallet: "数字钱包结算",
+        menu_pbr: "PBR/MSP 托运单",
+        menu_daily_reconcile: "Payment Statistics",
+        menu_expense_summary: "SHOP Expense Summary",
+        menu_wht_manage: "WHT Management",
+        sys_online: "系统联机正常",
+        admin_role: "系统管理员",
+        notifications: "未读通知(3)",
+        wb_title: "运单与包裹生命周期管控中心",
+        btn_search: "执行检索",
+        btn_reset: "重置条件",
+        opt_all: "所有渠道源",
+        stab_all: "全部运单 (1,286)",
+        stab_pending: "待出库网点件 (45)",
+        stab_dispatched: "已出库中转件 (1,223)",
+        stab_exception: "滞留异常件 (18)",
+        stab_cancelled: "客户已取消 (0)",
+        btn_batch_print: "批量打印热敏标签",
+        btn_batch_dispatch: "网点批量扫描出库",
+        btn_export: "导出Lifecycle报表",
+        th_tracking: "综合运单号",
+        th_wb_platform: "渠道/平台来源",
+        th_pickup_time: "收寄时间",
+        th_receiver: "收件人与联系方式",
+        th_destination: "目的地与邮编",
+        th_wb_spec: "重量及规格三围",
+        th_status: "全链路状态",
+        th_action: "控制台操作",
+        status_collected: "网点已揽收",
+        status_exception: "路由异常拦截",
+        status_pending_outbound: "待出库封包",
+        act_view: "详情",
+        act_print: "补打",
+        act_handle: "异常处理",
+        act_dispatch: "单件出库",
+        lbl_wb_tracking: "运单号 (Tracking)",
+        lbl_wb_customer: "客户手机号/姓名",
+        lbl_wb_destination: "目的地城市",
+        lbl_wb_date_range: "收寄日期范围",
+        lbl_wb_platform: "电商平台绑定",
+        track_panel_title: "全网快件快速查询",
+        track_result_title: "生命周期路由全景轨迹",
+        track_st_ex: "路由异常拦截节点：因外箱规格超标，已被系统截留并转入异常网格区。",
+        track_st_inbound: "网点扫描入库成功 - 自动分拣上架至临时存储B3货位",
+        track_st_manifest: "面单在电商对接网关预注册生成成功",
+        td_panel_title: "物料辅料零售中心",
+        td_cat_all: "全部包材及辅料",
+        td_cat_box: "KEX 专用纸箱",
+        td_cat_pouch: "快递袋 / 胶带",
+        td_cart_title: "当前零售订单结账",
+        td_cart_empty: "购物车空空如也。<br>请从左侧选择商品进行加购。"
+    },
+    th: {
+        menu_dashboard: "🏠 แดชบอร์ด",
+        menu_group_biz: "📦 จัดการธุรกิจ",
+        menu_group_financial: "💵 การจัดการทางการเงิน",
+        menu_waybill: "จัดการใบนำส่งสินค้า (Waybill)",
+        menu_dropoff: "ติดตามพัสดุ (Parcel Tracking)",
+        menu_trading_desk: "ศูนย์จำหน่ายสินค้า (Trading Desk)",
+        menu_receipt: "จัดการใบเสร็จ",
+        menu_tax_invoice: "ใบกำกับภาษี",
+        menu_line_pay: "Line Pay",
+        menu_transaction: "ยืนยันการทำรายการ",
+        menu_wht: "WHT",
+        menu_wallet: "กระเป๋าเงิน",
+        menu_pbr: "PBR/MSP",
+        menu_daily_reconcile: "การกระทบยอดประจำวัน",
+        menu_expense_summary: "สรุปการชำระเงินของสาขา",
+        menu_wht_manage: "การจัดการ WHT",
+        sys_online: "ระบบออนไลน์",
+        admin_role: "ผู้ดูแลระบบ",
+        notifications: "การแจ้งเตือน(3)",
+        wb_title: "ระบบจัดการสถานะใบนำส่งสินค้าและพัสดุ",
+        btn_search: "ค้นหา",
+        btn_reset: "รีเซ็ต",
+        opt_all: "ทุกช่องทาง",
+        stab_all: "รายการทั้งหมด (1,286)",
+        stab_pending: "รอดำเนินการส่งออก (45)",
+        stab_dispatched: "ส่งออกแล้ว (1,223)",
+        stab_exception: "พัสดุมีปัญหา (18)",
+        stab_cancelled: "ยกเลิกแล้ว (0)",
+        btn_batch_print: "พิมพ์ฉลากพัสดุจำนวนมาก",
+        btn_batch_dispatch: "สแกนส่งออกจำนวนมาก",
+        btn_export: "ส่งออกข้อมูล Report",
+        th_tracking: "เลขที่พัสดุ",
+        th_wb_platform: "ช่องทาง/แพลตฟอร์ม",
+        th_pickup_time: "เวลาที่รับฝาก",
+        th_receiver: "ข้อมูลผู้รับ",
+        th_destination: "ปลายทาง/รหัสไปรษณีย์",
+        th_wb_spec: "น้ำหนักและขนาดพัสดุ",
+        th_status: "สถานะ",
+        th_action: "การกระทำ",
+        status_collected: "รับฝากแล้ว",
+        status_exception: "พบปัญหา/ข้อยกเว้น",
+        status_pending_outbound: "รอส่งออก",
+        act_view: "ดูรายละเอียด",
+        act_print: "พิมพ์อีกครั้ง",
+        act_handle: "จัดการปัญหา",
+        act_dispatch: "ส่งออกรายชิ้น",
+        lbl_wb_tracking: "เลขที่พัสดุ",
+        lbl_wb_customer: "ชื่อ/เบอร์โทรลูกค้า",
+        lbl_wb_destination: "จังหวัดปลายทาง",
+        lbl_wb_date_range: "ช่วงวันที่รับฝาก",
+        lbl_wb_platform: "แพลตฟอร์ม",
+        track_panel_title: "ค้นหาพัสดุด่วน",
+        track_result_title: "เส้นทางและสถานะพัสดุ",
+        track_st_ex: "เกิดข้อผิดพลาดในการจัดส่ง: พัสดุถูกระงับเนื่องจากขนาดไม่ตรงตามข้อกำหนด",
+        track_st_inbound: "สแกนรับพัสดุเข้าคลังสำเร็จ - จัดเก็บที่พื้นที่ชั่วคราวโซน B3",
+        track_st_manifest: "สร้างข้อมูลใบนำส่งสินค้าสำเร็จผ่านระบบเชื่อมต่อ API",
+        td_panel_title: "ศูนย์อุปกรณ์บรรจุภัณฑ์และค้าปลีก",
+        td_cat_all: "อุปกรณ์บรรจุภัณฑ์ทั้งหมด",
+        td_cat_box: "กล่อง KEX",
+        td_cat_pouch: "ซองพัสดุ / เทปกาว",
+        td_cart_title: "ชำระเงินใบสั่งซื้อปัจจุบัน",
+        td_cart_empty: "ไม่มีสินค้าในตระกร้า<br>คลิกเลือกสินค้าด้านซ้ายเพื่อซื้อ"
     }
 };
 
-    function changeLanguage(lang) {
-        if (!i18nTokens[lang]) return;
-        
-        // 1. 变量文本替换
-        const elements = document.querySelectorAll('[data-i18n]');
-        elements.forEach(el => {
-            const token = el.getAttribute('data-i18n');
-            if (i18nTokens[lang][token]) {
-                el.innerText = i18nTokens[lang][token];
-            }
-        });
-
-        // 2. 表单 Placeholders 替换
-        const wbInput = document.getElementById('wb-search-input');
-        if (wbInput) wbInput.placeholder = i18nTokens[lang]['wb_holder'];
-        
-        const pbrNo = document.getElementById('pbr-no-input');
-        if (pbrNo) pbrNo.placeholder = lang === 'zh' ? '输入递送单编号' : (lang === 'en' ? 'Enter Note No.' : 'กรอกเลขที่ใบนำส่ง');
-        
-        const pbrWb = document.getElementById('pbr-waybill-input');
-        if (pbrWb) pbrWb.placeholder = lang === 'zh' ? '输入运单号' : (lang === 'en' ? 'Enter Consignment No' : 'กรอกเลขที่พัสดุ');
-    }
-
-    function switchTab(tabId, element) {
-        const tabs = document.querySelectorAll('.tab-content');
-        tabs.forEach(tab => tab.classList.remove('active'));
-
-        const navItems = document.querySelectorAll('.menu li');
-        navItems.forEach(item => item.classList.remove('active'));
-
-        const targetTab = document.getElementById(tabId);
-        if(targetTab) targetTab.classList.add('active');
-
-        if(element) element.classList.add('active');
-    }
-
-    /* ==================== 收据管理业务脚本 ==================== */
-    function toggleSelectAllReceipts(master) {
-        const checkboxes = document.querySelectorAll('.receipt-chk');
-        checkboxes.forEach(chk => chk.checked = master.checked);
-    }
-
-    function generateConsolidatedReceipt() {
-        const checkedBoxes = document.querySelectorAll('.receipt-chk:checked');
-        if(checkedBoxes.length === 0) {
-            alert('❌ Error: No checkboxes selected in the table. Cannot generate consolidated receipt.');
-            return;
+function changeLanguage(lang) {
+    if (!i18nTokens[lang]) return;
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const token = el.getAttribute('data-i18n');
+        if (i18nTokens[lang][token]) {
+            el.innerText = i18nTokens[lang][token];
         }
-        let ids = [];
-        checkedBoxes.forEach(chk => ids.push(chk.value));
-        alert('Successfully identified selected documents! Consolidating items [' + ids.join(', ') + '], generating and printing Consolidated Receipt...');
-    }
+    });
+}
 
-    /* ==================== 税务发票业务脚本 ==================== */
-    function validateInvoiceWorkflow() {
-        const ref = document.getElementById('inv-receipt-ref').value.trim();
-        const taxId = document.getElementById('inv-tax-id').value.trim();
-        const branch = document.getElementById('inv-branch-code').value.trim();
-        const name = document.getElementById('inv-name').value.trim();
-        const addr = document.getElementById('inv-address').value.trim();
-        const pc = document.getElementById('inv-postcode').value.trim();
-        
-        const previewEmpty = document.getElementById('invoice-preview-empty');
-        const previewData = document.getElementById('invoice-preview-data');
-        const btn = document.getElementById('btn-issue-invoice');
-        const msg = document.getElementById('invoice-status-msg');
+function switchTab(tabId, element) {
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    const navItems = document.querySelectorAll('.menu li');
+    navItems.forEach(item => item.classList.remove('active'));
+    
+    const targetTab = document.getElementById(tabId);
+    if(targetTab) targetTab.classList.add('active');
+    if(element) element.classList.add('active');
+}
 
-        // 联动右侧看板，拒绝盲开
-        if(ref.toUpperCase() === "REC-20260615-002" || ref === "002") {
-            previewEmpty.style.display = 'none';
-            previewData.style.display = 'block';
-            document.getElementById('inv-lbl-subtotal').innerText = "327.10";
-            document.getElementById('inv-lbl-calc-net').innerText = "THB 327.10";
-            document.getElementById('inv-lbl-calc-vat').innerText = "THB 22.90";
-            document.getElementById('inv-lbl-calc-total').innerText = "THB 350.00";
-        } else if(ref !== "") {
-            previewEmpty.style.display = 'none';
-            previewData.style.display = 'block';
-            document.getElementById('inv-lbl-subtotal').innerText = "79.44";
-            document.getElementById('inv-lbl-calc-net').innerText = "THB 79.44";
-            document.getElementById('inv-lbl-calc-vat').innerText = "THB 5.56";
-            document.getElementById('inv-lbl-calc-total').innerText = "THB 85.00";
+/* 运单专有辅助脚本 */
+function switchSubTab(el, statusFilter) {
+    const subTabs = document.querySelectorAll('.sub-tab');
+    subTabs.forEach(tab => tab.classList.remove('active'));
+    el.classList.add('active');
+    console.log("Filtering waybill dataset stream by operational status: " + statusFilter);
+}
+
+function toggleSelectAllWaybills(master) {
+    const checkboxes = document.querySelectorAll('.wb-chk');
+    checkboxes.forEach(chk => chk.checked = master.checked);
+}
+
+function resetWaybillFilters() {
+    document.getElementById('wb-search-tracking').value = '';
+    document.getElementById('wb-search-customer').value = '';
+    document.getElementById('wb-search-dest').value = '';
+    document.getElementById('wb-search-date').value = '';
+    document.getElementById('wb-search-platform').value = 'ALL';
+}
+
+/* 售卖中心专有脚本 */
+let cart = [];
+function filterTradingCategory(el, category) {
+    const subTabs = el.parentNode.querySelectorAll('.sub-tab');
+    subTabs.forEach(tab => tab.classList.remove('active'));
+    el.classList.add('active');
+    
+    const cards = document.querySelectorAll('.trading-item-card');
+    cards.forEach(card => {
+        if (category === 'ALL' || card.getAttribute('data-category') === category) {
+            card.style.display = 'flex';
         } else {
-            previewEmpty.style.display = 'block';
-            previewData.style.display = 'none';
+            card.style.display = 'none';
         }
+    });
+}
 
-        // 强合规多字段严格校验
-        if(ref !== "" && taxId.length === 13 && branch.length === 5 && name !== "" && addr !== "" && pc.length === 5) {
-            btn.disabled = false;
-            msg.innerText = "🟢 All elements verified successfully.";
-            msg.style.color = "#20c997";
-        } else {
-            btn.disabled = true;
-            msg.innerText = "⚠️ Required element check failed. Please ensure 13-digit Tax ID, 5-digit Branch Code, Name, Address, Postal Code and Receipt Ref are filled.";
-            msg.style.color = "#e74c3c";
-        }
+function addToCart(name, price) {
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({name: name, price: price, qty: 1});
     }
+    renderCart();
+}
 
-    /* ==================== Line Pay 业务脚本 ==================== */
-    function handleLinePayTypeChange() {
-        const type = document.getElementById('lp-biz-type').value;
-        const wbInput = document.getElementById('lp-waybill-no');
-        const amtInput = document.getElementById('lp-amount');
-        if(type === 'SHIP') {
-            wbInput.disabled = false;
-            wbInput.placeholder = "Enter or scan tracking no...";
-            amtInput.readOnly = true;
-            amtInput.style.backgroundColor = "#f1f2f6";
-        } else {
-            wbInput.disabled = true;
-            wbInput.value = "";
-            wbInput.placeholder = "No tracking bind needed";
-            amtInput.readOnly = false;
-            amtInput.style.backgroundColor = "#fff";
-            amtInput.value = "";
-        }
-    }
+function clearCart() {
+    cart = [];
+    renderCart();
+}
 
-    function autoFetchWaybillAmount(val) {
-        const type = document.getElementById('lp-biz-type').value;
-        if(type !== 'SHIP') return;
-        const amtInput = document.getElementById('lp-amount');
-        // 模拟扫描网点包裹
-        if(val === "KEX100293849") {
-            amtInput.value = 350.00;
-        } else if(val.length > 8) {
-            amtInput.value = 150.00; 
-        } else {
-            amtInput.value = "";
-        }
-    }
-
-    /* ==================== 交易确认单穿透钻取 ==================== */
-    function openTxDetailModal(tcId, count) {
-        document.getElementById('modal-tx-title').innerText = "Drill-down Transaction Detail - " + tcId;
-        const tbody = document.getElementById('modal-tx-rows');
-        tbody.innerHTML = "";
-        for(let i=1; i<=3; i++) {
-            tbody.innerHTML += `<tr>
-                <td>KEX8800294${i}</td>
-                <td>Package delivery fee & fuel surcharge</td>
-                <td>THB 150.00</td>
-                <td>Rabbit LINE Pay</td>
-            </tr>`;
-        }
-        tbody.innerHTML += `<tr><td colspan="4" style="text-align:center; color:#7f8c8d;">... Showing top 3 out of ${count} underlying transactions ...</td></tr>`;
-        document.getElementById('tx-detail-modal').style.display = 'flex';
+function renderCart() {
+    const emptyMsg = document.getElementById('td-cart-empty');
+    const mainCart = document.getElementById('td-cart-main');
+    const tbody = document.querySelector('#td-cart-table tbody');
+    const totalEl = document.getElementById('td-cart-total-price');
+    
+    if (cart.length === 0) {
+        emptyMsg.style.display = 'block';
+        mainCart.style.display = 'none';
+        return;
     }
     
-    function closeTxDetailModal() {
-        document.getElementById('tx-detail-modal').style.display = 'none';
-    }
+    emptyMsg.style.display = 'none';
+    mainCart.style.display = 'block';
+    tbody.innerHTML = '';
+    
+    let total = 0;
+    cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${item.name}</td><td>${item.qty}</td><td>THB ${itemTotal.toFixed(2)}</td>`;
+        tbody.appendChild(tr);
+    });
+    totalEl.innerText = 'THB ' + total.toFixed(2);
+}
 
-    /* ==================== WHT 扣缴税费业务脚本 ==================== */
-    function autoCalculateWHT(val) {
-        const baseInput = document.getElementById('wht-base-amount');
-        const compInput = document.getElementById('wht-company-name');
-        const taxInput = document.getElementById('wht-tax-id');
-        
-        if(val.length >= 5) {
-            // 严格以不含增值税的纯服务费基数来进行换算
-            baseInput.value = 11682.24;
-            compInput.value = "Shopee Thailand Co., Ltd.";
-            taxInput.value = "0105558123456";
-            recalcWhtValue();
-        } else {
-            baseInput.value = "0.00";
-            compInput.value = "";
-            taxInput.value = "";
-            document.getElementById('wht-calculated-val').value = "THB 0.00";
-        }
+/* ==================== WHT 扣缴税费原有脚本保持不变 ==================== */
+function autoCalculateWHT(val) {
+    const baseInput = document.getElementById('wht-base-amount');
+    const compInput = document.getElementById('wht-company-name');
+    const taxInput = document.getElementById('wht-tax-id');
+    
+    if(val.length >= 5) {
+        baseInput.value = 11682.24;
+        compInput.value = "Shopee Thailand Co., Ltd.";
+        taxInput.value = "0105558123456";
+        recalcWhtValue();
+    } else {
+        baseInput.value = "0.00";
+        compInput.value = "";
+        taxInput.value = "";
+        document.getElementById('wht-calculated-val').value = "THB 0.00";
     }
+}
 
-    function recalcWhtValue() {
-        const base = parseFloat(document.getElementById('wht-base-amount').value);
-        const rate = parseFloat(document.getElementById('wht-rate-select').value);
-        if(!isNaN(base) && base > 0) {
-            const calculated = base * rate;
-            document.getElementById('wht-calculated-val').value = "THB " + calculated.toFixed(2);
-        } else {
-            document.getElementById('wht-calculated-val').value = "THB 0.00";
-        }
+function recalcWhtValue() {
+    const base = parseFloat(document.getElementById('wht-base-amount').value);
+    const rate = parseFloat(document.getElementById('wht-rate-select').value);
+    if(!isNaN(base) && base > 0) {
+        const calculated = base * rate;
+        document.getElementById('wht-calculated-val').value = "THB " + calculated.toFixed(2);
     }
+}
 </script>
-
 </body>
 </html>
