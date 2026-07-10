@@ -43,7 +43,6 @@ body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; b
 .panel {background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 20px;}
 .panel h3 {margin-top: 0; color: #2F3542; border-bottom: 1px solid #eee; padding-bottom: 10px; font-size: 16px;}
 .form-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;}
-.form-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;}
 .form-group {display: flex; flex-direction: column;}
 .form-group label {font-size: 12px; color: #7f8c8d; margin-bottom: 5px; font-weight: bold;}
 .panel .form-control {padding: 8px 12px; border: 1px solid #dcdde1; border-radius: 4px; font-size: 14px; transition: 0.3s;}
@@ -101,6 +100,128 @@ a:hover {text-decoration: underline;}
 .trading-item-title {font-weight: bold; font-size: 15px; color: #2F3542; margin: 0 0 5px 0;}
 .trading-item-sku {font-size: 12px; color: #747d8c; margin-bottom: 10px;}
 .trading-item-price {color: #F58220; font-size: 18px; font-weight: bold; margin-bottom: 12px;}
+
+/* ======================================================== */
+/* 以下为 System Platform 与 Ticket Center 注入的专属样式 */
+/* ======================================================== */
+
+/* 高级数据表格与搜索过滤栏通用样式 (针对员工与异常运单模块) */
+.search-filter-bar {display: flex; flex-wrap: wrap; gap: 15px; background: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); margin-bottom: 15px; align-items: flex-end;}
+.filter-item {display: flex; flex-direction: column; gap: 6px;}
+.filter-item label {font-size: 12px; color: #747d8c; font-weight: bold;}
+.filter-item input, .filter-item select {padding: 8px 12px; border: 1px solid #dcdde1; border-radius: 4px; font-size: 13px; width: 180px; outline: none; transition: 0.2s;}
+.filter-item input:focus, .filter-item select:focus {border-color: #F58220;}
+.btn-query {background: #F58220; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px;}
+.btn-query:hover {background: #e67312;}
+.btn-reset {background: white; color: #57606f; border: 1px solid #dcdde1; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px;}
+.btn-reset:hover {background: #f1f2f6;}
+.table-wrapper {background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); overflow-x: auto;}
+.kex-data-table {width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;}
+.kex-data-table th {background: #f8f9fa; color: #747d8c; padding: 12px 15px; border-bottom: 2px solid #f1f2f6; font-weight: 600; white-space: nowrap;}
+.kex-data-table td {padding: 12px 15px; border-bottom: 1px solid #f1f2f6; color: #2F3542; white-space: nowrap; vertical-align: middle;}
+.kex-data-table tr:hover {background: #fafafa;}
+
+/* 徽章与操作小图标 */
+.badge {padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;}
+.badge.active-status {background: #e8f8f5; color: #20c997;}
+.badge.inactive-status {background: #ffeaa7; color: #d63031;}
+.badge.exception-tag {background: #fff5f5; color: #e53e3e; border: 1px solid #fed7d7;}
+.opt-icon {cursor: pointer; margin-right: 10px; color: #F58220; font-weight: bold; text-decoration: none;}
+.opt-icon:hover {text-decoration: underline;}
+
+/* 分页器 */
+.kex-pagination {display: flex; justify-content: flex-end; align-items: center; padding: 15px 20px; background: white; gap: 8px; font-size: 13px; border-top: 1px solid #f1f2f6;}
+.kex-pagination select {padding: 4px 6px; border: 1px solid #dcdde1; border-radius: 4px;}
+.page-num {padding: 4px 8px; border: 1px solid #dcdde1; border-radius: 4px; cursor: pointer; background: white;}
+.page-num.active {background: #F58220; color: white; border-color: #F58220; font-weight: bold;}
+
+/* Store Management 专属两栏布局样式 */
+.store-container {display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px;}
+.store-box {background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); flex: 1; min-width: 450px;}
+.store-box h3 {margin-top: 0; padding-bottom: 10px; border-bottom: 1px solid #f1f2f6; color: #2F3542; font-size: 15px;}
+.store-row {display: flex; align-items: center; margin-bottom: 12px;}
+.store-row label {width: 150px; font-size: 13px; color: #57606f; font-weight: 500;}
+.store-row .input-wrapper {flex: 1; position: relative;}
+.store-row input {width: 100%; padding: 8px 10px; box-sizing: border-box; border: 1px solid #dcdde1; border-radius: 4px; font-size: 13px; color: #333;}
+.store-row input:focus {border-color: #F58220; outline: none;}
+.approval-banner {background: #ebf5ff; border-left: 4px solid #3498db; padding: 12px 20px; border-radius: 4px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;}
+
+/* ITSM 专属工单排版样式 */
+.itsm-container {background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 1000px; margin: 0 auto; overflow: hidden;}
+.itsm-title {text-align: center; color: #57606f; font-size: 20px; padding: 20px 0; margin: 0; background: #fff; font-weight: normal;}
+.itsm-tabs {display: flex; border-bottom: 1px solid #dcdde1;}
+.itsm-tab {flex: 1; text-align: center; padding: 12px; cursor: pointer; font-weight: bold; font-size: 14px; background: #f8f9fa; color: #a4b0be; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 5px;}
+.itsm-tab.active {background: #2F3542; color: white;}
+.itsm-body {padding: 25px; background: #fff;}
+.itsm-bg-grey {background: #eaedf1; padding: 20px; border-radius: 6px; margin-top: 20px;}
+.itsm-field {margin-bottom: 15px;}
+.itsm-field label {display: block; font-size: 11px; color: #7f8c8d; font-weight: bold; margin-bottom: 6px; text-transform: uppercase;}
+.itsm-field label span {color: #e74c3c;}
+.itsm-input {width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #dcdde1; border-radius: 4px; font-size: 13px; background: #fdfdfd;}
+.itsm-input:focus {border-color: #2F3542; outline: none;}
+.itsm-select {width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #dcdde1; border-radius: 4px; font-size: 13px; background: #fdfdfd; color: #555;}
+.itsm-grid-2 {display: grid; grid-template-columns: 1fr 1fr; gap: 20px;}
+.itsm-footer {display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; background: #fff; border-top: 1px solid #f1f2f6;}
+
+/* Configuration 文档中心样式 */
+.doc-card {background: white; border-radius: 6px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: space-between; border-left: 4px solid #F58220; margin-bottom: 12px;}
+
+/* 营销名片生成器组件视觉架构样式 */
+.card-gen-container {display: flex; gap: 25px; flex-wrap: wrap;}
+.card-form-side {flex: 1; min-width: 350px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);}
+.card-preview-side {flex: 1; min-width: 420px; display: flex; flex-direction: column; align-items: center; background: #e9ecef; border-radius: 8px; padding: 30px; gap: 20px;}
+.style-selector {display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;}
+.style-option {border: 2px solid #dcdde1; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; background: white; text-align: center; flex: 1; min-width: 100px;}
+.style-option.active {border-color: #F58220; color: #F58220; background: #fffaf5;}
+
+/* 通用名片大背景画布定义 */
+.canvas-card {width: 440px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); box-sizing: border-box; overflow: hidden; position: relative; font-family: 'Segoe UI', Tahoma, Arial, sans-serif;}
+
+/* 样式一：粉橙暖色微商营销版 */
+.canvas-card.img-style-1 {height: 250px; background: #fcdcb2; padding: 15px; color: #4a2700; display: flex; justify-content: space-between;}
+.style1-left {width: 40%; display: flex; flex-direction: column; justify-content: space-between;}
+.style1-avatar-container {background: #fff; border-radius: 8px; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); height: 160px; display: flex; align-items: center; justify-content: center;}
+.style1-avatar {width: 100%; height: 100%; object-fit: cover; border-radius: 4px;}
+.style1-post {font-size: 10px; font-weight: bold; background: #fff; text-align: center; padding: 4px; border-radius: 4px; border: 1px solid #f58220;}
+.style1-right {width: 56%; display: flex; flex-direction: column; justify-content: space-between;}
+.style1-title-thai {font-size: 14px; font-weight: 900; color: #d35400; line-height: 1.2;}
+.style1-bullets {font-size: 11px; font-weight: bold; list-style: none; padding: 0; margin: 5px 0;}
+.style1-bullets li {margin-bottom: 3px; display: flex; align-items: center; gap: 4px;}
+.style1-contact {font-size: 11px; background: rgba(255,255,255,0.6); padding: 6px; border-radius: 6px; line-height: 1.3;}
+.style1-qrcode-area {position: absolute; right: 12px; bottom: 12px; width: 65px; height: 65px; background: white; border: 2px solid #F58220; padding: 2px; border-radius: 4px;}
+
+/* 样式二：高级深灰咖啡色波浪版 */
+.canvas-card.img-style-2 {height: 250px; background: #514a44; color: #fff; padding: 20px; display: flex; justify-content: space-between; background-image: radial-gradient(circle at 100% 150%, #7d7268 20%, transparent 60%);}
+.style2-left {width: 55%; display: flex; flex-direction: column; justify-content: space-between;}
+.style2-logo {font-size: 20px; font-weight: 900; color: #F58220; background: white; display: inline-block; padding: 2px 8px; border-radius: 4px;}
+.style2-name {font-size: 22px; font-weight: bold; color: #fff; margin: 10px 0 2px 0;}
+.style2-post-badge {background: #fff; color: #333; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 20px; display: inline-block; text-align: center;}
+.style2-contacts {font-size: 11px; list-style: none; padding:0; margin: 15px 0 0 0; line-height: 1.6;}
+.style2-right {width: 40%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; position: relative;}
+.style2-avatar {width: 130px; height: 160px; object-fit: cover; border-radius: 6px; border-bottom: 4px solid #F58220;}
+.style2-qrcode {position: absolute; top: 0; right: 0; width: 55px; height: 55px; background: white; border: 1px solid #333; padding: 2px;}
+
+/* 样式三：竖版工牌物料样式 */
+.canvas-card.img-style-3 {width: 320px; height: 460px; background: #ffffff; padding: 15px; border-top: 8px solid #F58220; border-bottom: 8px solid #F58220; display: flex; flex-direction: column; justify-content: space-between;}
+.style3-header {display: flex; justify-content: space-between; align-items: center;}
+.style3-body-top {display: flex; gap: 12px; margin-top: 15px;}
+.style3-avatar {width: 100px; height: 130px; object-fit: cover; border: 2px solid #bdc3c7;}
+.style3-meta {flex: 1; font-size: 12px; line-height: 1.4;}
+.style3-marketing-box {background: #fff5eb; border-radius: 6px; padding: 10px; margin-top: 15px;}
+.style3-thai-bold {color: #bf360c; font-weight: 900; font-size: 14px; margin: 0 0 5px 0;}
+.style3-list {font-size: 12px; color: #333; line-height: 1.5; padding-left: 15px; margin: 0;}
+.style3-footer {display: flex; justify-content: space-between; align-items: flex-end; margin-top: 10px;}
+.style3-qrcode {width: 70px; height: 70px; background: white; border: 1px solid #ccc; padding: 2px;}
+
+/* 样式四：巨幅特价营销海报版 */
+.canvas-card.img-style-4 {width: 380px; height: 380px; background: #ffffff; padding: 15px; background-image: linear-gradient(145deg, #fff 60%, #ffe0cc 100%); display: flex; flex-direction: column; justify-content: space-between;}
+.style4-banner-text {font-size: 28px; font-weight: 900; color: #F58220; line-height: 1.1; margin: 0;}
+.style4-sub {font-size: 12px; background: #F58220; color: white; display: inline-block; padding: 2px 8px; border-radius: 10px; margin-top: 5px;}
+.style4-body {display: flex; justify-content: space-between; align-items: flex-end; margin-top: 15px;}
+.style4-features {list-style: none; padding: 0; margin: 0; font-size: 12px; font-weight: bold; line-height: 1.8;}
+.style4-right-holder {position: relative; width: 140px; height: 180px;}
+.style4-avatar {width: 100%; height: 100%; object-fit: cover; border-radius: 8px;}
+.style4-orange-bar {background: #F58220; color: white; padding: 8px; font-size: 12px; font-weight: bold; text-align: center; margin-top: 10px; border-radius: 4px;}
 </style>
 </head>
 <body>
@@ -142,17 +263,16 @@ a:hover {text-decoration: underline;}
             </ul>
         </details>
         
-        <details open><summary data-i18n="menu_group_sys">⚙️ System Platform</summary>
+        <details><summary data-i18n="menu_group_sys">⚙️ System Platform</summary>
             <ul>
                 <li class="nav-item" onclick="switchTab('tab-store', this)" data-i18n="menu_store">Store Management</li>
                 <li class="nav-item" onclick="switchTab('tab-user', this)" data-i18n="menu_user">User Role</li>
-                <!-- 员工名片设计模块完美嵌入系统平台群组 -->
                 <li class="nav-item" onclick="switchTab('tab-card-gen', this)" data-i18n="menu_card_gen">Staff Business Card</li>
                 <li class="nav-item" onclick="switchTab('tab-config', this)" data-i18n="menu_config">Configuration</li>
             </ul>
         </details>
         
-        <details open><summary data-i18n="menu_group_ticket">🎧 Ticket Center</summary>
+        <details><summary data-i18n="menu_group_ticket">🎧 Ticket Center</summary>
             <ul>
                 <li class="nav-item" onclick="switchTab('tab-ticket-cus', this)" data-i18n="menu_tkt_cus">Abnormal waybill management</li>
                 <li class="nav-item" onclick="switchTab('tab-ticket-itsm', this)" data-i18n="menu_tkt_itsm">ITSM Ticket</li>
@@ -714,7 +834,6 @@ a:hover {text-decoration: underline;}
         </div>
     </div>
 
-    <!-- 替换后的Payment Statistics模块 -->
     <div id="tab-daily-reconcile" class="tab-content">
         <h2 data-i18n="menu_daily_reconcile">Payment Statistics - Daily Payment Reconciliation</h2>
         <div class="panel">
@@ -793,7 +912,6 @@ a:hover {text-decoration: underline;}
         </table>
     </div>
 
-    <!-- 替换后的SHOP Expense Summary模块 -->
     <div id="tab-expense-summary" class="tab-content">
         <h2 data-i18n="menu_expense_summary">SHOP Expense Summary  </h2>
         <div class="panel">
@@ -856,7 +974,6 @@ a:hover {text-decoration: underline;}
         </table>
     </div>
 
-    <!-- 替换后的WHT Management模块 -->
     <div id="tab-wht-manage" class="tab-content">
         <h2 data-i18n="menu_wht_manage">WHT Management - Withholding Tax </h2>
         <div class="panel">
@@ -919,7 +1036,6 @@ a:hover {text-decoration: underline;}
         </table>
     </div>
 
-    <!-- Store Management -->
     <div id="tab-store" class="tab-content">
         <h2>Store Management</h2>
         <div class="approval-banner">
@@ -1044,7 +1160,6 @@ a:hover {text-decoration: underline;}
         </div>
     </div>
 
-    <!-- User Role -->
     <div id="tab-user" class="tab-content">
         <h2 data-i18n="menu_user">User Role</h2>
         <div class="search-filter-bar">
@@ -1131,21 +1246,17 @@ a:hover {text-decoration: underline;}
         </div>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- 成功加持的增量模块：多样式 KEX 本地营销名片模板生成中心 -->
-    <!-- ======================================================== -->
     <div id="tab-card-gen" class="tab-content">
         <h2 data-i18n="card_gen_title">Staff Business Card Generator (营销名片与海报生成器)</h2>
         <p style="color:#7f8c8d; font-size:13px; margin-top:-8px;">专为 POS 营业网点员工打造。支持自定义上传形象照、绑定社交账号并一键切合泰语直效拓客物料模板。</p>
         
         <div class="card-gen-container">
-            <!-- 左侧控制面板 -->
             <div class="card-form-side">
                 <div class="panel" style="box-shadow:none; padding:0; margin:0;">
                     <h3>🛠️ 选择物料样式并输入个人档案</h3>
                     
                     <div style="margin: 15px 0;">
-                        <label style="font-size:12px; font-weight:bold; color:#747d8d; display:block; margin-bottom:5px;">选择物料模板样式 (Select Visual Template)</label>
+                        <label style="font-size:12px; font-weight:bold; color:#747d8c; display:block; margin-bottom:5px;">选择物料模板样式 (Select Visual Template)</label>
                         <div class="style-selector">
                             <div class="style-option active" onclick="changeLiveTemplate('style1', this)">样式一：暖橙微商卡 (图1)</div>
                             <div class="style-option" onclick="changeLiveTemplate('style2', this)">样式二：高级商务深灰 (图2)</div>
@@ -1183,12 +1294,10 @@ a:hover {text-decoration: underline;}
                 </div>
             </div>
             
-            <!-- 右侧高保真画布动态呈现区 -->
             <div class="card-preview-side">
                 <span style="font-size:13px; color:#2F3542; font-weight:bold;">✨ 实时高保真物料画布预览 (Canvas Realtime View)</span>
                 
                 <div id="dynamicCanvasWrapper">
-                    <!-- 默认呈现样式一 -->
                     <div class="canvas-card img-style-1" id="templateCoreBox">
                         <div class="style1-left">
                             <div class="style1-avatar-container">
@@ -1221,7 +1330,6 @@ a:hover {text-decoration: underline;}
         </div>
     </div>
 
-    <!-- Configuration -->
     <div id="tab-config" class="tab-content">
         <h2 data-i18n="menu_config">Configuration</h2>
         <div class="panel">
@@ -1254,7 +1362,6 @@ a:hover {text-decoration: underline;}
         </div>
     </div>
 
-    <!-- Abnormal waybill management -->
     <div id="tab-ticket-cus" class="tab-content">
         <h2 data-i18n="menu_tkt_cus">Abnormal waybill management</h2>
         <div class="search-filter-bar">
@@ -1300,7 +1407,6 @@ a:hover {text-decoration: underline;}
         </div>
     </div>
 
-    <!-- ITSM Ticket -->
     <div id="tab-ticket-itsm" class="tab-content">
         <div class="itsm-container">
             <h2 class="itsm-title">New Ticket</h2>
@@ -1396,32 +1502,46 @@ a:hover {text-decoration: underline;}
 </div>
 
 <script>
-// I18N 词典扩展，完美绑定运单管理与快件追踪模块
+// ========================================================
+// 统一聚合各模块核心脚本与 i18n 词典数据
+// ========================================================
+
+// 注入名片画布相关全局控制参数
+let currentUploadedAvatarBase64 = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='%23e28743'><circle cx='12' cy='8' r='4'/><path d='M2 20c0-4.4 3.6-8 8-8h4c4.4 0 8 3.6 8 8v2H2v-2z'/></svg>";
+let currentActiveStyle = 'style1';
+
+// 融合业务流、财务管理、系统平台及工单效能多模块的国际化配置
 const i18nTokens = {
     en: {
         menu_dashboard: "🏠 Dashboard",
         menu_group_biz: "📦 Business Ops",
         menu_group_financial: "💵 Financial Management",
+        menu_group_sys: "⚙️ System Platform",
+        menu_group_ticket: "🎧 Ticket Center",
         menu_waybill: "Waybill Management",
         menu_dropoff: "Parcel Tracking",
         menu_trading_desk: "Trading Desk",
         menu_receipt: "Receipt Management",
         menu_tax_invoice: "Tax Invoice",
-        menu_line_pay: "Line Pay",
-        menu_transaction: "Transaction Confirmation",
-        menu_wht: "WHT",
-        menu_wallet: "Wallet",
         menu_pbr: "PBR/MSP",
         menu_daily_reconcile: "Daily Reconciliation",
         menu_expense_summary: "Branch Expense Summary",
         menu_wht_manage: "WHT Management",
+        menu_store: "Store Management",
+        menu_user: "User Role",
+        menu_card_gen: "Staff Business Card",
+        menu_config: "Configuration",
+        menu_tkt_cus: "Abnormal waybill management",
+        menu_tkt_itsm: "ITSM Ticket",
         sys_online: "System Online",
         admin_role: "Admin",
         notifications: "Notifications(3)",
+        dash_title: "Dashboard Overview",
         wb_title: "Waybill & Parcel Lifecycle Management",
         btn_search: "Search",
         btn_reset: "Reset",
         opt_all: "All Channels",
+        opt_select: "Please Select",
         stab_all: "All Waybills (1,286)",
         stab_pending: "Pending Outbound (45)",
         stab_dispatched: "Dispatched (1,223)",
@@ -1461,19 +1581,8 @@ const i18nTokens = {
         td_cat_pouch: "Pouches / Tape",
         td_cart_title: "Current Order Checkout",
         td_cart_empty: "Cart is empty.<br>Click items on the left to purchase.",
-        menu_group_sys: "⚙️ System Platform",
-        menu_store: "Store Management",
-        menu_user: "User Role",
-        menu_card_gen: "Staff Business Card",
-        menu_config: "Configuration",
-        menu_group_ticket: "🎧 Ticket Center",
-        menu_tkt_cus: "Abnormal waybill management",
-        menu_tkt_itsm: "ITSM Ticket",
-        dash_card3: "Pending Exceptions",
-        dash_card4: "Pending ITSM",
         lbl_branch_code: "Branch Code",
         lbl_emp_id: "Employee ID",
-        opt_select: "Please Select",
         lbl_branch_name: "Branch Name",
         lbl_emp_name: "Employee Name",
         lbl_emp_type: "Employee Type",
@@ -1491,26 +1600,32 @@ const i18nTokens = {
         menu_dashboard: "🏠 核心仪表盘",
         menu_group_biz: "📦 门店综合业务",
         menu_group_financial: "💵 财务财务管理",
+        menu_group_sys: "⚙️ 系统平台",
+        menu_group_ticket: "🎧 工单及效能中心",
         menu_waybill: "运单生命周期管理",
         menu_dropoff: "快件轨迹追踪",
         menu_trading_desk: "Trading Desk 售卖中心",
         menu_receipt: "收据业务管理",
         menu_tax_invoice: "税务发票开具",
-        menu_line_pay: "Line Pay 收银中心",
-        menu_transaction: "交接款账单确认",
-        menu_wht: "WHT 预扣税登记",
-        menu_wallet: "数字钱包结算",
         menu_pbr: "PBR/MSP 托运单",
         menu_daily_reconcile: "Payment Statistics",
         menu_expense_summary: "SHOP Expense Summary",
         menu_wht_manage: "WHT Management",
+        menu_store: "门店管理",
+        menu_user: "用户权限组",
+        menu_card_gen: "员工营销名片",
+        menu_config: "系统基础配置",
+        menu_tkt_cus: "异常运单管理工单",
+        menu_tkt_itsm: "ITSM 故障技术工单",
         sys_online: "系统联机正常",
         admin_role: "系统管理员",
         notifications: "未读通知(3)",
+        dash_title: "仪表盘概览",
         wb_title: "运单与包裹生命周期管控中心",
         btn_search: "执行检索",
         btn_reset: "重置条件",
         opt_all: "所有渠道源",
+        opt_select: "请选择",
         stab_all: "全部运单 (1,286)",
         stab_pending: "待出库网点件 (45)",
         stab_dispatched: "已出库中转件 (1,223)",
@@ -1550,19 +1665,8 @@ const i18nTokens = {
         td_cat_pouch: "快递袋 / 胶带",
         td_cart_title: "当前零售订单结账",
         td_cart_empty: "购物车空空如也。<br>请从左侧选择商品进行加购。",
-        menu_group_sys: "⚙️ 系统平台",
-        menu_store: "门店管理",
-        menu_user: "用户权限组",
-        menu_card_gen: "员工营销名片",
-        menu_config: "系统基础配置",
-        menu_group_ticket: "🎧 工单及效能中心",
-        menu_tkt_cus: "异常运单管理工单",
-        menu_tkt_itsm: "ITSM 故障技术工单",
-        dash_card3: "待处理异常工单",
-        dash_card4: "技术支持ITSM",
         lbl_branch_code: "站点编码",
         lbl_emp_id: "员工工号",
-        opt_select: "请选择",
         lbl_branch_name: "站点名称",
         lbl_emp_name: "员工名称",
         lbl_emp_type: "员工类型",
@@ -1580,26 +1684,32 @@ const i18nTokens = {
         menu_dashboard: "🏠 แดชบอร์ด",
         menu_group_biz: "📦 จัดการธุรกิจ",
         menu_group_financial: "💵 การจัดการทางการเงิน",
+        menu_group_sys: "⚙️ แพลตฟอร์มระบบ",
+        menu_group_ticket: "🎧 ศูนย์ตั๋ว/ใบงาน",
         menu_waybill: "จัดการใบนำส่งสินค้า (Waybill)",
         menu_dropoff: "ติดตามพัสดุ (Parcel Tracking)",
         menu_trading_desk: "ศูนย์จำหน่ายสินค้า (Trading Desk)",
         menu_receipt: "จัดการใบเสร็จ",
         menu_tax_invoice: "ใบกำกับภาษี",
-        menu_line_pay: "Line Pay",
-        menu_transaction: "ยืนยันการทำรายการ",
-        menu_wht: "WHT",
-        menu_wallet: "กระเป๋าเงิน",
         menu_pbr: "PBR/MSP",
         menu_daily_reconcile: "การกระทบยอดประจำวัน",
         menu_expense_summary: "สรุปการชำระเงินของสาขา",
         menu_wht_manage: "การจัดการ WHT",
+        menu_store: "การจัดการร้านค้า",
+        menu_user: "บทบาทผู้ใช้งาน",
+        menu_card_gen: "นามบัตรพนักงาน",
+        menu_config: "การกำหนดค่าระบบ",
+        menu_tkt_cus: "การจัดการใบนำส่งสินค้าที่ผิดปกติ",
+        menu_tkt_itsm: "ตั๋ว ITSM",
         sys_online: "ระบบออนไลน์",
         admin_role: "ผู้ดูแลระบบ",
         notifications: "การแจ้งเตือน(3)",
+        dash_title: "ภาพรวมแดชบอร์ด",
         wb_title: "ระบบจัดการสถานะใบนำส่งสินค้าและพัสดุ",
         btn_search: "ค้นหา",
         btn_reset: "รีเซ็ต",
         opt_all: "ทุกช่องทาง",
+        opt_select: "กรุณาเลือก",
         stab_all: "รายการทั้งหมด (1,286)",
         stab_pending: "รอดำเนินการส่งออก (45)",
         stab_dispatched: "ส่งออกแล้ว (1,223)",
@@ -1639,19 +1749,8 @@ const i18nTokens = {
         td_cat_pouch: "ซองพัสดุ / เทปกาว",
         td_cart_title: "ชำระเงินใบสั่งซื้อปัจจุบัน",
         td_cart_empty: "ไม่มีสินค้าในตระกร้า<br>คลิกเลือกสินค้าด้านซ้ายเพื่อซื้อ",
-        menu_group_sys: "⚙️ แพลตฟอร์มระบบ",
-        menu_store: "การจัดการร้านค้า",
-        menu_user: "บทบาทผู้ใช้งาน",
-        menu_card_gen: "นามบัตรพนักงาน",
-        menu_config: "การกำหนดค่าระบบ",
-        menu_group_ticket: "🎧 ศูนย์ตั๋ว/ใบงาน",
-        menu_tkt_cus: "การจัดการใบนำส่งสินค้าที่ผิดปกติ",
-        menu_tkt_itsm: "ตั๋ว ITSM",
-        dash_card3: "ข้อยกเว้นที่รอดำเนินการ",
-        dash_card4: "ITSM รอดำเนินการ",
         lbl_branch_code: "รหัสสาขา",
         lbl_emp_id: "รหัสพนักงาน",
-        opt_select: "กรุณาเลือก",
         lbl_branch_name: "ชื่อสาขา",
         lbl_emp_name: "ชื่อพนักงาน",
         lbl_emp_type: "ประเภทพนักงาน",
@@ -1689,115 +1788,9 @@ function switchTab(tabId, element) {
     if(element) element.classList.add('active');
 }
 
-/* 运单专有辅助脚本 */
-function switchSubTab(el, statusFilter) {
-    const subTabs = document.querySelectorAll('.sub-tab');
-    subTabs.forEach(tab => tab.classList.remove('active'));
-    el.classList.add('active');
-    console.log("Filtering waybill dataset stream by operational status: " + statusFilter);
-}
-
-function toggleSelectAllWaybills(master) {
-    const checkboxes = document.querySelectorAll('.wb-chk');
-    checkboxes.forEach(chk => chk.checked = master.checked);
-}
-
-function resetWaybillFilters() {
-    document.getElementById('wb-search-tracking').value = '';
-    document.getElementById('wb-search-customer').value = '';
-    document.getElementById('wb-search-dest').value = '';
-    document.getElementById('wb-search-date').value = '';
-    document.getElementById('wb-search-platform').value = 'ALL';
-}
-
-/* 售卖中心专有脚本 */
-let cart = [];
-function filterTradingCategory(el, category) {
-    const subTabs = el.parentNode.querySelectorAll('.sub-tab');
-    subTabs.forEach(tab => tab.classList.remove('active'));
-    el.classList.add('active');
-    
-    const cards = document.querySelectorAll('.trading-item-card');
-    cards.forEach(card => {
-        if (category === 'ALL' || card.getAttribute('data-category') === category) {
-            card.style.display = 'flex';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
-
-function addToCart(name, price) {
-    const existing = cart.find(item => item.name === name);
-    if (existing) {
-        existing.qty++;
-    } else {
-        cart.push({name: name, price: price, qty: 1});
-    }
-    renderCart();
-}
-
-function clearCart() {
-    cart = [];
-    renderCart();
-}
-
-function renderCart() {
-    const emptyMsg = document.getElementById('td-cart-empty');
-    const mainCart = document.getElementById('td-cart-main');
-    const tbody = document.querySelector('#td-cart-table tbody');
-    const totalEl = document.getElementById('td-cart-total-price');
-    
-    if (cart.length === 0) {
-        emptyMsg.style.display = 'block';
-        mainCart.style.display = 'none';
-        return;
-    }
-    
-    emptyMsg.style.display = 'none';
-    mainCart.style.display = 'block';
-    tbody.innerHTML = '';
-    
-    let total = 0;
-    cart.forEach(item => {
-        const itemTotal = item.price * item.qty;
-        total += itemTotal;
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${item.name}</td><td>${item.qty}</td><td>THB ${itemTotal.toFixed(2)}</td>`;
-        tbody.appendChild(tr);
-    });
-    totalEl.innerText = 'THB ' + total.toFixed(2);
-}
-
-/* ==================== WHT 扣缴税费原有脚本保持不变 ==================== */
-function autoCalculateWHT(val) {
-    const baseInput = document.getElementById('wht-base-amount');
-    const compInput = document.getElementById('wht-company-name');
-    const taxInput = document.getElementById('wht-tax-id');
-    
-    if(val.length >= 5) {
-        baseInput.value = 11682.24;
-        compInput.value = "Shopee Thailand Co., Ltd.";
-        taxInput.value = "0105558123456";
-        recalcWhtValue();
-    } else {
-        baseInput.value = "0.00";
-        compInput.value = "";
-        taxInput.value = "";
-        document.getElementById('wht-calculated-val').value = "THB 0.00";
-    }
-}
-
-function recalcWhtValue() {
-    const base = parseFloat(document.getElementById('wht-base-amount').value);
-    const rate = parseFloat(document.getElementById('wht-rate-select').value);
-    if(!isNaN(base) && base > 0) {
-        const calculated = base * rate;
-        document.getElementById('wht-calculated-val').value = "THB " + calculated.toFixed(2);
-    }
-}
-
-/* Store & Card Gen 脚本 */
+/* ======================================================== */
+/* 门店管理与审批特有脚本 (Store Management)                 */
+/* ======================================================== */
 function submitStoreApproval() {
     const banner = document.getElementById('currentStatusLabel');
     banner.innerText = "审核中 (Under Review)";
@@ -1807,11 +1800,8 @@ function submitStoreApproval() {
 }
 
 /* ======================================================== */
-/* 实时名片渲染与逻辑控制引擎 */
+/* 实时名片渲染与逻辑控制引擎 (Staff Business Card Generator) */
 /* ======================================================== */
-let currentUploadedAvatarBase64 = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='%23e28743'><circle cx='12' cy='8' r='4'/><path d='M2 20c0-4.4 3.6-8 8-8h4c4.4 0 8 3.6 8 8v2H2v-2z'/></svg>";
-let currentActiveStyle = 'style1';
-
 function changeLiveTemplate(styleKey, element) {
     currentActiveStyle = styleKey;
     const options = document.querySelectorAll('.style-option');
@@ -1933,10 +1923,94 @@ function renderCardRealtime() {
                     </div>
                 </div>
                 <div class="style4-orange-bar">
-                    📞 ติดต่อคุณ ${name} โเลย: ${phone} (ฝ่ายบริการลูกค้า)
+                    📞 ติดต่อคุณ ${name} โทร: ${phone} (ฝ่ายบริการลูกค้า)
                 </div>
             </div>`;
     }
+}
+
+/* ======================================================== */
+/* 运单专有辅助脚本 */
+/* ======================================================== */
+function switchSubTab(el, statusFilter) {
+    const subTabs = document.querySelectorAll('.sub-tab');
+    subTabs.forEach(tab => tab.classList.remove('active'));
+    el.classList.add('active');
+    console.log("Filtering waybill dataset stream by operational status: " + statusFilter);
+}
+
+function toggleSelectAllWaybills(master) {
+    const checkboxes = document.querySelectorAll('.wb-chk');
+    checkboxes.forEach(chk => chk.checked = master.checked);
+}
+
+function resetWaybillFilters() {
+    document.getElementById('wb-search-tracking').value = '';
+    document.getElementById('wb-search-customer').value = '';
+    document.getElementById('wb-search-dest').value = '';
+    document.getElementById('wb-search-date').value = '';
+    document.getElementById('wb-search-platform').value = 'ALL';
+}
+
+/* ======================================================== */
+/* 售卖中心专有脚本 */
+/* ======================================================== */
+let cart = [];
+function filterTradingCategory(el, category) {
+    const subTabs = el.parentNode.querySelectorAll('.sub-tab');
+    subTabs.forEach(tab => tab.classList.remove('active'));
+    el.classList.add('active');
+    
+    const cards = document.querySelectorAll('.trading-item-card');
+    cards.forEach(card => {
+        if (category === 'ALL' || card.getAttribute('data-category') === category) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function addToCart(name, price) {
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({name: name, price: price, qty: 1});
+    }
+    renderCart();
+}
+
+function clearCart() {
+    cart = [];
+    renderCart();
+}
+
+function renderCart() {
+    const emptyMsg = document.getElementById('td-cart-empty');
+    const mainCart = document.getElementById('td-cart-main');
+    const tbody = document.querySelector('#td-cart-table tbody');
+    const totalEl = document.getElementById('td-cart-total-price');
+    
+    if (cart.length === 0) {
+        emptyMsg.style.display = 'block';
+        mainCart.style.display = 'none';
+        return;
+    }
+    
+    emptyMsg.style.display = 'none';
+    mainCart.style.display = 'block';
+    tbody.innerHTML = '';
+    
+    let total = 0;
+    cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${item.name}</td><td>${item.qty}</td><td>THB ${itemTotal.toFixed(2)}</td>`;
+        tbody.appendChild(tr);
+    });
+    totalEl.innerText = 'THB ' + total.toFixed(2);
 }
 </script>
 </body>
